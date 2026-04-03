@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 		try_start_move()
 
 	update_animation()
-
+	
 func update_input_buffer() -> void:
 	handle_direction_input("move_left", Vector2i.LEFT)
 	handle_direction_input("move_right", Vector2i.RIGHT)
@@ -81,7 +81,9 @@ func try_start_move() -> void:
 	var current_cell := world_to_cell(position)
 	var next_cell := current_cell + buffered_direction
 
-	if is_cell_walkable(next_cell):
+	var walkable := is_cell_walkable(next_cell)
+
+	if walkable and not is_direction_blocked(buffered_direction):
 		current_direction = buffered_direction
 		facing_direction = current_direction
 		target_position = cell_to_world(next_cell)
@@ -89,6 +91,22 @@ func try_start_move() -> void:
 	else:
 		# Still face the pressed direction even if blocked (feels nicer)
 		facing_direction = buffered_direction
+
+func is_direction_blocked(dir: Vector2i) -> bool:
+	if dir == Vector2i.UP:
+		$RayUp.force_raycast_update()
+		return $RayUp.is_colliding()
+	elif dir == Vector2i.DOWN:
+		$RayDown.force_raycast_update()
+		return $RayDown.is_colliding()
+	elif dir == Vector2i.LEFT:
+		$RayLeft.force_raycast_update()
+		return $RayLeft.is_colliding()
+	elif dir == Vector2i.RIGHT:
+		$RayRight.force_raycast_update()
+		return $RayRight.is_colliding()
+	
+	return false
 
 func move_toward_target(delta: float) -> void:
 	position = position.move_toward(target_position, move_speed * delta)
@@ -106,7 +124,10 @@ func try_continue_move() -> void:
 	var current_cell := world_to_cell(position)
 	var next_cell := current_cell + buffered_direction
 
-	if is_cell_walkable(next_cell):
+	var walkable := is_cell_walkable(next_cell)
+
+	# <- Added raycast check here
+	if walkable and not is_direction_blocked(buffered_direction):
 		current_direction = buffered_direction
 		facing_direction = current_direction
 		target_position = cell_to_world(next_cell)

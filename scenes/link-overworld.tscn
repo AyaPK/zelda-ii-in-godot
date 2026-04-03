@@ -163,6 +163,7 @@ _data = {
 }
 
 [node name="Link" type="CharacterBody2D" unique_id=587667358]
+collision_mask = 2
 script = ExtResource("1_spirg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1526673215]
@@ -179,3 +180,26 @@ shape = SubResource("RectangleShape2D_ofvef")
 libraries/ = SubResource("AnimationLibrary_hd52t")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=188650207]
+
+[node name="RayUp" type="RayCast2D" parent="." unique_id=486647336]
+rotation = 3.1415927
+target_position = Vector2(1.7484556e-06, 20)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="RayDown" type="RayCast2D" parent="." unique_id=1236251046]
+target_position = Vector2(1.7484556e-06, 20)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="RayLeft" type="RayCast2D" parent="." unique_id=796234606]
+rotation = 1.5707964
+target_position = Vector2(1.7484556e-06, 20)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="RayRight" type="RayCast2D" parent="." unique_id=1114043657]
+rotation = 4.712389
+target_position = Vector2(1.7484556e-06, 20)
+collision_mask = 2
+collide_with_areas = true
