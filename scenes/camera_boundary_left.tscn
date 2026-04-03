@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bu8mylhkb5itl"]
+
+[node name="CameraBoundaryLeft" type="VisibleOnScreenNotifier2D" unique_id=1823913319]

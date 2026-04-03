@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name LinkSidescroll extends CharacterBody2D
 
 @export var move_speed: float = 120.0
 @export var jump_speed: float = 230.0
@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var friction: float = 600.0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var camera: Camera2D = $Camera2D
 
 var facing_right: bool = true
 var was_on_floor: bool = true
@@ -68,3 +69,7 @@ func update_animation() -> void:
 func play_animation(name: String) -> void:
 	if animation_player.current_animation != name:
 		animation_player.play(name)
+
+
+func _on_camera_boundary_left_screen_entered() -> void:
+	pass # Replace with function body.
