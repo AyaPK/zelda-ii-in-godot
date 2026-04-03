@@ -55,9 +55,8 @@ tile_map_data = PackedByteArray("AAAAAAIAAAABAAAAAAAAAAMAAAABAAAAAAAAAAQAAAABAAA
 tile_set = SubResource("TileSet_ud0bx")
 
 [node name="Link" parent="." unique_id=587667358 node_paths=PackedStringArray("tilemap") instance=ExtResource("2_oehki")]
-position = Vector2(136, 104)
+position = Vector2(488, 137)
 tilemap = NodePath("../Tilemap")
-move_speed = null
 
 [node name="Rock" parent="." unique_id=2137851647 instance=ExtResource("3_mdm5b")]
 position = Vector2(488, 184)
@@ -69,3 +68,8 @@ position = Vector2(584, 264)
 position = Vector2(104, 104)
 target_scene = "uid://8qqgreuj8ti1"
 node_name = "MainEntrance"
+
+[node name="TransitionToLevel2" parent="." unique_id=919647965 instance=ExtResource("4_oehki")]
+position = Vector2(471, 137)
+target_scene = "uid://dynugrsk26epd"
+node_name = "RightEntrance"

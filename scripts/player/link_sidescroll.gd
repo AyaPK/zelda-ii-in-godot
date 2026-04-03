@@ -1,7 +1,7 @@
 class_name LinkSidescroll extends CharacterBody2D
 
 @export var move_speed: float = 120.0
-@export var jump_speed: float = 230.0
+@export var jump_speed: float = 210.0
 @export var gravity: float = 600.0
 @export var max_fall_speed: float = 600.0
 @export var friction: float = 600.0

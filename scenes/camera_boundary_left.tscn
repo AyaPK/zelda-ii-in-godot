@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://bu8mylhkb5itl"]
 
+[ext_resource type="Script" uid="uid://tuquna4k3e5c" path="res://scripts/camera_boundary_left.gd" id="1_55n0x"]
+
 [node name="CameraBoundaryLeft" type="VisibleOnScreenNotifier2D" unique_id=1823913319]
+script = ExtResource("1_55n0x")
