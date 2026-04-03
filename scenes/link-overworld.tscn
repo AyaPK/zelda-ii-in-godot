@@ -15,7 +15,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.033333335),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
@@ -78,7 +78,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [6]
+"values": [7]
 }
 
 [sub_resource type="Animation" id="Animation_hd52t"]
@@ -162,8 +162,8 @@ _data = {
 &"walk_up": SubResource("Animation_vs1d3")
 }
 
-[node name="Link" type="CharacterBody2D" unique_id=587667358]
-collision_mask = 2
+[node name="Link" type="CharacterBody2D" unique_id=587667358 groups=["overworld-player"]]
+collision_mask = 6
 script = ExtResource("1_spirg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1526673215]
@@ -171,6 +171,7 @@ position = Vector2(0, -1)
 texture = ExtResource("2_70o0s")
 hframes = 4
 vframes = 2
+frame = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=264882915]
 position = Vector2(0, -1)

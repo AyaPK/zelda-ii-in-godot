@@ -15,6 +15,10 @@ run/main_scene="uid://5bvx4ghdlu7p"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Scenemanager="*uid://bavw8w7u85gke"
+
 [display]
 
 window/size/viewport_width=256
@@ -27,6 +31,7 @@ window/stretch/aspect="keep_width"
 [global_group]
 
 sidescroll-player=""
+overworld-player=""
 
 [input]
 
@@ -65,6 +70,7 @@ jump={
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Walls"
+2d_physics/layer_3="Interactable"
 
 [physics]
 

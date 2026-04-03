@@ -66,9 +66,9 @@ func update_animation() -> void:
 		play_animation("idle")
 	$Sprite.scale.x = 1 if facing_right else -1
 
-func play_animation(name: String) -> void:
+func play_animation(anim_name: String) -> void:
 	if animation_player.current_animation != name:
-		animation_player.play(name)
+		animation_player.play(anim_name)
 
 
 func _on_camera_boundary_left_screen_entered() -> void:

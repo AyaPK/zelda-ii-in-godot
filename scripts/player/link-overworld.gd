@@ -1,4 +1,4 @@
-extends Node2D
+class_name LinkOverworld extends Node2D
 
 @export var tilemap: TileMapLayer
 @export var move_speed: float = 64.0
@@ -10,6 +10,8 @@ var target_position: Vector2
 var current_direction: Vector2i = Vector2i.ZERO
 var buffered_direction: Vector2i = Vector2i.ZERO
 var facing_direction: Vector2i = Vector2i.DOWN
+
+var interactable: Interactable = null
 
 # Stores currently held directions in press order.
 # Last item = most recently pressed, which wins.
@@ -94,16 +96,12 @@ func try_start_move() -> void:
 
 func is_direction_blocked(dir: Vector2i) -> bool:
 	if dir == Vector2i.UP:
-		$RayUp.force_raycast_update()
 		return $RayUp.is_colliding()
 	elif dir == Vector2i.DOWN:
-		$RayDown.force_raycast_update()
 		return $RayDown.is_colliding()
 	elif dir == Vector2i.LEFT:
-		$RayLeft.force_raycast_update()
 		return $RayLeft.is_colliding()
 	elif dir == Vector2i.RIGHT:
-		$RayRight.force_raycast_update()
 		return $RayRight.is_colliding()
 	
 	return false
@@ -114,7 +112,12 @@ func move_toward_target(delta: float) -> void:
 	if position.distance_to(target_position) < 0.01:
 		position = target_position
 		is_moving = false
+		on_end_step()
 		try_continue_move()
+
+func on_end_step() -> void:
+	if interactable:
+		interactable.activate()
 
 func try_continue_move() -> void:
 	if buffered_direction == Vector2i.ZERO:
