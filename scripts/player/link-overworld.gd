@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var tilemap: TileMapLayer
-@export var move_speed: float = 70.0
+@export var move_speed: float = 64.0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
