@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://cn21fhx6p5srp"]
+
+[ext_resource type="Script" uid="uid://b4a0lapkebjwg" path="res://scripts/player/link_sidescroll.gd" id="1_km8oa"]
+[ext_resource type="Texture2D" uid="uid://cyta1i0n7ksek" path="res://assets/art/sprites/link-sidescroll.png" id="2_yeeko"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_km8oa"]
+size = Vector2(20, 32)
+
+[sub_resource type="Animation" id="Animation_km8oa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4xnvu"]
+resource_name = "fall"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+
+[sub_resource type="Animation" id="Animation_yeeko"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_1sks4"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+
+[sub_resource type="Animation" id="Animation_k2ein"]
+resource_name = "land"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+
+[sub_resource type="Animation" id="Animation_ssr3k"]
+resource_name = "run"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [5, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ssr3k"]
+_data = {
+&"RESET": SubResource("Animation_km8oa"),
+&"fall": SubResource("Animation_4xnvu"),
+&"idle": SubResource("Animation_yeeko"),
+&"jump": SubResource("Animation_1sks4"),
+&"land": SubResource("Animation_k2ein"),
+&"run": SubResource("Animation_ssr3k")
+}
+
+[node name="link-sidescroll" type="CharacterBody2D" unique_id=1464587723]
+script = ExtResource("1_km8oa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1738125899]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_km8oa")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1062561596]
+position = Vector2(0, -16)
+texture = ExtResource("2_yeeko")
+hframes = 3
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1631950889]
+libraries/ = SubResource("AnimationLibrary_ssr3k")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1735972899]
+position = Vector2(1, 0)
+limit_top = 240
+limit_bottom = 0
