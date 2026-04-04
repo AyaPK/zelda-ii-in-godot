@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://duw8hvarr5jas"]
+
+[ext_resource type="Script" uid="uid://bd10d1ule4udg" path="res://scripts/transition_to_overworld.gd" id="1_542mi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m61lc"]
+size = Vector2(20, 240)
+
+[node name="TransitionToOverworld" type="Area2D" unique_id=820669562]
+script = ExtResource("1_542mi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=95822828]
+position = Vector2(0, 120)
+shape = SubResource("RectangleShape2D_m61lc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

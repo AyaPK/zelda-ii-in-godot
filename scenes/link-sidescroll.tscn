@@ -21,6 +21,38 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_eh0tm"]
+resource_name = "air_attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.23333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [12, 13, 5]
+}
+
+[sub_resource type="Animation" id="Animation_gp8my"]
+resource_name = "attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.23333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [12, 13, 5]
+}
+
 [sub_resource type="Animation" id="Animation_4xnvu"]
 resource_name = "fall"
 tracks/0/type = "value"
@@ -81,6 +113,22 @@ tracks/0/keys = {
 "values": [6]
 }
 
+[sub_resource type="Animation" id="Animation_sb8fy"]
+resource_name = "recoil"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
 [sub_resource type="Animation" id="Animation_ssr3k"]
 resource_name = "run"
 length = 0.3
@@ -101,10 +149,13 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ssr3k"]
 _data = {
 &"RESET": SubResource("Animation_km8oa"),
+&"air_attack": SubResource("Animation_eh0tm"),
+&"attack": SubResource("Animation_gp8my"),
 &"fall": SubResource("Animation_4xnvu"),
 &"idle": SubResource("Animation_yeeko"),
 &"jump": SubResource("Animation_1sks4"),
 &"land": SubResource("Animation_k2ein"),
+&"recoil": SubResource("Animation_sb8fy"),
 &"run": SubResource("Animation_ssr3k")
 }
 
@@ -119,7 +170,7 @@ shape = SubResource("RectangleShape2D_km8oa")
 position = Vector2(0, -16)
 texture = ExtResource("2_yeeko")
 hframes = 3
-vframes = 4
+vframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1631950889]
 libraries/ = SubResource("AnimationLibrary_ssr3k")

@@ -26,6 +26,10 @@ func _ready() -> void:
 	position = snap_to_tile_center(position)
 	target_position = position
 
+	for entry in [["move_left", Vector2i.LEFT], ["move_right", Vector2i.RIGHT], ["move_up", Vector2i.UP], ["move_down", Vector2i.DOWN]]:
+		if Input.is_action_pressed(entry[0]):
+			held_directions.append(entry[1])
+
 	update_animation()
 
 func _process(delta: float) -> void:

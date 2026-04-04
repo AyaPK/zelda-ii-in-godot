@@ -1,48 +1,189 @@
 class_name LinkSidescroll extends CharacterBody2D
 
-@export var move_speed: float = 120.0
-@export var jump_speed: float = 210.0
-@export var gravity: float = 600.0
+enum State { IDLE, RUN, JUMP, FALL, LAND, ATTACK, RECOIL, AIR_ATTACK, AIR_RECOIL }
+
+@export var move_speed: float = 90.0
+@export var jump_speed: float = 230.0
+@export var gravity: float = 800.0
 @export var max_fall_speed: float = 600.0
-@export var friction: float = 600.0
+@export var friction: float = 300.0
+@export var landing_duration: float = 0.15
+@export var recoil_duration: float = 0.5
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var camera: Camera2D = $Camera2D
 
 var facing_right: bool = true
 var was_on_floor: bool = true
-var landing_timer: float = 0.0
-@export var landing_duration: float = 0.15
+var state: State = State.IDLE
+var state_timer: float = 0.0
 
 func _physics_process(delta: float) -> void:
-	handle_input()
+	state_timer -= delta
 	apply_gravity(delta)
+	var next_state := _tick_state(delta)
 	move_and_slide()
-	if not was_on_floor and is_on_floor():
-		landing_timer = landing_duration
-	if landing_timer > 0:
-		landing_timer -= delta
+	_check_landing()
 	was_on_floor = is_on_floor()
-	update_animation()
+	if next_state != state:
+		_enter_state(next_state)
+	$Sprite.scale.x = 1 if facing_right else -1
 
-func handle_input() -> void:
-	var input_dir: float = 0.0
+func _tick_state(delta: float) -> State:
+	match state:
+		State.IDLE:
+			return _tick_idle()
+		State.RUN:
+			return _tick_run()
+		State.JUMP:
+			return _tick_jump()
+		State.FALL:
+			return _tick_fall()
+		State.LAND:
+			return _tick_land()
+		State.ATTACK:
+			return _tick_attack()
+		State.RECOIL:
+			return _tick_recoil()
+		State.AIR_ATTACK:
+			return _tick_air_attack()
+		State.AIR_RECOIL:
+			return _tick_air_recoil()
+	return state
 
-	if Input.is_action_pressed("move_left"):
-		input_dir -= 1
-	if Input.is_action_pressed("move_right"):
-		input_dir += 1
+func _enter_state(new_state: State) -> void:
+	state = new_state
+	match state:
+		State.IDLE:
+			play_animation("idle")
+		State.RUN:
+			play_animation("run")
+		State.JUMP:
+			velocity.y = -jump_speed
+			play_animation("jump")
+		State.FALL:
+			play_animation("fall")
+		State.LAND:
+			state_timer = landing_duration
+			play_animation("land")
+		State.ATTACK:
+			velocity.x = 0.0
+			play_animation("attack")
+		State.RECOIL:
+			state_timer = recoil_duration
+			velocity.x = 0.0
+			play_animation("recoil")
+		State.AIR_ATTACK:
+			play_animation("air_attack")
+		State.AIR_RECOIL:
+			state_timer = recoil_duration
+			play_animation("recoil")
 
+func _tick_idle() -> State:
+	var input_dir := _get_input_dir()
 	if input_dir != 0:
+		facing_right = input_dir > 0
+		velocity.x = input_dir * move_speed
+		return State.RUN
+	velocity.x = move_toward(velocity.x, 0.0, friction * get_physics_process_delta_time())
+	if not is_on_floor():
+		return State.FALL
+	if Input.is_action_just_pressed("jump"):
+		return State.JUMP
+	if Input.is_action_just_pressed("attack"):
+		return State.ATTACK
+	return State.IDLE
+
+func _tick_run() -> State:
+	var input_dir := _get_input_dir()
+	if input_dir != 0:
+		facing_right = input_dir > 0
+		velocity.x = input_dir * move_speed
+	else:
+		velocity.x = move_toward(velocity.x, 0.0, friction * get_physics_process_delta_time())
+	if not is_on_floor():
+		return State.FALL
+	if Input.is_action_just_pressed("jump"):
+		return State.JUMP
+	if Input.is_action_just_pressed("attack"):
+		return State.ATTACK
+	if velocity.x == 0.0 and input_dir == 0:
+		return State.IDLE
+	return State.RUN
+
+func _tick_jump() -> State:
+	_apply_air_movement()
+	if Input.is_action_just_pressed("attack"):
+		return State.AIR_ATTACK
+	if velocity.y >= 0:
+		return State.FALL
+	return State.JUMP
+
+func _tick_fall() -> State:
+	_apply_air_movement()
+	if Input.is_action_just_pressed("attack"):
+		return State.AIR_ATTACK
+	if is_on_floor():
+		return State.LAND
+	return State.FALL
+
+func _tick_land() -> State:
+	velocity.x = move_toward(velocity.x, 0.0, friction * get_physics_process_delta_time())
+	if state_timer <= 0:
+		if _get_input_dir() != 0:
+			return State.RUN
+		return State.IDLE
+	return State.LAND
+
+func _tick_air_attack() -> State:
+	_apply_air_movement()
+	if is_on_floor():
+		return State.LAND
+	if not animation_player.is_playing():
+		return State.AIR_RECOIL
+	return State.AIR_ATTACK
+
+func _tick_air_recoil() -> State:
+	_apply_air_movement()
+	if is_on_floor():
+		return State.LAND
+	if state_timer <= 0 or _get_input_dir() != 0:
+		if velocity.y < 0:
+			return State.JUMP
+		return State.FALL
+	return State.AIR_RECOIL
+
+func _tick_attack() -> State:
+	if not animation_player.is_playing():
+		return State.RECOIL
+	return State.ATTACK
+
+func _tick_recoil() -> State:
+	if state_timer <= 0 or _get_input_dir() != 0:
+		if _get_input_dir() != 0:
+			return State.RUN
+		return State.IDLE
+	return State.RECOIL
+
+func _check_landing() -> void:
+	if not was_on_floor and is_on_floor() and state != State.LAND:
+		_enter_state(State.LAND)
+
+func _apply_air_movement() -> void:
+	var input_dir := _get_input_dir()
+	if input_dir != 0:
+		facing_right = input_dir > 0
 		velocity.x = input_dir * move_speed
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, friction * get_physics_process_delta_time())
 
-	if input_dir != 0:
-		facing_right = input_dir > 0
-
-	if is_on_floor() and Input.is_action_just_pressed("jump"):
-		velocity.y = -jump_speed
+func _get_input_dir() -> float:
+	var input_dir: float = 0.0
+	if Input.is_action_pressed("move_left"):
+		input_dir -= 1
+	if Input.is_action_pressed("move_right"):
+		input_dir += 1
+	return input_dir
 
 func apply_gravity(delta: float) -> void:
 	if not is_on_floor():
@@ -52,22 +193,8 @@ func apply_gravity(delta: float) -> void:
 	elif velocity.y > 0:
 		velocity.y = 0
 
-func update_animation() -> void:
-	if not is_on_floor():
-		if velocity.y < 0:
-			play_animation("jump")
-		else:
-			play_animation("fall")
-	elif landing_timer > 0:
-		play_animation("land")
-	elif velocity.x != 0:
-		play_animation("run")
-	else:
-		play_animation("idle")
-	$Sprite.scale.x = 1 if facing_right else -1
-
 func play_animation(anim_name: String) -> void:
-	if animation_player.current_animation != name:
+	if animation_player.current_animation != anim_name:
 		animation_player.play(anim_name)
 
 
