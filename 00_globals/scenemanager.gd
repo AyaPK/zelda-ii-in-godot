@@ -31,7 +31,6 @@ func _do_change_scene_to_overworld(target_node_name: String) -> void:
 	get_tree().change_scene_to_file("res://levels/overworld.tscn")
 	await get_tree().process_frame
 	await get_tree().process_frame
-	print(level.get_node(target_node_name).global_position)
 	get_tree().get_first_node_in_group("overworld-player").global_position = level.get_node(target_node_name).global_position
 	transitioned.emit()
 	faded_in.emit()

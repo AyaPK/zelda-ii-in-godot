@@ -1,6 +1,6 @@
 class_name LinkSidescroll extends CharacterBody2D
 
-enum State { IDLE, RUN, JUMP, FALL, LAND, ATTACK, RECOIL, AIR_ATTACK, AIR_RECOIL }
+enum State { IDLE, RUN, JUMP, FALL, LAND, ATTACK, RECOIL, AIR_ATTACK, AIR_RECOIL, CROUCH, CROUCH_ATTACK }
 
 @export var move_speed: float = 90.0
 @export var jump_speed: float = 230.0
@@ -49,6 +49,10 @@ func _tick_state(delta: float) -> State:
 			return _tick_air_attack()
 		State.AIR_RECOIL:
 			return _tick_air_recoil()
+		State.CROUCH:
+			return _tick_crouch()
+		State.CROUCH_ATTACK:
+			return _tick_crouch_attack()
 	return state
 
 func _enter_state(new_state: State) -> void:
@@ -78,6 +82,10 @@ func _enter_state(new_state: State) -> void:
 		State.AIR_RECOIL:
 			state_timer = recoil_duration
 			play_animation("recoil")
+		State.CROUCH:
+			play_animation("crouch")
+		State.CROUCH_ATTACK:
+			play_animation("crouch_attack")
 
 func _tick_idle() -> State:
 	var input_dir := _get_input_dir()
@@ -90,6 +98,8 @@ func _tick_idle() -> State:
 		return State.FALL
 	if Input.is_action_just_pressed("jump"):
 		return State.JUMP
+	if Input.is_action_pressed("crouch"):
+		return State.CROUCH
 	if Input.is_action_just_pressed("attack"):
 		return State.ATTACK
 	return State.IDLE
@@ -105,6 +115,8 @@ func _tick_run() -> State:
 		return State.FALL
 	if Input.is_action_just_pressed("jump"):
 		return State.JUMP
+	if Input.is_action_pressed("crouch"):
+		return State.CROUCH
 	if Input.is_action_just_pressed("attack"):
 		return State.ATTACK
 	if velocity.x == 0.0 and input_dir == 0:
@@ -128,7 +140,9 @@ func _tick_fall() -> State:
 	return State.FALL
 
 func _tick_land() -> State:
-	velocity.x = move_toward(velocity.x, 0.0, friction * get_physics_process_delta_time())
+	#velocity.x = move_toward(velocity.x, 0.0, friction * get_physics_process_delta_time())
+	if Input.is_action_just_pressed("jump"):
+		return State.JUMP
 	if state_timer <= 0:
 		if _get_input_dir() != 0:
 			return State.RUN
@@ -140,6 +154,10 @@ func _tick_air_attack() -> State:
 	if is_on_floor():
 		return State.LAND
 	if not animation_player.is_playing():
+		if _get_input_dir() != 0:
+			if velocity.y < 0:
+				return State.JUMP
+			return State.FALL
 		return State.AIR_RECOIL
 	return State.AIR_ATTACK
 
@@ -147,18 +165,40 @@ func _tick_air_recoil() -> State:
 	_apply_air_movement()
 	if is_on_floor():
 		return State.LAND
+	if Input.is_action_just_pressed("attack"):
+		return State.AIR_ATTACK
 	if state_timer <= 0 or _get_input_dir() != 0:
 		if velocity.y < 0:
 			return State.JUMP
 		return State.FALL
 	return State.AIR_RECOIL
 
+func _tick_crouch() -> State:
+	velocity.x = move_toward(velocity.x, 0.0, friction * get_physics_process_delta_time())
+	if not Input.is_action_pressed("crouch"):
+		return State.IDLE
+	if Input.is_action_just_pressed("attack"):
+		return State.CROUCH_ATTACK
+	return State.CROUCH
+
+func _tick_crouch_attack() -> State:
+	velocity.x = move_toward(velocity.x, 0.0, friction * get_physics_process_delta_time())
+	if not animation_player.is_playing():
+		if Input.is_action_pressed("crouch"):
+			return State.CROUCH
+		return State.IDLE
+	return State.CROUCH_ATTACK
+
 func _tick_attack() -> State:
 	if not animation_player.is_playing():
+		if _get_input_dir() != 0:
+			return State.RUN
 		return State.RECOIL
 	return State.ATTACK
 
 func _tick_recoil() -> State:
+	if Input.is_action_just_pressed("attack"):
+		return State.ATTACK
 	if state_timer <= 0 or _get_input_dir() != 0:
 		if _get_input_dir() != 0:
 			return State.RUN

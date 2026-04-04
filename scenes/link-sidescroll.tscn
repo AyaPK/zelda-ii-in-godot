@@ -53,6 +53,38 @@ tracks/0/keys = {
 "values": [12, 13, 5]
 }
 
+[sub_resource type="Animation" id="Animation_7vft0"]
+resource_name = "crouch"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+
+[sub_resource type="Animation" id="Animation_sttna"]
+resource_name = "crouch_attack"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [15, 9]
+}
+
 [sub_resource type="Animation" id="Animation_4xnvu"]
 resource_name = "fall"
 tracks/0/type = "value"
@@ -151,6 +183,8 @@ _data = {
 &"RESET": SubResource("Animation_km8oa"),
 &"air_attack": SubResource("Animation_eh0tm"),
 &"attack": SubResource("Animation_gp8my"),
+&"crouch": SubResource("Animation_7vft0"),
+&"crouch_attack": SubResource("Animation_sttna"),
 &"fall": SubResource("Animation_4xnvu"),
 &"idle": SubResource("Animation_yeeko"),
 &"jump": SubResource("Animation_1sks4"),
@@ -170,7 +204,7 @@ shape = SubResource("RectangleShape2D_km8oa")
 position = Vector2(0, -16)
 texture = ExtResource("2_yeeko")
 hframes = 3
-vframes = 5
+vframes = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1631950889]
 libraries/ = SubResource("AnimationLibrary_ssr3k")
