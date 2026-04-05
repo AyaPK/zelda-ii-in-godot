@@ -3,6 +3,10 @@ class_name LinkOverworld extends Node2D
 @export var tilemap: TileMapLayer
 @export var move_speed: float = 64.0
 
+const ENEMY_SCENE: PackedScene = preload("res://scenes/enemies/overworld/overworld_encounter.tscn")
+const ENCOUNTER_CHANCE: float = 0.05
+const ENCOUNTER_SPAWN_OFFSET: int = 5
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var is_moving: bool = false
@@ -122,6 +126,36 @@ func move_toward_target(delta: float) -> void:
 func on_end_step() -> void:
 	if interactable:
 		interactable.activate()
+
+	if !Scenemanager.overworld_has_enemies:
+		var current_cell := world_to_cell(position)
+		var tile_data := tilemap.get_cell_tile_data(current_cell)
+		if tile_data and tile_data.get_custom_data("dangerous"):
+			if randf() < ENCOUNTER_CHANCE:
+				spawn_enemies()
+
+func spawn_enemies() -> void:
+	Scenemanager.overworld_has_enemies = true
+	var current_cell := world_to_cell(position)
+	var tile_data := tilemap.get_cell_tile_data(current_cell)
+	var spawn_cell_1 := current_cell + Vector2i(ENCOUNTER_SPAWN_OFFSET, 0)
+	var spawn_cell_2 := current_cell + Vector2i(-ENCOUNTER_SPAWN_OFFSET, 0)
+	var spawn_cell_3 := current_cell + Vector2i(0, -ENCOUNTER_SPAWN_OFFSET)
+	var enemy: OverworldEnemy = ENEMY_SCENE.instantiate()
+	enemy.initial_direction = Vector2i.LEFT
+	enemy.global_position = cell_to_world(spawn_cell_1)
+	
+	var enemy2: OverworldEnemy = ENEMY_SCENE.instantiate()
+	enemy2.initial_direction = Vector2i.RIGHT
+	enemy2.global_position = cell_to_world(spawn_cell_2)
+	
+	var enemy3: OverworldEnemy = ENEMY_SCENE.instantiate()
+	enemy3.initial_direction = Vector2i.DOWN
+	enemy3.global_position = cell_to_world(spawn_cell_3)
+	Scenemanager.level.add_child(enemy)
+	Scenemanager.level.add_child(enemy2)
+	Scenemanager.level.add_child(enemy3)
+
 
 func try_continue_move() -> void:
 	if buffered_direction == Vector2i.ZERO:

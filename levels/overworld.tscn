@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://cuviwwasv0o04" path="res://scripts/overworld.gd" id="1_mdm5b"]
 [ext_resource type="Texture2D" uid="uid://bakefgux7b5fv" path="res://assets/art/tilesets/overworld-tileset.png" id="1_ybkif"]
 [ext_resource type="PackedScene" uid="uid://b7h6rembfdf42" path="res://scenes/link-overworld.tscn" id="2_oehki"]
-[ext_resource type="PackedScene" uid="uid://dh26iocd5cq3w" path="res://scenes/rock.tscn" id="3_mdm5b"]
-[ext_resource type="PackedScene" uid="uid://cmbaux6o21q0a" path="res://scenes/transition_to_level.tscn" id="4_oehki"]
+[ext_resource type="PackedScene" uid="uid://dh26iocd5cq3w" path="res://scenes/overworld/rock.tscn" id="3_mdm5b"]
+[ext_resource type="PackedScene" uid="uid://cmbaux6o21q0a" path="res://scenes/overworld/transition_to_level.tscn" id="4_oehki"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_st6x5"]
 texture = ExtResource("1_ybkif")
@@ -12,12 +12,15 @@ texture = ExtResource("1_ybkif")
 1:0/0 = 0
 1:0/0/custom_data_0 = true
 1:0/0/custom_data_1 = "meadow"
+1:0/0/custom_data_2 = true
 2:0/0 = 0
 2:0/0/custom_data_0 = true
 2:0/0/custom_data_1 = "forest"
+2:0/0/custom_data_2 = true
 3:0/0 = 0
 3:0/0/custom_data_0 = true
 3:0/0/custom_data_1 = "beach"
+3:0/0/custom_data_2 = true
 4:0/0 = 0
 4:0/0/custom_data_0 = true
 4:0/0/custom_data_1 = "path"
@@ -35,11 +38,15 @@ texture = ExtResource("1_ybkif")
 1:2/0/custom_data_0 = true
 2:2/0 = 0
 2:2/0/custom_data_0 = true
+2:2/0/custom_data_2 = true
 3:2/0 = 0
+3:2/0/custom_data_2 = true
 0:3/0 = 0
 0:3/0/custom_data_0 = true
+0:3/0/custom_data_2 = true
 1:3/0 = 0
 2:3/0 = 0
+2:3/0/custom_data_2 = true
 3:3/0 = 0
 3:3/0/custom_data_0 = true
 
@@ -48,6 +55,8 @@ custom_data_layer_0/name = "walkable"
 custom_data_layer_0/type = 1
 custom_data_layer_1/name = "area"
 custom_data_layer_1/type = 4
+custom_data_layer_2/name = "dangerous"
+custom_data_layer_2/type = 1
 sources/0 = SubResource("TileSetAtlasSource_st6x5")
 
 [node name="Overworld" type="Node2D" unique_id=1947721929]

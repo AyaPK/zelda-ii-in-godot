@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://bdnkutfoxxhoo" path="res://assets/art/tilesets/rauru.png" id="1_ibv3p"]
 [ext_resource type="Script" uid="uid://fo6ihbuaes6a" path="res://scripts/level.gd" id="1_j2oqy"]
 [ext_resource type="PackedScene" uid="uid://cn21fhx6p5srp" path="res://scenes/link-sidescroll.tscn" id="2_08chv"]
-[ext_resource type="PackedScene" uid="uid://jsy0yju0f8o6" path="res://scenes/camera_boundary_right.tscn" id="4_d3maw"]
-[ext_resource type="PackedScene" uid="uid://bu8mylhkb5itl" path="res://scenes/camera_boundary_left.tscn" id="5_gsnmu"]
-[ext_resource type="PackedScene" uid="uid://duw8hvarr5jas" path="res://scenes/transition_to_overworld.tscn" id="6_gsnmu"]
+[ext_resource type="PackedScene" uid="uid://jsy0yju0f8o6" path="res://scenes/level-tools/camera_boundary_right.tscn" id="4_d3maw"]
+[ext_resource type="PackedScene" uid="uid://bu8mylhkb5itl" path="res://scenes/level-tools/camera_boundary_left.tscn" id="5_gsnmu"]
+[ext_resource type="PackedScene" uid="uid://duw8hvarr5jas" path="res://scenes/level-tools/transition_to_overworld.tscn" id="6_gsnmu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_08chv"]
 texture = ExtResource("1_ibv3p")
