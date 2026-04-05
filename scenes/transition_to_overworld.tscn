@@ -7,6 +7,7 @@ size = Vector2(20, 240)
 
 [node name="TransitionToOverworld" type="Area2D" unique_id=820669562]
 script = ExtResource("1_542mi")
+node_to_transition_to = "TransitionToRauru"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=95822828]
 position = Vector2(0, 120)

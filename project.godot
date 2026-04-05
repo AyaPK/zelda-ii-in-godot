@@ -13,7 +13,7 @@ config_version=5
 config/name="zelda-II"
 run/main_scene="uid://5bvx4ghdlu7p"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://c2e1ehf21m54b"
 
 [autoload]
 

@@ -48,3 +48,4 @@ gizmo_extents = 16.0
 
 [node name="TransitionToOverworld" parent="." unique_id=820669562 instance=ExtResource("6_wtrqx")]
 position = Vector2(787, -1)
+node_to_transition_to = "TransitionToNorthernPalace"
