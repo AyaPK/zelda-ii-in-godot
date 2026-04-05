@@ -3,6 +3,8 @@ extends Node
 var level: Node2D
 var overworld_has_enemies: bool = false
 
+var overworld_area: String = "West Hyrule"
+
 var scene_path_string: String
 var target_transition: String
 

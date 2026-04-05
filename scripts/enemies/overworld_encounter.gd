@@ -4,6 +4,9 @@ var tilemap: TileMapLayer
 @export var move_speed: float = 64.0
 @export var initial_direction: Vector2i = Vector2i.RIGHT
 
+const easy_sprite = preload("res://assets/art/sprites/overworld-blob.png")
+const hard_sprite = preload("res://assets/art/sprites/overworld-moblin.png")
+
 const STRAIGHT_CHANCE: float = 0.5
 const ALL_DIRECTIONS: Array[Vector2i] = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
 
@@ -26,6 +29,7 @@ func _ready() -> void:
 		enemy_type = EnemyType.EASY
 	elif roll < 0.9:
 		enemy_type = EnemyType.HARD
+		$Sprite2D.texture = hard_sprite
 	else:
 		enemy_type = EnemyType.FAIRY
 
@@ -95,3 +99,8 @@ func cell_to_world(cell: Vector2i) -> Vector2:
 
 func snap_to_tile_center(world_pos: Vector2) -> Vector2:
 	return cell_to_world(world_to_cell(world_pos))
+
+
+func _on_despawn_timeout() -> void:
+	Scenemanager.overworld_has_enemies = false
+	queue_free()

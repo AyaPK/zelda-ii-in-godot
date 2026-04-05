@@ -59,3 +59,9 @@ autoplay = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=802508408]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_e5lrc")
+
+[node name="Despawn" type="Timer" parent="." unique_id=568479014]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Despawn" to="." method="_on_despawn_timeout"]
