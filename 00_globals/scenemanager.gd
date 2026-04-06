@@ -62,6 +62,9 @@ func _do_change_scene_to_overworld(target_node_name: String) -> void:
 	faded_in.emit()
 
 func leave_encounter_to_overworld() -> void:
+	call_deferred("_do_leave_encounter_to_overworld")
+
+func _do_leave_encounter_to_overworld() -> void:
 	overworld_has_enemies = false
 	get_tree().change_scene_to_file("res://levels/overworld.tscn")
 	await get_tree().process_frame
