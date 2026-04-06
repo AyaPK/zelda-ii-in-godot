@@ -5,6 +5,18 @@ var overworld_has_enemies: bool = false
 
 var overworld_area: String = "West Hyrule"
 
+# [area_name][area_type][difficulty] -> scene path
+const ENCOUNTER_SCENES: Dictionary = {
+	"West Hyrule": {
+		"field":	{ "easy": "res://levels/encounters/west_hyrule/field_easy.tscn",    "hard": "res://levels/encounters/west_hyrule/field_hard.tscn",    "fairy": "res://levels/encounters/west_hyrule/field_fairy.tscn" },
+		"forest":	{ "easy": "res://levels/encounters/west_hyrule/forest_easy.tscn",   "hard": "res://levels/encounters/west_hyrule/forest_hard.tscn",   "fairy": "res://levels/encounters/west_hyrule/forest_fairy.tscn" },
+		"swamp":	{ "easy": "res://levels/encounters/west_hyrule/swamp_easy.tscn",    "hard": "res://levels/encounters/west_hyrule/swamp_hard.tscn",    "fairy": "res://levels/encounters/west_hyrule/swamp_fairy.tscn" },
+		"graveyard":{ "easy": "res://levels/encounters/west_hyrule/graveyard_easy.tscn","hard": "res://levels/encounters/west_hyrule/graveyard_hard.tscn","fairy": "res://levels/encounters/west_hyrule/graveyard_fairy.tscn" },
+		"desert":	{ "easy": "res://levels/encounters/west_hyrule/desert_easy.tscn","hard": "res://levels/encounters/west_hyrule/desert_hard.tscn","fairy": "res://levels/encounters/west_hyrule/desert_fairy.tscn" },
+
+	},
+}
+
 var scene_path_string: String
 var target_transition: String
 
@@ -14,6 +26,16 @@ signal faded_in
 var prev_scene: String
 var prev_position: Vector2
 var prev_direction: Vector2
+
+func change_scene_to_encounter(area_type: String, difficulty: String) -> void:
+	var area_map: Dictionary = ENCOUNTER_SCENES.get(overworld_area, {})
+	var type_map: Dictionary = area_map.get(area_type, {})
+	var scene_path: String = type_map.get(difficulty, "")
+	get_tree().get_first_node_in_group("overworld-player").queue_free()
+	get_tree().change_scene_to_file(scene_path)
+	await get_tree().process_frame
+	transitioned.emit()
+	faded_in.emit()
 
 func change_scene_to_level(scene_path: String, target_node_name: String, facing_direction: String) -> void:
 	get_tree().get_first_node_in_group("overworld-player").queue_free()

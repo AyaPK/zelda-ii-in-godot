@@ -100,7 +100,6 @@ func cell_to_world(cell: Vector2i) -> Vector2:
 func snap_to_tile_center(world_pos: Vector2) -> Vector2:
 	return cell_to_world(world_to_cell(world_pos))
 
-
 func _on_despawn_timeout() -> void:
 	Scenemanager.overworld_has_enemies = false
 	queue_free()

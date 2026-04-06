@@ -1,0 +1,24 @@
+[gd_resource type="TileSet" format=3 uid="uid://chw2ff0cyen4i"]
+
+[ext_resource type="Texture2D" uid="uid://cjf81ea1hbwk7" path="res://assets/art/tilesets/west-hyrule-forest.png" id="1_0y38b"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vqxsg"]
+texture = ExtResource("1_0y38b")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -7, 8, -7, 8, 8, -8, 8)
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+
+[resource]
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_vqxsg")

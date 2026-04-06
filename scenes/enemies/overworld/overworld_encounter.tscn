@@ -44,8 +44,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e5lrc"]
 size = Vector2(16, 16)
 
-[node name="OverworldEncounter" type="CharacterBody2D" unique_id=1802285649]
+[node name="OverworldEncounter" type="CharacterBody2D" unique_id=1802285649 groups=["overworld-enemy"]]
 script = ExtResource("1_rxpqx")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=539022238]
 position = Vector2(0, -9)

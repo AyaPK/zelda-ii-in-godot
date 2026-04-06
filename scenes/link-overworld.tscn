@@ -162,6 +162,10 @@ _data = {
 &"walk_up": SubResource("Animation_vs1d3")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70o0s"]
+custom_solver_bias = 1.0
+size = Vector2(16, 16)
+
 [node name="Link" type="CharacterBody2D" unique_id=587667358 groups=["overworld-player"]]
 collision_mask = 6
 script = ExtResource("1_spirg")
@@ -204,3 +208,12 @@ rotation = 4.712389
 target_position = Vector2(1.7484556e-06, 20)
 collision_mask = 2
 collide_with_areas = true
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=963848668]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=528477197]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_70o0s")
+debug_color = Color(0.9222628, 0.24629954, 0.34191763, 0.41960785)
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

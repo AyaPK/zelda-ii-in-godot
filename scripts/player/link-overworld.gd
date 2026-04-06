@@ -14,6 +14,8 @@ var target_position: Vector2
 var current_direction: Vector2i = Vector2i.ZERO
 var buffered_direction: Vector2i = Vector2i.ZERO
 var facing_direction: Vector2i = Vector2i.DOWN
+var has_encounter: bool = false
+var encounter: OverworldEnemy
 
 var interactable: Interactable = null
 
@@ -126,9 +128,19 @@ func move_toward_target(delta: float) -> void:
 func on_end_step() -> void:
 	if interactable:
 		interactable.activate()
+	
+	if has_encounter:
+		var current_cell := world_to_cell(position)
+		var tile_data := tilemap.get_cell_tile_data(current_cell)
+		var area_type: String = ""
+		if tile_data:
+			area_type = tile_data.get_custom_data("area")
+		var difficulty: String = encounter.EnemyType.keys()[encounter.enemy_type].to_lower()
+		Scenemanager.change_scene_to_encounter(area_type, difficulty)
+
+	var current_cell := world_to_cell(position)
 
 	if !Scenemanager.overworld_has_enemies:
-		var current_cell := world_to_cell(position)
 		var tile_data := tilemap.get_cell_tile_data(current_cell)
 		if tile_data and tile_data.get_custom_data("dangerous"):
 			if randf() < ENCOUNTER_CHANCE:
@@ -219,3 +231,8 @@ func cell_to_world(cell: Vector2i) -> Vector2:
 func snap_to_tile_center(world_pos: Vector2) -> Vector2:
 	var cell := world_to_cell(world_pos)
 	return cell_to_world(cell)
+
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("overworld-enemy"):
+		has_encounter = true
+		encounter = body
