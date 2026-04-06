@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://kfblnuttonsx"]
+
+[ext_resource type="Script" uid="uid://chle7it1cv0q0" path="res://scripts/level-tools/enemy_spawner.gd" id="1_xhdhn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wonde"]
+size = Vector2(16, 64)
+
+[node name="EnemySpawner" type="Node2D" unique_id=1103997845]
+script = ExtResource("1_xhdhn")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=965571109]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=62189772]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_wonde")
+debug_color = Color(0.21568628, 0.95686275, 0, 0.41960785)
+
+[node name="Timer" type="Timer" parent="." unique_id=29994550]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

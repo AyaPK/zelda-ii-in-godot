@@ -16,8 +16,8 @@ tile_set = ExtResource("1_rm3wh")
 [node name="link-sidescroll" parent="." unique_id=1464587723 instance=ExtResource("2_hovq2")]
 position = Vector2(127, 182)
 
-[node name="CameraBoundaryLeft" parent="." unique_id=1635352741 instance=ExtResource("3_87mie")]
-position = Vector2(0, 158)
-
 [node name="CameraBoundaryRight" parent="." unique_id=1651000621 instance=ExtResource("4_plmq7")]
 position = Vector2(256, 172)
+
+[node name="CameraBoundaryLeft" parent="." unique_id=1635352741 instance=ExtResource("3_87mie")]
+position = Vector2(0, 145)

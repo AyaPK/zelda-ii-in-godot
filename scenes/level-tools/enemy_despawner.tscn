@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://yy7tccvmxk5k"]
+
+[ext_resource type="Script" uid="uid://jtub74jub51a" path="res://scripts/level-tools/enemy_despawner.gd" id="1_rowf8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jycnf"]
+size = Vector2(16, 64)
+
+[node name="EnemyDespawner" type="Node2D" unique_id=397984475]
+script = ExtResource("1_rowf8")
+
+[node name="DespawnZone" type="Area2D" parent="." unique_id=2068499217]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DespawnZone" unique_id=1473947989]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_jycnf")
+debug_color = Color(0.9877494, 0, 0.31468734, 0.41960785)
+
+[connection signal="body_entered" from="DespawnZone" to="." method="_on_despawn_zone_body_entered"]

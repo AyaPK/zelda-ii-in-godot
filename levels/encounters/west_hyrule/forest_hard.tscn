@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cn21fhx6p5srp" path="res://scenes/link-sidescroll.tscn" id="2_ty15u"]
 [ext_resource type="PackedScene" uid="uid://bu8mylhkb5itl" path="res://scenes/level-tools/camera_boundary_left.tscn" id="3_y5bd1"]
 [ext_resource type="PackedScene" uid="uid://jsy0yju0f8o6" path="res://scenes/level-tools/camera_boundary_right.tscn" id="4_igvyx"]
+[ext_resource type="PackedScene" uid="uid://kfblnuttonsx" path="res://scenes/level-tools/enemy_spawner.tscn" id="6_igvyx"]
+[ext_resource type="PackedScene" uid="uid://yy7tccvmxk5k" path="res://scenes/level-tools/enemy_despawner.tscn" id="7_pcaxb"]
 
 [node name="ForestEasy" type="Node2D" unique_id=1300589886]
 script = ExtResource("1_ty15u")
@@ -21,3 +23,11 @@ position = Vector2(0, 158)
 
 [node name="CameraBoundaryRight" parent="." unique_id=1651000621 instance=ExtResource("4_igvyx")]
 position = Vector2(752, 186)
+
+[node name="EnemySpawner" parent="." unique_id=1103997845 instance=ExtResource("6_igvyx")]
+position = Vector2(778, 191)
+enemy_scene = "uid://cuv6tqgir3xmf"
+frequency = 6.0
+
+[node name="EnemyDespawner" parent="." unique_id=397984475 instance=ExtResource("7_pcaxb")]
+position = Vector2(-32, 192)
