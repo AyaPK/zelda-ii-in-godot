@@ -194,6 +194,7 @@ _data = {
 }
 
 [node name="link-sidescroll" type="CharacterBody2D" unique_id=1464587723 groups=["sidescroll-player"]]
+z_index = 1
 collision_mask = 2
 script = ExtResource("1_km8oa")
 

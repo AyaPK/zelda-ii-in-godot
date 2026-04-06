@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://c3cnujyfhj81i"]
+
+[ext_resource type="Script" uid="uid://ctmlok6kgbqpx" path="res://scripts/enemies/red_slime_enemy.gd" id="1_70wsj"]
+[ext_resource type="Texture2D" uid="uid://dtucmenh3cu2j" path="res://assets/art/sprites/bit-slime.png" id="2_4cvg5"]
+
+[sub_resource type="Animation" id="Animation_70wsj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4cvg5"]
+resource_name = "crawl"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_cubi4"]
+resource_name = "shudder"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cubi4"]
+_data = {
+&"RESET": SubResource("Animation_70wsj"),
+&"crawl": SubResource("Animation_4cvg5"),
+&"shudder": SubResource("Animation_cubi4")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70wsj"]
+
+[node name="Bit" type="CharacterBody2D" unique_id=963212344]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_70wsj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1625219337]
+position = Vector2(0, -8)
+texture = ExtResource("2_4cvg5")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=563826244]
+libraries/ = SubResource("AnimationLibrary_cubi4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1241343735]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_70wsj")

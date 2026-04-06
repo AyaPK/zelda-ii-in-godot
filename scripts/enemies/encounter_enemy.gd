@@ -1,0 +1,1 @@
+class_name EncounterEnemy extends CharacterBody2D

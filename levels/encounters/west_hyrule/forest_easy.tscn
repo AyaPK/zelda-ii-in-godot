@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cn21fhx6p5srp" path="res://scenes/link-sidescroll.tscn" id="2_den0r"]
 [ext_resource type="PackedScene" uid="uid://bu8mylhkb5itl" path="res://scenes/level-tools/camera_boundary_left.tscn" id="3_h506n"]
 [ext_resource type="PackedScene" uid="uid://jsy0yju0f8o6" path="res://scenes/level-tools/camera_boundary_right.tscn" id="4_lln3e"]
+[ext_resource type="PackedScene" uid="uid://btm3ie21fxqpn" path="res://scenes/level-tools/exit_encounter.tscn" id="6_iisck"]
 
 [node name="ForestEasy" type="Node2D" unique_id=1300589886]
 script = ExtResource("1_lln3e")
@@ -21,3 +22,9 @@ position = Vector2(0, 158)
 
 [node name="CameraBoundaryRight" parent="." unique_id=1651000621 instance=ExtResource("4_lln3e")]
 position = Vector2(752, 186)
+
+[node name="ExitEncounter" parent="." unique_id=1735201379 instance=ExtResource("6_iisck")]
+position = Vector2(-18, 197)
+
+[node name="ExitEncounter2" parent="." unique_id=2088501029 instance=ExtResource("6_iisck")]
+position = Vector2(773, 195)

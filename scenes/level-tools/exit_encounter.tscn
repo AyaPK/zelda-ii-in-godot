@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://btm3ie21fxqpn"]
+
+[ext_resource type="Script" uid="uid://cljjn4yoyhgs5" path="res://scripts/level-tools/exit_encounter.gd" id="1_5hdq8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fundd"]
+size = Vector2(16, 64)
+
+[node name="ExitEncounter" type="Area2D" unique_id=1735201379]
+script = ExtResource("1_5hdq8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=429047074]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_fundd")
+debug_color = Color(0.62643385, 0.47766417, 1.92523e-07, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
