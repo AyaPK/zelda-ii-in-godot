@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cuv6tqgir3xmf"]
 
-[ext_resource type="Script" uid="uid://bxyifr1vhcu3i" path="res://scripts/enemies/walk_forward_enemy.gd" id="1_axuvg"]
-[ext_resource type="Texture2D" uid="uid://b3wfeygtw781" path="res://assets/art/sprites/spear-moblin.png" id="2_axuvg"]
+[ext_resource type="Script" uid="uid://bxyifr1vhcu3i" path="res://scripts/enemies/walk_forward_enemy.gd" id="1_kiye1"]
+[ext_resource type="Texture2D" uid="uid://b3wfeygtw781" path="res://assets/art/sprites/spear-moblin.png" id="2_ph6ap"]
 
 [sub_resource type="Animation" id="Animation_s13em"]
 length = 0.001
@@ -47,11 +47,11 @@ size = Vector2(18, 36)
 [node name="SpearMoblin" type="CharacterBody2D" unique_id=1845871361 groups=["sidescroll-enemy"]]
 collision_layer = 8
 collision_mask = 2
-script = ExtResource("1_axuvg")
+script = ExtResource("1_kiye1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=949862057]
 position = Vector2(0, -16)
-texture = ExtResource("2_axuvg")
+texture = ExtResource("2_ph6ap")
 hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=499335756]

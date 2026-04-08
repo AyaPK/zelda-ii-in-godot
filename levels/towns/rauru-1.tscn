@@ -56,7 +56,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAADAAAAAAAAAAEAAAADAAAAAAAAAAIAAAADAAA
 tile_set = SubResource("TileSet_j2oqy")
 
 [node name="link-sidescroll" parent="." unique_id=1464587723 instance=ExtResource("2_08chv")]
-position = Vector2(980, 181)
+position = Vector2(978, 192)
 
 [node name="RightEntrance" type="Marker2D" parent="." unique_id=34864403]
 position = Vector2(997, 192)
