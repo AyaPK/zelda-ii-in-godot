@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://cmm0d4w6ffso7"]
+
+[ext_resource type="Script" uid="uid://0my61elxj3yf" path="res://scripts/enemies/spear_moblin_enemy.gd" id="1_tv5nx"]
+[ext_resource type="Texture2D" uid="uid://b3wfeygtw781" path="res://assets/art/sprites/spear-moblin.png" id="2_e5f1r"]
+
+[sub_resource type="Animation" id="Animation_s13em"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_e5f1r"]
+resource_name = "halt"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+
+[sub_resource type="Animation" id="Animation_tm5kt"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_rstx8"]
+resource_name = "throw"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 0.96666664),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 2, 0, 2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_tv5nx"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fi01x"]
+_data = {
+&"RESET": SubResource("Animation_s13em"),
+&"halt": SubResource("Animation_e5f1r"),
+&"idle": SubResource("Animation_tm5kt"),
+&"throw": SubResource("Animation_rstx8"),
+&"walk": SubResource("Animation_tv5nx")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axuvg"]
+size = Vector2(18, 36)
+
+[node name="ThrowingMoblin" type="CharacterBody2D" unique_id=1845871361 groups=["sidescroll-enemy"]]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_tv5nx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=949862057]
+position = Vector2(0, -16)
+texture = ExtResource("2_e5f1r")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=499335756]
+libraries/ = SubResource("AnimationLibrary_fi01x")
+autoplay = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1947118863]
+position = Vector2(0, -18)
+shape = SubResource("RectangleShape2D_axuvg")
