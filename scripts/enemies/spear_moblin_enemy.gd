@@ -15,6 +15,7 @@ var state: State = State.WALK
 var state_timer: float = 0.0
 var facing_right: bool = true
 var pace_right: bool = true
+var on_screen: bool = false
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -29,18 +30,21 @@ func _physics_process(delta: float) -> void:
 
 	match state:
 		State.WALK:
-			if player:
-				facing_right = player.global_position.x > global_position.x
-				if global_position.distance_to(player.global_position) <= THROW_RANGE:
-					_enter_state(State.HALT)
-				else:
-					velocity.x = WALK_SPEED if facing_right else -WALK_SPEED
-			$Sprite2D.flip_h = facing_right
+			if on_screen:
+				if player:
+					facing_right = player.global_position.x > global_position.x
+					if global_position.distance_to(player.global_position) <= THROW_RANGE:
+						_enter_state(State.HALT)
+					else:
+						velocity.x = WALK_SPEED if facing_right else -WALK_SPEED
+				$Sprite2D.flip_h = facing_right
+			else:
+				_enter_state(State.HALT)
 
 		State.HALT:
 			velocity.x = 0.0
 			state_timer -= delta
-			if state_timer <= 0.0:
+			if state_timer <= 0.0 and on_screen:
 				_enter_state(State.THROW)
 
 		State.THROW:
@@ -84,3 +88,7 @@ func _spawn_spear() -> void:
 	spear.global_position = global_position
 	spear.direction = Vector2.RIGHT if facing_right else Vector2.LEFT
 	get_parent().add_child(spear)
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	on_screen = true
+	_enter_state(State.WALK)
