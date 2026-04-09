@@ -1,6 +1,6 @@
 class_name LinkSidescroll extends CharacterBody2D
 
-enum State { IDLE, RUN, JUMP, FALL, LAND, ATTACK, RECOIL, AIR_ATTACK, AIR_RECOIL, CROUCH, CROUCH_ATTACK }
+enum State { IDLE, RUN, JUMP, FALL, LAND, ATTACK, RECOIL, AIR_ATTACK, AIR_RECOIL, CROUCH, CROUCH_ATTACK, HIT }
 
 @export var move_speed: float = 90.0
 @export var jump_speed: float = 230.0
@@ -9,6 +9,10 @@ enum State { IDLE, RUN, JUMP, FALL, LAND, ATTACK, RECOIL, AIR_ATTACK, AIR_RECOIL
 @export var friction: float = 300.0
 @export var landing_duration: float = 0.15
 @export var recoil_duration: float = 0.5
+@export var hit_stun_duration: float = 0.8
+@export var hit_knockback_speed: float = 100.0
+@export var iframe_duration: float = 1.2
+@export var flash_interval: float = 0.08
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var camera: Camera2D = $Camera2D
@@ -17,6 +21,9 @@ var facing_right: bool = true
 var was_on_floor: bool = true
 var state: State = State.IDLE
 var state_timer: float = 0.0
+var iframe_timer: float = 0.0
+var flash_timer: float = 0.0
+var knockback_dir: float = -1.0
 
 func _physics_process(delta: float) -> void:
 	state_timer -= delta
@@ -28,6 +35,7 @@ func _physics_process(delta: float) -> void:
 	if next_state != state:
 		_enter_state(next_state)
 	$Sprite.scale.x = 1 if facing_right else -1
+	_tick_iframes(delta)
 
 func _tick_state(delta: float) -> State:
 	match state:
@@ -53,6 +61,8 @@ func _tick_state(delta: float) -> State:
 			return _tick_crouch()
 		State.CROUCH_ATTACK:
 			return _tick_crouch_attack()
+		State.HIT:
+			return _tick_hit()
 	return state
 
 func _enter_state(new_state: State) -> void:
@@ -86,6 +96,41 @@ func _enter_state(new_state: State) -> void:
 			play_animation("crouch")
 		State.CROUCH_ATTACK:
 			play_animation("crouch_attack")
+		State.HIT:
+			velocity.x = knockback_dir * hit_knockback_speed
+			velocity.y = -160.0
+			state_timer = hit_stun_duration
+			iframe_timer = iframe_duration
+			play_animation("hit")
+
+func hit(hit_source_x: float) -> void:
+	if iframe_timer > 0.0:
+		return
+	knockback_dir = -1.0 if hit_source_x > global_position.x else 1.0
+	_enter_state(State.HIT)
+
+func _tick_hit() -> State:
+	if not is_on_floor():
+		velocity.x = knockback_dir * hit_knockback_speed
+	else:
+		velocity.x = 0.0
+	if state_timer <= 0.0:
+		if is_on_floor():
+			if _get_input_dir() != 0:
+				return State.RUN
+			return State.IDLE
+		return State.FALL
+	return State.HIT
+
+func _tick_iframes(delta: float) -> void:
+	if iframe_timer > 0.0:
+		iframe_timer -= delta
+		flash_timer -= delta
+		if flash_timer <= 0.0:
+			flash_timer = flash_interval
+			$Sprite.visible = !$Sprite.visible
+	else:
+		$Sprite.visible = true
 
 func _tick_idle() -> State:
 	var input_dir := _get_input_dir()
@@ -206,7 +251,7 @@ func _tick_recoil() -> State:
 	return State.RECOIL
 
 func _check_landing() -> void:
-	if not was_on_floor and is_on_floor() and state != State.LAND:
+	if not was_on_floor and is_on_floor() and state != State.LAND and state != State.HIT:
 		_enter_state(State.LAND)
 
 func _apply_air_movement() -> void:
@@ -237,6 +282,8 @@ func play_animation(anim_name: String) -> void:
 	if animation_player.current_animation != anim_name:
 		animation_player.play(anim_name)
 
-
 func _on_camera_boundary_left_screen_entered() -> void:
 	pass # Replace with function body.
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	hit(area.global_position.x)

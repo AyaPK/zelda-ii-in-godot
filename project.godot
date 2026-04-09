@@ -86,6 +86,10 @@ crouch={
 2d_physics/layer_3="Interactable"
 2d_physics/layer_4="Enemies"
 2d_physics/layer_5="Spawners"
+2d_physics/layer_6="Player Hitbox"
+2d_physics/layer_7="Player Hurtbox"
+2d_physics/layer_8="Enemy Hitbox"
+2d_physics/layer_9="Enemy Hurtbox"
 
 [physics]
 

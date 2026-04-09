@@ -100,6 +100,21 @@ tracks/0/keys = {
 "values": [10]
 }
 
+[sub_resource type="Animation" id="Animation_n4mnp"]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+
 [sub_resource type="Animation" id="Animation_yeeko"]
 resource_name = "idle"
 tracks/0/type = "value"
@@ -186,12 +201,16 @@ _data = {
 &"crouch": SubResource("Animation_7vft0"),
 &"crouch_attack": SubResource("Animation_sttna"),
 &"fall": SubResource("Animation_4xnvu"),
+&"hit": SubResource("Animation_n4mnp"),
 &"idle": SubResource("Animation_yeeko"),
 &"jump": SubResource("Animation_1sks4"),
 &"land": SubResource("Animation_k2ein"),
 &"recoil": SubResource("Animation_sb8fy"),
 &"run": SubResource("Animation_ssr3k")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yeeko"]
+size = Vector2(6, 25)
 
 [node name="link-sidescroll" type="CharacterBody2D" unique_id=1464587723 groups=["sidescroll-player"]]
 z_index = 1
@@ -215,3 +234,14 @@ libraries/ = SubResource("AnimationLibrary_ssr3k")
 position = Vector2(1, 0)
 limit_top = 240
 limit_bottom = 0
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=2105179438]
+collision_layer = 64
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=210814213]
+position = Vector2(0, -12.5)
+shape = SubResource("RectangleShape2D_yeeko")
+debug_color = Color(0.9927282, 0, 0.25442687, 0.41960785)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
