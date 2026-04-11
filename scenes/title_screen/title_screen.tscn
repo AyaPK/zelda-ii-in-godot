@@ -1,0 +1,309 @@
+[gd_scene format=4 uid="uid://csdw2prq6501v"]
+
+[ext_resource type="Script" uid="uid://bw3s1g8h1ru46" path="res://scripts/title_screen/press_start_screen.gd" id="1_cxcmr"]
+[ext_resource type="Texture2D" uid="uid://bc7xyxikj4syp" path="res://assets/art/tilesets/title-screen-stars.png" id="1_vuv2h"]
+[ext_resource type="Texture2D" uid="uid://jvbglo8y4qcb" path="res://assets/art/tilesets/zelda-logo.png" id="2_5uxxq"]
+[ext_resource type="Texture2D" uid="uid://xvyenu0jyji3" path="res://assets/art/tilesets/title-screen-fg.png" id="2_ri6bm"]
+[ext_resource type="Texture2D" uid="uid://b3wmk7g4u2fmx" path="res://assets/art/tilesets/title-story.png" id="3_cxcmr"]
+[ext_resource type="Texture2D" uid="uid://bj0sqjdfkfpsv" path="res://assets/art/tilesets/sword-title.png" id="3_ri6bm"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d6x3v"]
+texture = ExtResource("1_vuv2h")
+0:1/animation_columns = 4
+0:1/animation_speed = 3.0
+0:1/animation_frame_0/duration = 1.0
+0:1/animation_frame_1/duration = 1.0
+0:1/animation_frame_2/duration = 1.0
+0:1/animation_frame_3/duration = 0.3
+0:1/0 = 0
+0:2/animation_columns = 4
+0:2/animation_speed = 3.0
+0:2/animation_frame_0/duration = 1.0
+0:2/animation_frame_1/duration = 1.0
+0:2/animation_frame_2/duration = 1.0
+0:2/animation_frame_3/duration = 1.0
+0:2/0 = 0
+0:3/animation_columns = 4
+0:3/animation_speed = 3.0
+0:3/animation_frame_0/duration = 1.0
+0:3/animation_frame_1/duration = 1.0
+0:3/animation_frame_2/duration = 1.0
+0:3/animation_frame_3/duration = 1.0
+0:3/0 = 0
+0:4/0 = 0
+0:0/animation_columns = 4
+0:0/animation_speed = 3.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_5uxxq"]
+sources/0 = SubResource("TileSetAtlasSource_d6x3v")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cxcmr"]
+texture = ExtResource("2_ri6bm")
+15:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+10:8/0 = 0
+11:8/0 = 0
+12:8/0 = 0
+13:8/0 = 0
+14:8/0 = 0
+15:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+10:9/0 = 0
+11:9/0 = 0
+12:9/0 = 0
+13:9/0 = 0
+14:9/0 = 0
+15:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+8:10/0 = 0
+9:10/0 = 0
+10:10/0 = 0
+11:10/0 = 0
+12:10/0 = 0
+13:10/0 = 0
+14:10/0 = 0
+15:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+6:11/0 = 0
+7:11/0 = 0
+8:11/0 = 0
+9:11/0 = 0
+10:11/0 = 0
+11:11/0 = 0
+12:11/0 = 0
+13:11/0 = 0
+14:11/0 = 0
+15:11/0 = 0
+0:12/0 = 0
+1:12/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+4:12/0 = 0
+5:12/0 = 0
+6:12/0 = 0
+7:12/0 = 0
+8:12/0 = 0
+9:12/0 = 0
+10:12/0 = 0
+11:12/0 = 0
+12:12/0 = 0
+13:12/0 = 0
+14:12/0 = 0
+15:12/0 = 0
+0:13/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+6:13/0 = 0
+7:13/0 = 0
+8:13/0 = 0
+9:13/0 = 0
+10:13/0 = 0
+11:13/0 = 0
+12:13/0 = 0
+13:13/0 = 0
+14:13/0 = 0
+15:13/0 = 0
+14:7/0 = 0
+13:7/0 = 0
+15:3/0 = 0
+15:4/0 = 0
+15:5/0 = 0
+15:6/0 = 0
+14:6/0 = 0
+13:6/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+14:4/0 = 0
+14:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_j12ko"]
+sources/0 = SubResource("TileSetAtlasSource_cxcmr")
+
+[sub_resource type="Animation" id="Animation_j12ko"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Story:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(132, 247)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Zelda:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(129, 175)]
+}
+
+[sub_resource type="Animation" id="Animation_yegqs"]
+resource_name = "new_animation"
+
+[sub_resource type="Animation" id="Animation_xoykc"]
+resource_name = "scroll_story"
+length = 26.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Story:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 23),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(132, 247), Vector2(132, -100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Zelda:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 23),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(129, 76), Vector2(129, -271)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ju3lf"]
+_data = {
+&"RESET": SubResource("Animation_j12ko"),
+&"new_animation": SubResource("Animation_yegqs"),
+&"scroll_story": SubResource("Animation_xoykc")
+}
+
+[sub_resource type="Animation" id="Animation_cxcmr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Zelda:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(129, 175)]
+}
+
+[sub_resource type="Animation" id="Animation_5uxxq"]
+resource_name = "default"
+
+[sub_resource type="Animation" id="Animation_xetrx"]
+resource_name = "scroll"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Zelda:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(129, 175), Vector2(129, 76)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yepnq"]
+_data = {
+&"RESET": SubResource("Animation_cxcmr"),
+&"default": SubResource("Animation_5uxxq"),
+&"scroll": SubResource("Animation_xetrx")
+}
+
+[node name="TitleScreen" type="Node2D" unique_id=1082646660]
+script = ExtResource("1_cxcmr")
+
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=230863238]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAQAAAAAAAEAAAAAAAQAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAQAAAAAAAQAAAAAAAQAAAAAAAUAAAAAAAQAAAAAAAYAAAAAAAEAAAAAAAcAAAAAAAQAAAAAAAgAAAAAAAQAAAABAAAAAAAAAAQAAAABAAEAAAAAAAQAAAABAAIAAAAAAAQAAAABAAMAAAAAAAQAAAABAAQAAAAAAAQAAAABAAUAAAAAAAQAAAABAAYAAAAAAAQAAAABAAcAAAAAAAQAAAABAAgAAAAAAAQAAAACAAAAAAAAAAIAAAACAAEAAAAAAAAAAAACAAIAAAAAAAQAAAACAAMAAAAAAAQAAAACAAQAAAAAAAMAAAACAAUAAAAAAAQAAAACAAYAAAAAAAQAAAACAAcAAAAAAAMAAAACAAgAAAAAAAQAAAADAAAAAAAAAAAAAAADAAEAAAAAAAQAAAADAAIAAAAAAAQAAAADAAMAAAAAAAQAAAADAAQAAAAAAAQAAAADAAUAAAAAAAQAAAADAAYAAAAAAAQAAAADAAcAAAAAAAQAAAADAAgAAAAAAAQAAAAEAAAAAAAAAAQAAAAEAAEAAAAAAAQAAAAEAAIAAAAAAAQAAAAEAAMAAAAAAAQAAAAEAAQAAAAAAAQAAAAEAAUAAAAAAAQAAAAEAAYAAAAAAAQAAAAEAAcAAAAAAAEAAAAEAAgAAAAAAAQAAAAFAAAAAAAAAAIAAAAFAAEAAAAAAAQAAAAFAAIAAAAAAAQAAAAFAAMAAAAAAAIAAAAFAAQAAAAAAAQAAAAFAAUAAAAAAAQAAAAFAAYAAAAAAAQAAAAFAAcAAAAAAAQAAAAFAAgAAAAAAAQAAAAGAAAAAAAAAAQAAAAGAAEAAAAAAAQAAAAGAAIAAAAAAAQAAAAGAAMAAAAAAAQAAAAGAAQAAAAAAAQAAAAGAAUAAAAAAAIAAAAGAAYAAAAAAAQAAAAGAAcAAAAAAAQAAAAGAAgAAAAAAAQAAAAHAAAAAAAAAAMAAAAHAAEAAAAAAAQAAAAHAAIAAAAAAAQAAAAHAAMAAAAAAAQAAAAHAAQAAAAAAAQAAAAHAAUAAAAAAAQAAAAHAAYAAAAAAAQAAAAHAAcAAAAAAAQAAAAHAAgAAAAAAAIAAAAIAAAAAAAAAAQAAAAIAAEAAAAAAAQAAAAIAAIAAAAAAAMAAAAIAAMAAAAAAAQAAAAIAAQAAAAAAAQAAAAIAAUAAAAAAAQAAAAIAAYAAAAAAAQAAAAIAAcAAAAAAAQAAAAIAAgAAAAAAAQAAAAJAAAAAAAAAAQAAAAJAAEAAAAAAAQAAAAJAAIAAAAAAAQAAAAJAAMAAAAAAAEAAAAJAAQAAAAAAAQAAAAJAAUAAAAAAAIAAAAJAAYAAAAAAAQAAAAJAAcAAAAAAAQAAAAJAAgAAAAAAAQAAAAKAAAAAAAAAAQAAAAKAAEAAAAAAAQAAAAKAAIAAAAAAAQAAAAKAAMAAAAAAAQAAAAKAAQAAAAAAAQAAAAKAAUAAAAAAAQAAAAKAAYAAAAAAAQAAAAKAAcAAAAAAAQAAAAKAAgAAAAAAAQAAAALAAAAAAAAAAEAAAALAAEAAAAAAAQAAAALAAIAAAAAAAQAAAALAAMAAAAAAAQAAAALAAQAAAAAAAQAAAALAAUAAAAAAAQAAAALAAYAAAAAAAQAAAALAAcAAAAAAAEAAAALAAgAAAAAAAQAAAAMAAAAAAAAAAQAAAAMAAEAAAAAAAQAAAAMAAIAAAAAAAQAAAAMAAMAAAAAAAQAAAAMAAQAAAAAAAQAAAAMAAUAAAAAAAQAAAAMAAYAAAAAAAQAAAAMAAcAAAAAAAQAAAANAAAAAAAAAAQAAAANAAEAAAAAAAIAAAANAAIAAAAAAAQAAAANAAMAAAAAAAQAAAANAAQAAAAAAAEAAAANAAUAAAAAAAQAAAANAAYAAAAAAAQAAAANAAcAAAAAAAQAAAAOAAAAAAAAAAQAAAAOAAEAAAAAAAQAAAAOAAIAAAAAAAQAAAAOAAMAAAAAAAQAAAAOAAQAAAAAAAQAAAAOAAUAAAAAAAQAAAAOAAYAAAAAAAMAAAAOAAcAAAAAAAQAAAAPAAAAAAAAAAQAAAAPAAEAAAAAAAQAAAAPAAIAAAAAAAMAAAAPAAMAAAAAAAQAAAAPAAQAAAAAAAEAAAAPAAUAAAAAAAQAAAAPAAYAAAAAAAQAAAAPAAcAAAAAAAQAAAAAAAkAAAAAAAQAAAABAAkAAAAAAAQAAAACAAkAAAAAAAQAAAADAAkAAAAAAAQAAAAEAAkAAAAAAAQAAAAFAAkAAAAAAAQAAAAGAAkAAAAAAAQAAAAHAAkAAAAAAAQAAAAIAAkAAAAAAAQAAAAJAAkAAAAAAAQAAAAKAAkAAAAAAAQAAAALAAkAAAAAAAQAAAAMAAkAAAAAAAQAAAANAAkAAAAAAAQAAAAOAAgAAAAAAAMAAAANAAgAAAAAAAQAAAAMAAgAAAAAAAQAAAAOAAkAAAAAAAQAAAAPAAkAAAAAAAQAAAAPAAgAAAAAAAQAAAA=")
+tile_set = SubResource("TileSet_5uxxq")
+
+[node name="Zelda" type="Sprite2D" parent="." unique_id=216296740]
+position = Vector2(129, 175)
+texture = ExtResource("2_5uxxq")
+
+[node name="Story" type="Sprite2D" parent="." unique_id=1750526114]
+position = Vector2(132, 247)
+texture = ExtResource("3_cxcmr")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=786007073]
+position = Vector2(0, 2)
+tile_map_data = PackedByteArray("AAAAAAkAAAAAAAgAAAAAAAoAAAAAAAkAAAAAAAsAAAAAAAoAAAAAAAwAAAAAAAsAAAAAAA0AAAAAAAwAAAAAAA4AAAAAAA0AAAABAAkAAAABAAgAAAABAAoAAAABAAkAAAABAAsAAAABAAoAAAABAAwAAAABAAsAAAABAA0AAAABAAwAAAABAA4AAAABAA0AAAACAAkAAAACAAgAAAACAAoAAAACAAkAAAACAAsAAAACAAoAAAACAAwAAAACAAsAAAACAA0AAAACAAwAAAACAA4AAAACAA0AAAADAAkAAAADAAgAAAADAAoAAAADAAkAAAADAAsAAAADAAoAAAADAAwAAAADAAsAAAADAA0AAAADAAwAAAADAA4AAAADAA0AAAAEAAkAAAAEAAgAAAAEAAoAAAAEAAkAAAAEAAsAAAAEAAoAAAAEAAwAAAAEAAsAAAAEAA0AAAAEAAwAAAAEAA4AAAAEAA0AAAAFAAkAAAAFAAgAAAAFAAoAAAAFAAkAAAAFAAsAAAAFAAoAAAAFAAwAAAAFAAsAAAAFAA0AAAAFAAwAAAAFAA4AAAAFAA0AAAAGAAkAAAAGAAgAAAAGAAoAAAAGAAkAAAAGAAsAAAAGAAoAAAAGAAwAAAAGAAsAAAAGAA0AAAAGAAwAAAAGAA4AAAAGAA0AAAAHAAkAAAAHAAgAAAAHAAoAAAAHAAkAAAAHAAsAAAAHAAoAAAAHAAwAAAAHAAsAAAAHAA0AAAAHAAwAAAAHAA4AAAAHAA0AAAAIAAkAAAAIAAgAAAAIAAoAAAAIAAkAAAAIAAsAAAAIAAoAAAAIAAwAAAAIAAsAAAAIAA0AAAAIAAwAAAAIAA4AAAAIAA0AAAAJAAkAAAAJAAgAAAAJAAoAAAAJAAkAAAAJAAsAAAAJAAoAAAAJAAwAAAAJAAsAAAAJAA0AAAAJAAwAAAAJAA4AAAAJAA0AAAAKAAkAAAAKAAgAAAAKAAoAAAAKAAkAAAAKAAsAAAAKAAoAAAAKAAwAAAAKAAsAAAAKAA0AAAAKAAwAAAAKAA4AAAAKAA0AAAALAAkAAAALAAgAAAALAAoAAAALAAkAAAALAAsAAAALAAoAAAALAAwAAAALAAsAAAALAA0AAAALAAwAAAALAA4AAAALAA0AAAAMAAkAAAAMAAgAAAAMAAoAAAAMAAkAAAAMAAsAAAAMAAoAAAAMAAwAAAAMAAsAAAAMAA0AAAAMAAwAAAAMAA4AAAAMAA0AAAANAAkAAAANAAgAAAANAAoAAAANAAkAAAANAAsAAAANAAoAAAANAAwAAAANAAsAAAANAA0AAAANAAwAAAANAA4AAAANAA0AAAAOAAkAAAAOAAgAAAAOAAoAAAAOAAkAAAAOAAsAAAAOAAoAAAAOAAwAAAAOAAsAAAAOAA0AAAAOAAwAAAAOAA4AAAAOAA0AAAAPAAgAAAAPAAcAAAAPAAkAAAAPAAgAAAAPAAoAAAAPAAkAAAAPAAsAAAAPAAoAAAAPAAwAAAAPAAsAAAAPAA0AAAAPAAwAAAAPAA4AAAAPAA0AAAANAAYAAAANAAUAAAANAAcAAAANAAYAAAANAAgAAAANAAcAAAAOAAQAAAAOAAMAAAAOAAUAAAAOAAQAAAAOAAYAAAAOAAUAAAAOAAcAAAAOAAYAAAAOAAgAAAAOAAcAAAAPAAQAAAAPAAMAAAAPAAUAAAAPAAQAAAAPAAYAAAAPAAUAAAAPAAcAAAAPAAYAAAA=")
+tile_set = SubResource("TileSet_j12ko")
+
+[node name="Sword" type="Sprite2D" parent="." unique_id=1239337101]
+position = Vector2(128, 146)
+texture = ExtResource("3_ri6bm")
+
+[node name="StoryAnim" type="AnimationPlayer" parent="." unique_id=1776944986]
+libraries/ = SubResource("AnimationLibrary_ju3lf")
+
+[node name="TitleAnim" type="AnimationPlayer" parent="." unique_id=140455523]
+libraries/ = SubResource("AnimationLibrary_yepnq")
+autoplay = &"RESET"
+
+[node name="LogoStartScroll" type="Timer" parent="." unique_id=230116052]
+wait_time = 9.0
+one_shot = true
+autostart = true
+
+[node name="TextStartScroll" type="Timer" parent="." unique_id=1286963502]
+wait_time = 42.5
+one_shot = true
+autostart = true
+
+[connection signal="animation_finished" from="StoryAnim" to="." method="_on_story_anim_animation_finished"]
+[connection signal="timeout" from="LogoStartScroll" to="." method="_on_logo_start_scroll_timeout"]
+[connection signal="timeout" from="TextStartScroll" to="." method="_on_text_start_scroll_timeout"]
