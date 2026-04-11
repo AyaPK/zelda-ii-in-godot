@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://k8h7synd4k5w"]
+
+[ext_resource type="Script" uid="uid://bxraf55drdsl7" path="res://scripts/title_screen/character_select.gd" id="1_5csfi"]
+[ext_resource type="Texture2D" uid="uid://b05rh2rp0ivr6" path="res://assets/art/menu/border-1.png" id="2_f7ae2"]
+[ext_resource type="Texture2D" uid="uid://keio4mbxyh0p" path="res://assets/art/menu/pic.png" id="3_1m6ba"]
+[ext_resource type="Theme" uid="uid://olkma8mm41to" path="res://themes/font.tres" id="3_3c4ki"]
+[ext_resource type="Texture2D" uid="uid://ca5rop1b50m78" path="res://assets/art/menu/link-select.png" id="4_3c4ki"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3c4ki"]
+content_margin_top = 11.0
+texture = ExtResource("2_f7ae2")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[node name="CharacterSelect" type="Node2D" unique_id=245676615]
+script = ExtResource("1_5csfi")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=405500684]
+offset_left = -3.0
+offset_top = -16.0
+offset_right = 260.0
+offset_bottom = 246.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=765746510]
+offset_left = 84.0
+offset_top = 20.0
+offset_right = 172.0
+offset_bottom = 32.0
+theme = ExtResource("3_3c4ki")
+theme_override_font_sizes/font_size = 7
+text = "S E L E C T"
+
+[node name="MainMenuContainer" type="PanelContainer" parent="." unique_id=1384733998]
+offset_left = 16.0
+offset_top = 35.0
+offset_right = 240.0
+offset_bottom = 194.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_3c4ki")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuContainer" unique_id=1890141796]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Titles" type="HBoxContainer" parent="MainMenuContainer/VBoxContainer" unique_id=201978550]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MainMenuContainer/VBoxContainer/Titles" unique_id=266969389]
+layout_mode = 2
+theme = ExtResource("3_3c4ki")
+theme_override_font_sizes/font_size = 7
+text = "    -name-"
+
+[node name="Label2" type="Label" parent="MainMenuContainer/VBoxContainer/Titles" unique_id=1427819232]
+layout_mode = 2
+theme = ExtResource("3_3c4ki")
+theme_override_font_sizes/font_size = 7
+text = "    -level-"
+
+[node name="PlayerSlot1" type="HBoxContainer" parent="MainMenuContainer/VBoxContainer" unique_id=72568020]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainMenuContainer/VBoxContainer/PlayerSlot1" unique_id=611616612]
+layout_mode = 2
+theme_override_font_sizes/font_size = 4
+text = " 
+      "
+
+[node name="TextureRect" type="TextureRect" parent="MainMenuContainer/VBoxContainer/PlayerSlot1" unique_id=1116275816]
+layout_mode = 2
+texture = ExtResource("4_3c4ki")
+expand_mode = 3
+
+[node name="Label2" type="Label" parent="MainMenuContainer/VBoxContainer/PlayerSlot1" unique_id=1357250248]
+layout_mode = 2
+theme = ExtResource("3_3c4ki")
+theme_override_font_sizes/font_size = 7
+text = "LINK"
+
+[node name="PlayerSlot2" type="HBoxContainer" parent="MainMenuContainer/VBoxContainer" unique_id=319512546]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainMenuContainer/VBoxContainer/PlayerSlot2" unique_id=1218240619]
+layout_mode = 2
+theme_override_font_sizes/font_size = 4
+text = " 
+      "
+
+[node name="TextureRect" type="TextureRect" parent="MainMenuContainer/VBoxContainer/PlayerSlot2" unique_id=884786633]
+layout_mode = 2
+texture = ExtResource("4_3c4ki")
+
+[node name="PlayerSlot3" type="HBoxContainer" parent="MainMenuContainer/VBoxContainer" unique_id=998997543]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainMenuContainer/VBoxContainer/PlayerSlot3" unique_id=1821361753]
+layout_mode = 2
+theme_override_font_sizes/font_size = 4
+text = " 
+      "
+
+[node name="TextureRect" type="TextureRect" parent="MainMenuContainer/VBoxContainer/PlayerSlot3" unique_id=1814139240]
+layout_mode = 2
+texture = ExtResource("4_3c4ki")
+
+[node name="NameRegister" type="HBoxContainer" parent="MainMenuContainer/VBoxContainer" unique_id=1110524384]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MainMenuContainer/VBoxContainer/NameRegister" unique_id=103109110]
+layout_mode = 2
+theme_override_font_sizes/font_size = 4
+text = " 
+                  "
+
+[node name="Label" type="Label" parent="MainMenuContainer/VBoxContainer/NameRegister" unique_id=1059048402]
+layout_mode = 2
+theme = ExtResource("3_3c4ki")
+theme_override_font_sizes/font_size = 7
+text = "Register Your Name"
+
+[node name="PlayerDelete" type="HBoxContainer" parent="MainMenuContainer/VBoxContainer" unique_id=1537920927]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MainMenuContainer/VBoxContainer/PlayerDelete" unique_id=1525407664]
+layout_mode = 2
+theme_override_font_sizes/font_size = 4
+text = " 
+                  "
+
+[node name="Label" type="Label" parent="MainMenuContainer/VBoxContainer/PlayerDelete" unique_id=155354643]
+layout_mode = 2
+theme = ExtResource("3_3c4ki")
+theme_override_font_sizes/font_size = 7
+text = "Elimination Mode"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1650320940]
+modulate = Color(1, 1, 1, 0.19215687)
+position = Vector2(130, 115)
+texture = ExtResource("3_1m6ba")
