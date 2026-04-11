@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://keio4mbxyh0p" path="res://assets/art/menu/pic.png" id="3_1m6ba"]
 [ext_resource type="Theme" uid="uid://olkma8mm41to" path="res://themes/font.tres" id="3_3c4ki"]
 [ext_resource type="Texture2D" uid="uid://ca5rop1b50m78" path="res://assets/art/menu/link-select.png" id="4_3c4ki"]
+[ext_resource type="Texture2D" uid="uid://cowp26d3ulkiw" path="res://assets/art/menu/blacksquare.png" id="4_4xgtu"]
+[ext_resource type="Texture2D" uid="uid://cf77j8rne3t17" path="res://assets/art/menu/fairybutton.png" id="5_kffjs"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3c4ki"]
 content_margin_top = 11.0
@@ -63,11 +65,16 @@ text = "    -level-"
 [node name="PlayerSlot1" type="HBoxContainer" parent="MainMenuContainer/VBoxContainer" unique_id=72568020]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainMenuContainer/VBoxContainer/PlayerSlot1" unique_id=611616612]
+[node name="PlayerButton1" type="TextureButton" parent="MainMenuContainer/VBoxContainer/PlayerSlot1" unique_id=967699089]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 4
-text = " 
-      "
+mouse_filter = 2
+button_mask = 0
+texture_normal = ExtResource("4_4xgtu")
+texture_pressed = ExtResource("4_4xgtu")
+texture_hover = ExtResource("5_kffjs")
+texture_disabled = ExtResource("4_4xgtu")
+texture_focused = ExtResource("5_kffjs")
 
 [node name="TextureRect" type="TextureRect" parent="MainMenuContainer/VBoxContainer/PlayerSlot1" unique_id=1116275816]
 layout_mode = 2
@@ -83,11 +90,15 @@ text = "LINK"
 [node name="PlayerSlot2" type="HBoxContainer" parent="MainMenuContainer/VBoxContainer" unique_id=319512546]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainMenuContainer/VBoxContainer/PlayerSlot2" unique_id=1218240619]
+[node name="PlayerButton2" type="TextureButton" parent="MainMenuContainer/VBoxContainer/PlayerSlot2" unique_id=454656805]
 layout_mode = 2
-theme_override_font_sizes/font_size = 4
-text = " 
-      "
+mouse_filter = 2
+button_mask = 0
+texture_normal = ExtResource("4_4xgtu")
+texture_pressed = ExtResource("4_4xgtu")
+texture_hover = ExtResource("5_kffjs")
+texture_disabled = ExtResource("4_4xgtu")
+texture_focused = ExtResource("5_kffjs")
 
 [node name="TextureRect" type="TextureRect" parent="MainMenuContainer/VBoxContainer/PlayerSlot2" unique_id=884786633]
 layout_mode = 2
@@ -96,11 +107,15 @@ texture = ExtResource("4_3c4ki")
 [node name="PlayerSlot3" type="HBoxContainer" parent="MainMenuContainer/VBoxContainer" unique_id=998997543]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainMenuContainer/VBoxContainer/PlayerSlot3" unique_id=1821361753]
+[node name="PlayerButton3" type="TextureButton" parent="MainMenuContainer/VBoxContainer/PlayerSlot3" unique_id=1026504087]
 layout_mode = 2
-theme_override_font_sizes/font_size = 4
-text = " 
-      "
+mouse_filter = 2
+button_mask = 0
+texture_normal = ExtResource("4_4xgtu")
+texture_pressed = ExtResource("4_4xgtu")
+texture_hover = ExtResource("5_kffjs")
+texture_disabled = ExtResource("4_4xgtu")
+texture_focused = ExtResource("5_kffjs")
 
 [node name="TextureRect" type="TextureRect" parent="MainMenuContainer/VBoxContainer/PlayerSlot3" unique_id=1814139240]
 layout_mode = 2
@@ -109,11 +124,21 @@ texture = ExtResource("4_3c4ki")
 [node name="NameRegister" type="HBoxContainer" parent="MainMenuContainer/VBoxContainer" unique_id=1110524384]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MainMenuContainer/VBoxContainer/NameRegister" unique_id=103109110]
+[node name="Label3" type="Label" parent="MainMenuContainer/VBoxContainer/NameRegister" unique_id=657112861]
 layout_mode = 2
-theme_override_font_sizes/font_size = 4
-text = " 
-                  "
+
+[node name="RegisterButton" type="TextureButton" parent="MainMenuContainer/VBoxContainer/NameRegister" unique_id=589742410]
+layout_mode = 2
+mouse_filter = 2
+button_mask = 0
+texture_normal = ExtResource("4_4xgtu")
+texture_pressed = ExtResource("4_4xgtu")
+texture_hover = ExtResource("5_kffjs")
+texture_disabled = ExtResource("4_4xgtu")
+texture_focused = ExtResource("5_kffjs")
+
+[node name="Label2" type="Label" parent="MainMenuContainer/VBoxContainer/NameRegister" unique_id=1167059191]
+layout_mode = 2
 
 [node name="Label" type="Label" parent="MainMenuContainer/VBoxContainer/NameRegister" unique_id=1059048402]
 layout_mode = 2
@@ -124,11 +149,23 @@ text = "Register Your Name"
 [node name="PlayerDelete" type="HBoxContainer" parent="MainMenuContainer/VBoxContainer" unique_id=1537920927]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MainMenuContainer/VBoxContainer/PlayerDelete" unique_id=1525407664]
+[node name="Label3" type="Label" parent="MainMenuContainer/VBoxContainer/PlayerDelete" unique_id=7269648]
 layout_mode = 2
-theme_override_font_sizes/font_size = 4
-text = " 
-                  "
+theme_override_font_sizes/font_size = 11
+
+[node name="DeleteButton" type="TextureButton" parent="MainMenuContainer/VBoxContainer/PlayerDelete" unique_id=1704457543]
+layout_mode = 2
+mouse_filter = 2
+button_mask = 0
+texture_normal = ExtResource("4_4xgtu")
+texture_pressed = ExtResource("4_4xgtu")
+texture_hover = ExtResource("5_kffjs")
+texture_disabled = ExtResource("4_4xgtu")
+texture_focused = ExtResource("5_kffjs")
+
+[node name="Label2" type="Label" parent="MainMenuContainer/VBoxContainer/PlayerDelete" unique_id=1626279422]
+layout_mode = 2
+theme_override_font_sizes/font_size = 9
 
 [node name="Label" type="Label" parent="MainMenuContainer/VBoxContainer/PlayerDelete" unique_id=155354643]
 layout_mode = 2
@@ -137,6 +174,7 @@ theme_override_font_sizes/font_size = 7
 text = "Elimination Mode"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1650320940]
+visible = false
 modulate = Color(1, 1, 1, 0.19215687)
 position = Vector2(130, 115)
 texture = ExtResource("3_1m6ba")
