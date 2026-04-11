@@ -15,7 +15,8 @@ var sfx_bus_idx: int:
 
 var music_library: Dictionary = {
 	"title": preload("res://assets/sound/music/title.mp3"),
-	"overworld": preload("res://assets/sound/music/overworld.mp3")
+	"overworld": preload("res://assets/sound/music/overworld.mp3"),
+	"village": preload("res://assets/sound/music/village.mp3")
 }
 
 var sfx_library: Dictionary = {

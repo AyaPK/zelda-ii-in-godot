@@ -4,7 +4,14 @@ const SPEED = 60.0
 
 var walk_right: bool = true
 
+func _ready() -> void:
+	super._ready()
+
 func _physics_process(delta: float) -> void:
+	if is_stunned:
+		velocity.x = 0.0
+		move_and_slide()
+		return
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 

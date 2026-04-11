@@ -20,9 +20,14 @@ var on_screen: bool = false
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
+	super._ready()
 	animation_player.play("walk")
 
 func _physics_process(delta: float) -> void:
+	if is_stunned:
+		velocity.x = 0.0
+		move_and_slide()
+		return
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 

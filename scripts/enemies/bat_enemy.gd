@@ -17,10 +17,15 @@ var roost_y: float = 0.0
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
+	super._ready()
 	roost_y = global_position.y
 	animation_player.play("hang")
 
 func _physics_process(delta: float) -> void:
+	if is_stunned:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
 	var player := get_tree().get_first_node_in_group("sidescroll-player")
 
 	match state:

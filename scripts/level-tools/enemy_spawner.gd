@@ -7,6 +7,7 @@ extends Node2D
 
 var offset: int
 var timer_offset_enabled: bool = false
+var ypos: float
 
 func _ready() -> void:
 	if frequency > 0:
@@ -15,12 +16,20 @@ func _ready() -> void:
 		$Timer.start()
 	var player := get_tree().get_first_node_in_group("sidescroll-player") as LinkSidescroll
 	offset = 128+16 if walk_direction == "left" else -128-16
-	global_position = player.camera.global_position + Vector2(offset, 0)
+	var cam := player.camera
+	var half_w := get_viewport_rect().size.x / 2.0 / cam.zoom.x
+	var clamped_x := clampf(cam.global_position.x, cam.limit_left + half_w, cam.limit_right - half_w)
+	global_position = Vector2(clamped_x + offset, cam.global_position.y)
+	ypos = global_position.y
 
 func _process(_delta: float) -> void:
 	var player := get_tree().get_first_node_in_group("sidescroll-player") as LinkSidescroll
 	if player:
-		global_position = player.camera.global_position + Vector2(offset, 0)
+		var cam := player.camera
+		var half_w := get_viewport_rect().size.x / 2.0 / cam.zoom.x
+		var clamped_x := clampf(cam.global_position.x, cam.limit_left + half_w, cam.limit_right - half_w)
+		global_position.x = clamped_x + offset
+		global_position.y = ypos
 
 func _on_timer_timeout() -> void:
 	if timer_offset_enabled:

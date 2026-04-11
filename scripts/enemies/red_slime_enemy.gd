@@ -15,10 +15,15 @@ var walk_right: bool = true
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
+	super._ready()
 	state_timer = randf_range(CRAWL_MIN, CRAWL_MAX)
 	animation_player.play("crawl")
 
 func _physics_process(delta: float) -> void:
+	if is_stunned:
+		velocity.x = 0.0
+		move_and_slide()
+		return
 	state_timer -= delta
 	if not is_on_floor():
 		velocity += get_gravity() * delta

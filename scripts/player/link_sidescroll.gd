@@ -106,6 +106,8 @@ func _enter_state(new_state: State) -> void:
 func hit(hit_source_x: float) -> void:
 	if iframe_timer > 0.0:
 		return
+	if state == State.CROUCH or state == State.CROUCH_ATTACK:
+		return
 	knockback_dir = -1.0 if hit_source_x > global_position.x else 1.0
 	_enter_state(State.HIT)
 

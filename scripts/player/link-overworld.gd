@@ -5,7 +5,7 @@ class_name LinkOverworld extends Node2D
 
 const ENEMY_SCENE: PackedScene = preload("res://scenes/enemies/overworld/overworld_encounter.tscn")
 const ENCOUNTER_CHANCE: float = 0.1
-const ENCOUNTER_SPAWN_OFFSET: int = 5
+const ENCOUNTER_SPAWN_OFFSET: int = 3
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
