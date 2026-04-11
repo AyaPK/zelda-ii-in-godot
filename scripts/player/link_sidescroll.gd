@@ -11,7 +11,7 @@ enum State { IDLE, RUN, JUMP, FALL, LAND, ATTACK, RECOIL, AIR_ATTACK, AIR_RECOIL
 @export var recoil_duration: float = 0.5
 @export var hit_stun_duration: float = 0.8
 @export var hit_knockback_speed: float = 100.0
-@export var iframe_duration: float = 1.2
+@export var iframe_duration: float = 1.8
 @export var flash_interval: float = 0.08
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -98,7 +98,7 @@ func _enter_state(new_state: State) -> void:
 			play_animation("crouch_attack")
 		State.HIT:
 			velocity.x = knockback_dir * hit_knockback_speed
-			velocity.y = -160.0
+			velocity.y = -100.0
 			state_timer = hit_stun_duration
 			iframe_timer = iframe_duration
 			play_animation("hit")
@@ -188,6 +188,8 @@ func _tick_land() -> State:
 	#velocity.x = move_toward(velocity.x, 0.0, friction * get_physics_process_delta_time())
 	if Input.is_action_just_pressed("jump"):
 		return State.JUMP
+	elif Input.is_action_pressed("crouch"):
+		return State.CROUCH
 	if state_timer <= 0:
 		if _get_input_dir() != 0:
 			return State.RUN
