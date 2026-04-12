@@ -14,6 +14,31 @@ var xp: int = 0
 var levels: Dictionary = { "life": 1, "magic": 1, "attack": 1 }
 var pending_levelups: int = 0
 
+var lives: int = 3
+var max_hp: int = 4
+var current_hp: int = 4
+var max_magic: int = 32
+var magic: int = 32
+
+var spells: Array[String] = []
+var items: Array[String] = []
+var containers: int = 0
+var magic_containers: int = 0
+
+func has_spell(spell: String) -> bool:
+	return spell in spells
+
+func has_item(item: String) -> bool:
+	return item in items
+
+func add_spell(spell: String) -> void:
+	if not has_spell(spell):
+		spells.append(spell)
+
+func add_item(item: String) -> void:
+	if not has_item(item):
+		items.append(item)
+
 func add_xp(amount: int) -> void:
 	if _all_maxed():
 		extra_life.emit()
@@ -33,10 +58,54 @@ func apply_level_up(track: String) -> void:
 	levels[track] += 1
 	pending_levelups -= 1
 
+func reset() -> void:
+	xp = 0
+	levels = { "life": 1, "magic": 1, "attack": 1 }
+	pending_levelups = 0
+	lives = 3
+	max_hp = 4
+	current_hp = 4
+	max_magic = 32
+	magic = 32
+	spells.clear()
+	items.clear()
+	containers = 0
+	magic_containers = 0
+
 func on_player_death() -> void:
 	xp = 0
 	pending_levelups = 0
 	xp_changed.emit(xp)
+
+func to_dict() -> Dictionary:
+	return {
+		"xp": xp,
+		"levels": levels.duplicate(),
+		"pending_levelups": pending_levelups,
+		"lives": lives,
+		"max_hp": max_hp,
+		"current_hp": current_hp,
+		"max_magic": max_magic,
+		"magic": magic,
+		"spells": spells.duplicate(),
+		"items": items.duplicate(),
+		"containers": containers,
+		"magic_containers": magic_containers,
+	}
+
+func from_dict(d: Dictionary) -> void:
+	xp = d.get("xp", 0)
+	levels = d.get("levels", { "life": 1, "magic": 1, "attack": 1 })
+	pending_levelups = d.get("pending_levelups", 0)
+	lives = d.get("lives", 3)
+	max_hp = d.get("max_hp", 4)
+	current_hp = d.get("current_hp", 4)
+	max_magic = d.get("max_magic", 32)
+	magic = d.get("magic", 32)
+	spells = Array(d.get("spells", []), TYPE_STRING, "", null)
+	items = Array(d.get("items", []), TYPE_STRING, "", null)
+	containers = d.get("containers", 0)
+	magic_containers = d.get("magic_containers", 0)
 
 func xp_to_next(track: String) -> int:
 	var lv: int = levels[track]

@@ -178,3 +178,7 @@ visible = false
 modulate = Color(1, 1, 1, 0.19215687)
 position = Vector2(130, 115)
 texture = ExtResource("3_1m6ba")
+
+[connection signal="pressed" from="MainMenuContainer/VBoxContainer/PlayerSlot1/PlayerButton1" to="." method="_on_player_button_1_pressed"]
+[connection signal="pressed" from="MainMenuContainer/VBoxContainer/NameRegister/RegisterButton" to="." method="_on_register_button_pressed"]
+[connection signal="pressed" from="MainMenuContainer/VBoxContainer/PlayerDelete/DeleteButton" to="." method="_on_delete_button_pressed"]

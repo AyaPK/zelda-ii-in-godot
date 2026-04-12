@@ -9,6 +9,7 @@ var pre_encounter_pos: Vector2
 # [area_name][area_type][difficulty] -> scene path
 const ENCOUNTER_SCENES: Dictionary = {
 	"West Hyrule": {
+		"path":		{},
 		"field":	{ "easy": "res://levels/encounters/west_hyrule/field_easy.tscn",    "hard": "res://levels/encounters/west_hyrule/field_hard.tscn",    "fairy": "res://levels/encounters/west_hyrule/field_fairy.tscn" },
 		"forest":	{ "easy": "res://levels/encounters/west_hyrule/forest_easy.tscn",   "hard": "res://levels/encounters/west_hyrule/forest_hard.tscn",   "fairy": "res://levels/encounters/west_hyrule/forest_fairy.tscn" },
 		"swamp":	{ "easy": "res://levels/encounters/west_hyrule/swamp_easy.tscn",    "hard": "res://levels/encounters/west_hyrule/swamp_hard.tscn",    "fairy": "res://levels/encounters/west_hyrule/swamp_fairy.tscn" },
@@ -39,10 +40,12 @@ func change_scene_to_encounter(area_type: String, difficulty: String) -> void:
 	faded_in.emit()
 
 func change_scene_to_level(scene_path: String, target_node_name: String, facing_direction: String) -> void:
-	get_tree().get_first_node_in_group("overworld-player").queue_free()
+	if get_tree().get_first_node_in_group("overworld-player"):
+		get_tree().get_first_node_in_group("overworld-player").queue_free()
 	scene_path_string = scene_path
 	target_transition = target_node_name
 	get_tree().change_scene_to_file(scene_path)
+	await get_tree().process_frame
 	await get_tree().process_frame
 	get_tree().get_first_node_in_group("sidescroll-player").facing_right = (facing_direction == "Right")
 	get_tree().get_first_node_in_group("sidescroll-player").global_position = level.get_node(target_node_name).global_position

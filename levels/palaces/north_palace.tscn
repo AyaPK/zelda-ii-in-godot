@@ -46,6 +46,9 @@ position = Vector2(768, 208)
 position = Vector2(760, 208)
 gizmo_extents = 16.0
 
+[node name="GameStart" type="Marker2D" parent="." unique_id=409255595]
+position = Vector2(383, 208)
+
 [node name="TransitionToOverworld" parent="." unique_id=820669562 instance=ExtResource("6_wtrqx")]
 position = Vector2(787, -1)
 node_to_transition_to = "TransitionToNorthernPalace"
