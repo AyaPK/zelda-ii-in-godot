@@ -103,10 +103,15 @@ func _enter_state(new_state: State) -> void:
 			iframe_timer = iframe_duration
 			play_animation("hit")
 
-func hit(hit_source_x: float) -> void:
+func hit(hit_source_x: float, damage: int = 1) -> void:
 	if iframe_timer > 0.0:
 		return
 	if state == State.CROUCH or state == State.CROUCH_ATTACK:
+		return
+	PlayerManager.current_hp -= damage
+	if PlayerManager.current_hp <= 0:
+		PlayerManager.current_hp = 0
+		PlayerManager.on_player_death()
 		return
 	knockback_dir = -1.0 if hit_source_x > global_position.x else 1.0
 	_enter_state(State.HIT)
