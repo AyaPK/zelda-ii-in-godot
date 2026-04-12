@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://ca5rop1b50m78" path="res://assets/art/menu/link-select.png" id="4_3c4ki"]
 [ext_resource type="Texture2D" uid="uid://cowp26d3ulkiw" path="res://assets/art/menu/blacksquare.png" id="4_4xgtu"]
 [ext_resource type="Texture2D" uid="uid://cf77j8rne3t17" path="res://assets/art/menu/fairybutton.png" id="5_kffjs"]
+[ext_resource type="PackedScene" uid="uid://cl6lke5ecmpnt" path="res://scenes/title_screen/name_input_button.tscn" id="7_3ooo2"]
+[ext_resource type="Texture2D" uid="uid://bnfch2pk4q2fr" path="res://assets/art/menu/pic2.png" id="8_nopxi"]
+[ext_resource type="Theme" uid="uid://cmbvl5bbjrnrb" path="res://themes/name_input_button.tres" id="8_v4piy"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3c4ki"]
 content_margin_top = 11.0
@@ -15,6 +18,22 @@ texture_margin_left = 8.0
 texture_margin_top = 8.0
 texture_margin_right = 8.0
 texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v4piy"]
+content_margin_left = 12.0
+texture = ExtResource("2_f7ae2")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3j6h8"]
+content_margin_left = 28.0
+content_margin_right = 14.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aaau7"]
+content_margin_left = 14.0
+content_margin_right = 14.0
 
 [node name="CharacterSelect" type="Node2D" unique_id=245676615]
 script = ExtResource("1_5csfi")
@@ -26,7 +45,7 @@ offset_right = 260.0
 offset_bottom = 246.0
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="." unique_id=765746510]
+[node name="Select" type="Label" parent="." unique_id=765746510]
 offset_left = 84.0
 offset_top = 20.0
 offset_right = 172.0
@@ -36,6 +55,7 @@ theme_override_font_sizes/font_size = 7
 text = "S E L E C T"
 
 [node name="MainMenuContainer" type="PanelContainer" parent="." unique_id=1384733998]
+unique_name_in_owner = true
 offset_left = 16.0
 offset_top = 35.0
 offset_right = 240.0
@@ -68,6 +88,7 @@ layout_mode = 2
 [node name="PlayerButton1" type="TextureButton" parent="MainMenuContainer/VBoxContainer/PlayerSlot1" unique_id=967699089]
 unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_top = NodePath("../../PlayerSlot3/PlayerButton3")
 mouse_filter = 2
 button_mask = 0
 texture_normal = ExtResource("4_4xgtu")
@@ -85,12 +106,12 @@ expand_mode = 3
 layout_mode = 2
 theme = ExtResource("3_3c4ki")
 theme_override_font_sizes/font_size = 7
-text = "LINK"
 
 [node name="PlayerSlot2" type="HBoxContainer" parent="MainMenuContainer/VBoxContainer" unique_id=319512546]
 layout_mode = 2
 
 [node name="PlayerButton2" type="TextureButton" parent="MainMenuContainer/VBoxContainer/PlayerSlot2" unique_id=454656805]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 button_mask = 0
@@ -104,11 +125,18 @@ texture_focused = ExtResource("5_kffjs")
 layout_mode = 2
 texture = ExtResource("4_3c4ki")
 
+[node name="Label2" type="Label" parent="MainMenuContainer/VBoxContainer/PlayerSlot2" unique_id=777369427]
+layout_mode = 2
+theme = ExtResource("3_3c4ki")
+theme_override_font_sizes/font_size = 7
+
 [node name="PlayerSlot3" type="HBoxContainer" parent="MainMenuContainer/VBoxContainer" unique_id=998997543]
 layout_mode = 2
 
 [node name="PlayerButton3" type="TextureButton" parent="MainMenuContainer/VBoxContainer/PlayerSlot3" unique_id=1026504087]
+unique_name_in_owner = true
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../../PlayerSlot1/PlayerButton1")
 mouse_filter = 2
 button_mask = 0
 texture_normal = ExtResource("4_4xgtu")
@@ -121,13 +149,20 @@ texture_focused = ExtResource("5_kffjs")
 layout_mode = 2
 texture = ExtResource("4_3c4ki")
 
-[node name="NameRegister" type="HBoxContainer" parent="MainMenuContainer/VBoxContainer" unique_id=1110524384]
+[node name="Label2" type="Label" parent="MainMenuContainer/VBoxContainer/PlayerSlot3" unique_id=1299234490]
+layout_mode = 2
+theme = ExtResource("3_3c4ki")
+theme_override_font_sizes/font_size = 7
+
+[node name="SelectedContainer" type="HBoxContainer" parent="MainMenuContainer/VBoxContainer" unique_id=1110524384]
+unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="MainMenuContainer/VBoxContainer/NameRegister" unique_id=657112861]
+[node name="Label3" type="Label" parent="MainMenuContainer/VBoxContainer/SelectedContainer" unique_id=657112861]
 layout_mode = 2
+text = "       "
 
-[node name="RegisterButton" type="TextureButton" parent="MainMenuContainer/VBoxContainer/NameRegister" unique_id=589742410]
+[node name="StartButton" type="TextureButton" parent="MainMenuContainer/VBoxContainer/SelectedContainer" unique_id=589742410]
 layout_mode = 2
 mouse_filter = 2
 button_mask = 0
@@ -137,23 +172,16 @@ texture_hover = ExtResource("5_kffjs")
 texture_disabled = ExtResource("4_4xgtu")
 texture_focused = ExtResource("5_kffjs")
 
-[node name="Label2" type="Label" parent="MainMenuContainer/VBoxContainer/NameRegister" unique_id=1167059191]
+[node name="Label2" type="Label" parent="MainMenuContainer/VBoxContainer/SelectedContainer" unique_id=1167059191]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainMenuContainer/VBoxContainer/NameRegister" unique_id=1059048402]
+[node name="Label" type="Label" parent="MainMenuContainer/VBoxContainer/SelectedContainer" unique_id=1059048402]
 layout_mode = 2
 theme = ExtResource("3_3c4ki")
 theme_override_font_sizes/font_size = 7
-text = "Register Your Name"
+text = "Start"
 
-[node name="PlayerDelete" type="HBoxContainer" parent="MainMenuContainer/VBoxContainer" unique_id=1537920927]
-layout_mode = 2
-
-[node name="Label3" type="Label" parent="MainMenuContainer/VBoxContainer/PlayerDelete" unique_id=7269648]
-layout_mode = 2
-theme_override_font_sizes/font_size = 11
-
-[node name="DeleteButton" type="TextureButton" parent="MainMenuContainer/VBoxContainer/PlayerDelete" unique_id=1704457543]
+[node name="DeleteButton" type="TextureButton" parent="MainMenuContainer/VBoxContainer/SelectedContainer" unique_id=519825748]
 layout_mode = 2
 mouse_filter = 2
 button_mask = 0
@@ -163,15 +191,283 @@ texture_hover = ExtResource("5_kffjs")
 texture_disabled = ExtResource("4_4xgtu")
 texture_focused = ExtResource("5_kffjs")
 
-[node name="Label2" type="Label" parent="MainMenuContainer/VBoxContainer/PlayerDelete" unique_id=1626279422]
+[node name="Label4" type="Label" parent="MainMenuContainer/VBoxContainer/SelectedContainer" unique_id=1636524457]
 layout_mode = 2
-theme_override_font_sizes/font_size = 9
 
-[node name="Label" type="Label" parent="MainMenuContainer/VBoxContainer/PlayerDelete" unique_id=155354643]
+[node name="Label5" type="Label" parent="MainMenuContainer/VBoxContainer/SelectedContainer" unique_id=816518249]
 layout_mode = 2
 theme = ExtResource("3_3c4ki")
 theme_override_font_sizes/font_size = 7
-text = "Elimination Mode"
+text = "Delete"
+
+[node name="NameEntryContainer" type="PanelContainer" parent="." unique_id=248795280]
+unique_name_in_owner = true
+visible = false
+offset_left = 28.0
+offset_top = 82.0
+offset_right = 228.0
+offset_bottom = 174.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_v4piy")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="NameEntryContainer" unique_id=427726768]
+layout_mode = 2
+theme_override_constants/h_separation = 9
+
+[node name="AbuttonText" parent="NameEntryContainer/HFlowContainer" unique_id=1085733871 instance=ExtResource("7_3ooo2")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../K")
+
+[node name="B" parent="NameEntryContainer/HFlowContainer" unique_id=768066493 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "B"
+
+[node name="C" parent="NameEntryContainer/HFlowContainer" unique_id=335193551 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "C"
+
+[node name="D" parent="NameEntryContainer/HFlowContainer" unique_id=809792848 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "D"
+
+[node name="E" parent="NameEntryContainer/HFlowContainer" unique_id=486752701 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "E"
+
+[node name="F" parent="NameEntryContainer/HFlowContainer" unique_id=1600809247 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "F"
+
+[node name="G" parent="NameEntryContainer/HFlowContainer" unique_id=595306755 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "G"
+
+[node name="H" parent="NameEntryContainer/HFlowContainer" unique_id=801177459 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "H"
+
+[node name="I" parent="NameEntryContainer/HFlowContainer" unique_id=378137986 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "I"
+
+[node name="J" parent="NameEntryContainer/HFlowContainer" unique_id=172567693 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "J"
+
+[node name="K" parent="NameEntryContainer/HFlowContainer" unique_id=766861025 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+focus_neighbor_right = NodePath("../AbuttonText")
+text = "K"
+
+[node name="L" parent="NameEntryContainer/HFlowContainer" unique_id=1961907244 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../V")
+text = "L"
+
+[node name="M" parent="NameEntryContainer/HFlowContainer" unique_id=1300471995 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "M"
+
+[node name="N" parent="NameEntryContainer/HFlowContainer" unique_id=779054166 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "N"
+
+[node name="O" parent="NameEntryContainer/HFlowContainer" unique_id=1969758797 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "O"
+
+[node name="P" parent="NameEntryContainer/HFlowContainer" unique_id=687202694 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "P"
+
+[node name="Q" parent="NameEntryContainer/HFlowContainer" unique_id=62720420 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "Q"
+
+[node name="R" parent="NameEntryContainer/HFlowContainer" unique_id=342184687 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "R"
+
+[node name="S" parent="NameEntryContainer/HFlowContainer" unique_id=1012625454 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "S"
+
+[node name="T" parent="NameEntryContainer/HFlowContainer" unique_id=1435626843 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "T"
+
+[node name="U" parent="NameEntryContainer/HFlowContainer" unique_id=1430149097 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "U"
+
+[node name="V" parent="NameEntryContainer/HFlowContainer" unique_id=405470148 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+focus_neighbor_right = NodePath("../L")
+text = "V"
+
+[node name="W" parent="NameEntryContainer/HFlowContainer" unique_id=1140228733 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../sp5")
+text = "W"
+
+[node name="X" parent="NameEntryContainer/HFlowContainer" unique_id=1069086552 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "X"
+
+[node name="Y" parent="NameEntryContainer/HFlowContainer" unique_id=1655525309 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "Y"
+
+[node name="Z" parent="NameEntryContainer/HFlowContainer" unique_id=795894543 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "Z"
+
+[node name="-" parent="NameEntryContainer/HFlowContainer" unique_id=1484503394 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "-"
+
+[node name="dot" parent="NameEntryContainer/HFlowContainer" unique_id=929920019 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "."
+
+[node name="sp1" parent="NameEntryContainer/HFlowContainer" unique_id=411616691 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = " "
+
+[node name="sp2" parent="NameEntryContainer/HFlowContainer" unique_id=1297501810 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = " "
+
+[node name="sp3" parent="NameEntryContainer/HFlowContainer" unique_id=1247621029 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = " "
+
+[node name="sp4" parent="NameEntryContainer/HFlowContainer" unique_id=2097359223 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = " "
+
+[node name="sp5" parent="NameEntryContainer/HFlowContainer" unique_id=1238297980 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+focus_neighbor_right = NodePath("../L")
+text = " "
+
+[node name="0" parent="NameEntryContainer/HFlowContainer" unique_id=503403078 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../sp6")
+text = "0"
+
+[node name="1" parent="NameEntryContainer/HFlowContainer" unique_id=557010326 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../0")
+focus_neighbor_right = NodePath("../2")
+text = "1"
+
+[node name="2" parent="NameEntryContainer/HFlowContainer" unique_id=311754011 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../1")
+focus_neighbor_right = NodePath("../3")
+text = "2"
+
+[node name="3" parent="NameEntryContainer/HFlowContainer" unique_id=1886547550 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../2")
+focus_neighbor_right = NodePath("../4")
+text = "3"
+
+[node name="4" parent="NameEntryContainer/HFlowContainer" unique_id=110654642 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../3")
+focus_neighbor_right = NodePath("../5")
+text = "4"
+
+[node name="5" parent="NameEntryContainer/HFlowContainer" unique_id=1872950368 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+text = "5"
+
+[node name="6" parent="NameEntryContainer/HFlowContainer" unique_id=920974404 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../5")
+focus_neighbor_right = NodePath("../7")
+text = "6"
+
+[node name="7" parent="NameEntryContainer/HFlowContainer" unique_id=389795417 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../6")
+focus_neighbor_right = NodePath("../8")
+text = "7"
+
+[node name="8" parent="NameEntryContainer/HFlowContainer" unique_id=1516540900 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../7")
+focus_neighbor_right = NodePath("../9")
+text = "8"
+
+[node name="9" parent="NameEntryContainer/HFlowContainer" unique_id=1082892433 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+focus_neighbor_left = NodePath("../8")
+focus_neighbor_right = NodePath("../sp6")
+text = "9"
+
+[node name="sp6" parent="NameEntryContainer/HFlowContainer" unique_id=1150751893 instance=ExtResource("7_3ooo2")]
+layout_mode = 2
+focus_neighbor_right = NodePath("../0")
+text = " "
+
+[node name="PanelContainer" type="PanelContainer" parent="NameEntryContainer/HFlowContainer" unique_id=990907756]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3j6h8")
+
+[node name="CancelButton" type="Button" parent="NameEntryContainer/HFlowContainer/PanelContainer" unique_id=1376401073]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../PanelContainer2/DoneButton")
+focus_neighbor_right = NodePath("../../PanelContainer2/DoneButton")
+theme = ExtResource("8_v4piy")
+text = "Cancel"
+
+[node name="PanelContainer2" type="PanelContainer" parent="NameEntryContainer/HFlowContainer" unique_id=1422668700]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_aaau7")
+
+[node name="DoneButton" type="Button" parent="NameEntryContainer/HFlowContainer/PanelContainer2" unique_id=1938141763]
+layout_mode = 2
+focus_neighbor_left = NodePath("../../PanelContainer/CancelButton")
+focus_neighbor_right = NodePath("../../PanelContainer/CancelButton")
+theme = ExtResource("8_v4piy")
+text = "Done"
+
+[node name="NamePreview" type="HBoxContainer" parent="." unique_id=360497978]
+unique_name_in_owner = true
+visible = false
+offset_left = 50.0
+offset_top = 49.0
+offset_right = 206.0
+offset_bottom = 65.0
+
+[node name="TextureRect2" type="TextureRect" parent="NamePreview" unique_id=368709829]
+layout_mode = 2
+texture = ExtResource("4_3c4ki")
+
+[node name="NamePreviewLabel" type="Label" parent="NamePreview" unique_id=1287807281]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_3c4ki")
+theme_override_font_sizes/font_size = 7
+
+[node name="CreateSave" type="Label" parent="." unique_id=225284954]
+visible = false
+offset_left = 76.0
+offset_top = 20.0
+offset_right = 180.0
+offset_bottom = 32.0
+theme = ExtResource("3_3c4ki")
+theme_override_font_sizes/font_size = 7
+text = "-Create save-"
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=279141892]
+visible = false
+modulate = Color(1, 1, 1, 0.24705882)
+position = Vector2(124, 124)
+texture = ExtResource("8_nopxi")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1650320940]
 visible = false
@@ -180,5 +476,9 @@ position = Vector2(130, 115)
 texture = ExtResource("3_1m6ba")
 
 [connection signal="pressed" from="MainMenuContainer/VBoxContainer/PlayerSlot1/PlayerButton1" to="." method="_on_player_button_1_pressed"]
-[connection signal="pressed" from="MainMenuContainer/VBoxContainer/NameRegister/RegisterButton" to="." method="_on_register_button_pressed"]
-[connection signal="pressed" from="MainMenuContainer/VBoxContainer/PlayerDelete/DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="pressed" from="MainMenuContainer/VBoxContainer/PlayerSlot2/PlayerButton2" to="." method="_on_player_button_2_pressed"]
+[connection signal="pressed" from="MainMenuContainer/VBoxContainer/PlayerSlot3/PlayerButton3" to="." method="_on_player_button_3_pressed"]
+[connection signal="pressed" from="MainMenuContainer/VBoxContainer/SelectedContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MainMenuContainer/VBoxContainer/SelectedContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="pressed" from="NameEntryContainer/HFlowContainer/PanelContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="button_down" from="NameEntryContainer/HFlowContainer/PanelContainer2/DoneButton" to="." method="_on_done_button_button_down"]

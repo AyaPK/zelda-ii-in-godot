@@ -25,7 +25,6 @@ func new_game(slot: int, save_name: String) -> void:
 	PlayerManager.reset()
 	StoryFlags.reset()
 	_write_save(slot, save_name)
-	Scenemanager.change_scene_to_level(NORTH_PALACE, "SpawnPoint", "Right")
 
 func save(slot: int) -> void:
 	var save_name: String = get_slot_info(slot).get("name", "")
@@ -43,7 +42,7 @@ func load_slot(slot: int) -> void:
 	PlayerManager.from_dict(data.get("player", {}))
 	StoryFlags.from_dict(data.get("story_flags", {}))
 	PlayerManager.current_hp = PlayerManager.max_hp
-	Scenemanager.change_scene_to_level(NORTH_PALACE, "SpawnPoint", "Right")
+	Scenemanager.change_scene_to_level(NORTH_PALACE, "GameStart", "Right")
 
 func delete_slot(slot: int) -> void:
 	if slot_exists(slot):

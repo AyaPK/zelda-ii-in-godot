@@ -1,0 +1,31 @@
+[gd_resource type="Theme" format=3 uid="uid://cmbvl5bbjrnrb"]
+
+[ext_resource type="FontFile" uid="uid://dsqedgjoyglb3" path="res://assets/fonts/zelda-ii-the-adventure-of-link.otf" id="1_tr40u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tr40u"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_left = 4.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_501ft"]
+
+[resource]
+default_font = ExtResource("1_tr40u")
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_outline_color = Color(0, 0, 1, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 2
+Button/font_sizes/font_size = 7
+Button/fonts/font = ExtResource("1_tr40u")
+Button/styles/focus = SubResource("StyleBoxFlat_tr40u")
+Button/styles/hover = SubResource("StyleBoxFlat_tr40u")
+Button/styles/normal = SubResource("StyleBoxEmpty_501ft")
+Button/styles/pressed = SubResource("StyleBoxFlat_tr40u")
