@@ -44,6 +44,15 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_axuvg"]
 size = Vector2(18, 36)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kiye1"]
+size = Vector2(10, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ph6ap"]
+size = Vector2(23, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwyjj"]
+size = Vector2(18, 32)
+
 [node name="SpearMoblin" type="CharacterBody2D" unique_id=1845871361 groups=["sidescroll-enemy"]]
 collision_layer = 8
 collision_mask = 2
@@ -61,3 +70,30 @@ autoplay = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1947118863]
 position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_axuvg")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=525281293]
+collision_layer = 128
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1948485258]
+position = Vector2(0, -18)
+shape = SubResource("RectangleShape2D_kiye1")
+debug_color = Color(0.3182791, 0.6256233, 0, 0.41960785)
+
+[node name="Hitbox2" type="Area2D" parent="." unique_id=24308522]
+collision_layer = 128
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox2" unique_id=813987548]
+position = Vector2(-4.5, -20)
+shape = SubResource("RectangleShape2D_ph6ap")
+debug_color = Color(0.3182791, 0.6256233, 0, 0.41960785)
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=2041687866]
+collision_layer = 256
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1117153445]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_qwyjj")
+debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)

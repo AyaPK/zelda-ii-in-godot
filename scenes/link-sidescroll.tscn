@@ -36,6 +36,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [12, 13, 5]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"enable_hitbox"
+}, {
+"args": [],
+"method": &"disable_hitbox"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_gp8my"]
 resource_name = "attack"
@@ -51,6 +68,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [12, 13, 5]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.23333333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"enable_hitbox"
+}, {
+"args": [],
+"method": &"disable_hitbox"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_7vft0"]
@@ -83,6 +117,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [15, 9]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"enable_hitbox"
+}, {
+"args": [],
+"method": &"disable_hitbox"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_4xnvu"]
@@ -212,6 +263,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yeeko"]
 size = Vector2(6, 25)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssr3k"]
+size = Vector2(22, 9)
+
 [node name="link-sidescroll" type="CharacterBody2D" unique_id=1464587723 groups=["sidescroll-player"]]
 z_index = 1
 collision_mask = 2
@@ -243,5 +297,23 @@ collision_mask = 128
 position = Vector2(0, -12.5)
 shape = SubResource("RectangleShape2D_yeeko")
 debug_color = Color(0.9927282, 0, 0.25442687, 0.41960785)
+
+[node name="ShortswordHitboxStanding" type="Area2D" parent="." unique_id=1718163283]
+collision_layer = 32
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShortswordHitboxStanding" unique_id=2115559035]
+position = Vector2(14, -19.5)
+shape = SubResource("RectangleShape2D_ssr3k")
+debug_color = Color(0.17166257, 0.6439372, 5.7756904e-07, 0.41960785)
+
+[node name="ShortswordHitboxCrouching" type="Area2D" parent="." unique_id=1113073981]
+collision_layer = 32
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShortswordHitboxCrouching" unique_id=1123609286]
+position = Vector2(14, -10)
+shape = SubResource("RectangleShape2D_ssr3k")
+debug_color = Color(0.17166257, 0.6439372, 5.7756904e-07, 0.41960785)
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

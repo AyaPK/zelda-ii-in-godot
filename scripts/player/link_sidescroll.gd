@@ -35,7 +35,11 @@ func _physics_process(delta: float) -> void:
 	if next_state != state:
 		_enter_state(next_state)
 	$Sprite.scale.x = 1 if facing_right else -1
+	$ShortswordHitboxStanding.scale.x = 1 if facing_right else -1
+	$ShortswordHitboxCrouching.scale.x = 1 if facing_right else -1
 	_tick_iframes(delta)
+	if state == State.ATTACK or state == State.AIR_ATTACK or state == State.CROUCH_ATTACK:
+		_check_sword_hits()
 
 func _tick_state(delta: float) -> State:
 	match state:
@@ -83,20 +87,26 @@ func _enter_state(new_state: State) -> void:
 		State.ATTACK:
 			velocity.x = 0.0
 			play_animation("attack")
+			enable_hitbox()
 		State.RECOIL:
 			state_timer = recoil_duration
 			velocity.x = 0.0
+			disable_hitbox()
 			play_animation("recoil")
 		State.AIR_ATTACK:
 			play_animation("air_attack")
+			enable_hitbox()
 		State.AIR_RECOIL:
 			state_timer = recoil_duration
+			disable_hitbox()
 			play_animation("recoil")
 		State.CROUCH:
 			play_animation("crouch")
 		State.CROUCH_ATTACK:
 			play_animation("crouch_attack")
+			enable_hitbox()
 		State.HIT:
+			disable_hitbox()
 			velocity.x = knockback_dir * hit_knockback_speed
 			velocity.y = -100.0
 			state_timer = hit_stun_duration
@@ -192,7 +202,7 @@ func _tick_fall() -> State:
 	return State.FALL
 
 func _tick_land() -> State:
-	#velocity.x = move_toward(velocity.x, 0.0, friction * get_physics_process_delta_time())
+	disable_hitbox()
 	if Input.is_action_just_pressed("jump"):
 		return State.JUMP
 	elif Input.is_action_pressed("crouch"):
@@ -296,3 +306,34 @@ func _on_camera_boundary_left_screen_entered() -> void:
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	hit(area.global_position.x)
+
+func _check_sword_hits() -> void:
+	if $ShortswordHitboxStanding.monitoring:
+		for area in $ShortswordHitboxStanding.get_overlapping_areas():
+			var enemy := area.get_parent() as EncounterEnemy
+			if enemy:
+				enemy.take_hit()
+	if $ShortswordHitboxCrouching.monitoring:
+		print($ShortswordHitboxCrouching.get_overlapping_areas())
+		for area in $ShortswordHitboxCrouching.get_overlapping_areas():
+			var enemy := area.get_parent() as EncounterEnemy
+			if enemy:
+				enemy.take_hit()
+
+func enable_hitbox() -> void:
+	if $AnimationPlayer.current_animation == "attack" or $AnimationPlayer.current_animation == "air_attack": 
+		$ShortswordHitboxStanding.monitoring = true
+		$ShortswordHitboxStanding.set_deferred("monitorable", true)
+		$ShortswordHitboxStanding.show()
+	elif $AnimationPlayer.current_animation == "crouch_attack":
+		$ShortswordHitboxCrouching.monitoring = true
+		$ShortswordHitboxCrouching.set_deferred("monitorable", true)
+		$ShortswordHitboxCrouching.show()
+
+func disable_hitbox() -> void:
+	$ShortswordHitboxStanding.monitoring = false
+	$ShortswordHitboxStanding.set_deferred("monitorable", false)
+	$ShortswordHitboxStanding.hide()
+	$ShortswordHitboxCrouching.monitoring = false
+	$ShortswordHitboxCrouching.set_deferred("monitorable", false)
+	$ShortswordHitboxCrouching.hide()

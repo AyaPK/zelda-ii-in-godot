@@ -64,6 +64,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4cvg5"]
 size = Vector2(6, 9)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cubi4"]
+size = Vector2(18, 13.5)
+
 [node name="Bit" type="CharacterBody2D" unique_id=963212344]
 collision_layer = 8
 collision_mask = 2
@@ -88,4 +91,13 @@ collision_mask = 64
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2056618522]
 position = Vector2(0, -4.5)
 shape = SubResource("RectangleShape2D_4cvg5")
-debug_color = Color(0.99874693, 0, 0.1458736, 0.41960785)
+debug_color = Color(0.32941177, 0.8666667, 0, 0.41960785)
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=813604512]
+collision_layer = 256
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1776607920]
+position = Vector2(0, -6.75)
+shape = SubResource("RectangleShape2D_cubi4")
+debug_color = Color(0.8537612, 0, 0.0062061716, 0.41960785)
