@@ -5,6 +5,7 @@ class_name EncounterEnemy extends CharacterBody2D
 @export var hit_stun_duration: float = 0.4
 @export var iframe_duration: float = 0.6
 @export var flash_interval: float = 0.07
+@export var flash_color: Color = Color(1, 0.2, 0.2)
 
 var hp: int = 0
 var hit_stun_timer: float = 0.0
@@ -21,9 +22,9 @@ func _process(delta: float) -> void:
 		flash_timer -= delta
 		if flash_timer <= 0.0:
 			flash_timer = flash_interval
-			$Sprite2D.visible = !$Sprite2D.visible
+			$Sprite2D.modulate = flash_color if $Sprite2D.modulate == Color.WHITE else Color.WHITE
 	else:
-		$Sprite2D.visible = true
+		$Sprite2D.modulate = Color.WHITE
 
 	if is_stunned:
 		hit_stun_timer -= delta
