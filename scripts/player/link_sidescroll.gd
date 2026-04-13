@@ -263,6 +263,8 @@ func _tick_attack() -> State:
 func _tick_recoil() -> State:
 	if Input.is_action_just_pressed("attack"):
 		return State.ATTACK
+	elif Input.is_action_pressed("crouch"):
+		return State.CROUCH
 	if state_timer <= 0 or _get_input_dir() != 0:
 		if _get_input_dir() != 0:
 			return State.RUN

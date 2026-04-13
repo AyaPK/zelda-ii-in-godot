@@ -71,6 +71,9 @@ size = Vector2(18, 13.5)
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_70wsj")
+max_hp = 2
+hit_stun_duration = 1.0
+iframe_duration = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1625219337]
 position = Vector2(0, -8)

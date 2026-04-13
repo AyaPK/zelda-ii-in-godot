@@ -31,7 +31,6 @@ func _process(delta: float) -> void:
 			is_stunned = false
 
 func take_hit(damage: int = 1) -> void:
-	queue_free()
 	if iframe_timer > 0.0:
 		return
 	hp -= damage
