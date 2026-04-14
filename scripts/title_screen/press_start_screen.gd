@@ -16,5 +16,5 @@ func _on_story_anim_animation_finished(anim_name: StringName) -> void:
 	$TextStartScroll.start()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("start"):
+	if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("start") or Input.is_action_just_pressed("jump"):
 		get_tree().change_scene_to_file("res://scenes/title_screen/character_select.tscn")

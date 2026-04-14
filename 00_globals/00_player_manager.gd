@@ -11,14 +11,28 @@ const THRESHOLDS: Dictionary = {
 }
 
 var xp: int = 0
-var levels: Dictionary = { "life": 1, "magic": 1, "attack": 1 }
+var levels: Dictionary = { "life": 1, "magic": 1, "attack": 1}
 var pending_levelups: int = 0
 
+var life_level: int:
+	get:
+		return levels["life"]
+var magic_level: int:
+	get:
+		return levels["magic"]
+var attack_level: int:
+	get:
+		return levels["attack"]
+
 var lives: int = 3
-var max_hp: int = 4
-var current_hp: int = 4
+var max_hp: int :
+	get:
+		return 64 + (heart_containers * 16)
+var current_hp: int = 72
 var max_magic: int = 32
 var magic: int = 32
+
+var heart_containers: int = 0
 
 var spells: Array[String] = []
 var items: Array[String] = []

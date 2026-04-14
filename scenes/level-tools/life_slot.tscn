@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cd83ydf0w6pso"]
+
+[ext_resource type="Texture2D" uid="uid://dl17k65tlfwjc" path="res://assets/art/menu/lifebar.png" id="1_dslat"]
+[ext_resource type="Script" uid="uid://reps3rhkf2eh" path="res://scripts/level-tools/life_slot.gd" id="2_2dbiu"]
+
+[node name="LifeSlot" type="TextureRect" unique_id=33384576]
+texture = ExtResource("1_dslat")
+script = ExtResource("2_2dbiu")

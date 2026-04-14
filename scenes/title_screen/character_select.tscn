@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://cowp26d3ulkiw" path="res://assets/art/menu/blacksquare.png" id="4_4xgtu"]
 [ext_resource type="Texture2D" uid="uid://cf77j8rne3t17" path="res://assets/art/menu/fairybutton.png" id="5_kffjs"]
 [ext_resource type="PackedScene" uid="uid://cl6lke5ecmpnt" path="res://scenes/title_screen/name_input_button.tscn" id="7_3ooo2"]
-[ext_resource type="Texture2D" uid="uid://bnfch2pk4q2fr" path="res://assets/art/menu/pic2.png" id="8_nopxi"]
 [ext_resource type="Theme" uid="uid://cmbvl5bbjrnrb" path="res://themes/name_input_button.tres" id="8_v4piy"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3c4ki"]
@@ -467,7 +466,6 @@ text = "-Create save-"
 visible = false
 modulate = Color(1, 1, 1, 0.24705882)
 position = Vector2(124, 124)
-texture = ExtResource("8_nopxi")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1650320940]
 visible = false
