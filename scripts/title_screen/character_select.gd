@@ -12,9 +12,7 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
-		if %MainMenuContainer.visible:
-			print("aaa")
-		else:
+		if !%MainMenuContainer.visible:
 			%NamePreviewLabel.text = remove_last_letter(%NamePreviewLabel.text)
 
 func _on_player_button_1_pressed() -> void:
@@ -42,7 +40,6 @@ func _on_player_button_3_pressed() -> void:
 		show_name_entry()
 
 func name_input_button_pressed(_s: String) -> void:
-	print(_s+" was pressed")
 	if len(%NamePreviewLabel.text) < 9:
 		%NamePreviewLabel.text += _s
 
