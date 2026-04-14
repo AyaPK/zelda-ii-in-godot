@@ -2,7 +2,6 @@ class_name StateJump extends PlayerState
 
 func enter(player: LinkSidescroll) -> void:
 	player.velocity.y = -player.jump_speed
-	player.play_animation("jump")
 
 func tick(player: LinkSidescroll, delta: float) -> PlayerState:
 	player._apply_air_movement(delta)
@@ -10,4 +9,5 @@ func tick(player: LinkSidescroll, delta: float) -> PlayerState:
 		return player.state_air_attack
 	if player.velocity.y >= 0:
 		return player.state_fall
+	player.check_sword_hits()
 	return self

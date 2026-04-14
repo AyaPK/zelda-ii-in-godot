@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b4a0lapkebjwg" path="res://scripts/player/link_sidescroll.gd" id="1_km8oa"]
 [ext_resource type="Script" uid="uid://k1p004bjpkwq" path="res://scripts/player/states/state_idle.gd" id="2_idle"]
+[ext_resource type="Texture2D" uid="uid://cyta1i0n7ksek" path="res://assets/art/sprites/link-sidescroll.png" id="2_yeeko"]
 [ext_resource type="Script" uid="uid://ovrfxkvfffgr" path="res://scripts/player/states/state_run.gd" id="3_run"]
 [ext_resource type="Script" uid="uid://do87whx6jd76l" path="res://scripts/player/states/state_jump.gd" id="4_jump"]
 [ext_resource type="Script" uid="uid://dyxhc1uersn8y" path="res://scripts/player/states/state_fall.gd" id="5_fall"]
@@ -13,7 +14,6 @@
 [ext_resource type="Script" uid="uid://cwxd78xhhqkdh" path="res://scripts/player/states/state_crouch.gd" id="11_crouch"]
 [ext_resource type="Script" uid="uid://0d5a6fndvgnq" path="res://scripts/player/states/state_crouch_attack.gd" id="12_crouchattack"]
 [ext_resource type="Script" uid="uid://c85fkyvllstvo" path="res://scripts/player/states/state_hit.gd" id="13_hit"]
-[ext_resource type="Texture2D" uid="uid://cyta1i0n7ksek" path="res://assets/art/sprites/link-sidescroll.png" id="2_yeeko"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_km8oa"]
 size = Vector2(20, 32)
@@ -328,42 +328,42 @@ position = Vector2(14, -10)
 shape = SubResource("RectangleShape2D_ssr3k")
 debug_color = Color(0.17166257, 0.6439372, 5.7756904e-07, 0.41960785)
 
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[node name="States" type="Node" parent="." unique_id=462191854]
 
-[node name="States" type="Node" parent="."]
-
-[node name="Idle" type="Node" parent="States"]
+[node name="Idle" type="Node" parent="States" unique_id=365864421]
 script = ExtResource("2_idle")
 
-[node name="Run" type="Node" parent="States"]
+[node name="Run" type="Node" parent="States" unique_id=313921200]
 script = ExtResource("3_run")
 
-[node name="Jump" type="Node" parent="States"]
+[node name="Jump" type="Node" parent="States" unique_id=369534862]
 script = ExtResource("4_jump")
 
-[node name="Fall" type="Node" parent="States"]
+[node name="Fall" type="Node" parent="States" unique_id=588855414]
 script = ExtResource("5_fall")
 
-[node name="Land" type="Node" parent="States"]
+[node name="Land" type="Node" parent="States" unique_id=711527012]
 script = ExtResource("6_land")
 
-[node name="Attack" type="Node" parent="States"]
+[node name="Attack" type="Node" parent="States" unique_id=172470169]
 script = ExtResource("7_attack")
 
-[node name="Recoil" type="Node" parent="States"]
+[node name="Recoil" type="Node" parent="States" unique_id=400451268]
 script = ExtResource("8_recoil")
 
-[node name="AirAttack" type="Node" parent="States"]
+[node name="AirAttack" type="Node" parent="States" unique_id=1276555638]
 script = ExtResource("9_airattack")
 
-[node name="AirRecoil" type="Node" parent="States"]
+[node name="AirRecoil" type="Node" parent="States" unique_id=734440824]
 script = ExtResource("10_airrecoil")
 
-[node name="Crouch" type="Node" parent="States"]
+[node name="Crouch" type="Node" parent="States" unique_id=1470393215]
 script = ExtResource("11_crouch")
 
-[node name="CrouchAttack" type="Node" parent="States"]
+[node name="CrouchAttack" type="Node" parent="States" unique_id=2124009659]
 script = ExtResource("12_crouchattack")
 
-[node name="Hit" type="Node" parent="States"]
+[node name="Hit" type="Node" parent="States" unique_id=1962390395]
 script = ExtResource("13_hit")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

@@ -69,8 +69,6 @@ func _physics_process(delta: float) -> void:
 	$ShortswordHitboxStanding.scale.x = 1 if facing_right else -1
 	$ShortswordHitboxCrouching.scale.x = 1 if facing_right else -1
 	_tick_iframes(delta)
-	if _current_state == state_attack or _current_state == state_air_attack or _current_state == state_crouch_attack:
-		_check_sword_hits()
 
 func hit(hit_source_x: float, damage: int = 1) -> void:
 	if iframe_timer > 0.0:
@@ -133,7 +131,7 @@ func _on_camera_boundary_left_screen_entered() -> void:
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	hit(area.global_position.x)
 
-func _check_sword_hits() -> void:
+func check_sword_hits() -> void:
 	if $ShortswordHitboxStanding.monitoring:
 		for area in $ShortswordHitboxStanding.get_overlapping_areas():
 			var enemy := area.get_parent() as EncounterEnemy
