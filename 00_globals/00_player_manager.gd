@@ -11,7 +11,7 @@ const THRESHOLDS: Dictionary = {
 }
 
 var xp: int = 0
-var levels: Dictionary = { "life": 1, "magic": 1, "attack": 1}
+var levels: Dictionary = { "life": 1, "magic": 1, "attack": 2}
 var pending_levelups: int = 0
 
 var life_level: int:

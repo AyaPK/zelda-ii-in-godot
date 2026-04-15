@@ -107,7 +107,8 @@ size = Vector2(18, 13.5)
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_iyopv")
-max_hp = 2
+xp_value = 2
+max_hp = 3
 hit_stun_duration = 1.0
 iframe_duration = 1.0
 

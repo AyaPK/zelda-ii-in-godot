@@ -3,8 +3,8 @@ class_name EncounterEnemy extends CharacterBody2D
 @export var xp_value: int = 0
 @export var max_hp: int = 1
 @export var attack: int = 8
-@export var hit_stun_duration: float = 0.4
-@export var iframe_duration: float = 0.6
+@export var hit_stun_duration: float = 1
+@export var iframe_duration: float = 1
 @export var flash_interval: float = 0.07
 @export var flash_color: Color = Color(1, 0.2, 0.2)
 

@@ -70,7 +70,7 @@ func _physics_process(delta: float) -> void:
 	$ShortswordHitboxCrouching.scale.x = 1 if facing_right else -1
 	_tick_iframes(delta)
 
-func hit(hit_source_x: float, damage: int = 1) -> void:
+func hit(hit_source_x: float, damage: int = 2) -> void:
 	if iframe_timer > 0.0:
 		return
 	if _current_state == state_crouch or _current_state == state_crouch_attack:
@@ -139,17 +139,24 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		return
 	hit(area.global_position.x)
 
+const SWORD_DAMAGE: Array[int] = [2, 3, 4, 6, 9, 12, 18, 24]
+
+func _get_sword_damage() -> int:
+	var idx: int = clampi(PlayerManager.levels["attack"] - 1, 0, 7)
+	return SWORD_DAMAGE[idx]
+
 func check_sword_hits() -> void:
+	var damage := _get_sword_damage()
 	if $ShortswordHitboxStanding.monitoring:
 		for area in $ShortswordHitboxStanding.get_overlapping_areas():
 			var enemy := area.get_parent() as EncounterEnemy
 			if enemy:
-				enemy.take_hit()
+				enemy.take_hit(damage)
 	if $ShortswordHitboxCrouching.monitoring:
 		for area in $ShortswordHitboxCrouching.get_overlapping_areas():
 			var enemy := area.get_parent() as EncounterEnemy
 			if enemy:
-				enemy.take_hit()
+				enemy.take_hit(damage)
 
 func enable_hitbox() -> void:
 	if animation_player.current_animation == "attack" or animation_player.current_animation == "air_attack":
