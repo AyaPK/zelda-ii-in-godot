@@ -1,4 +1,4 @@
-class_name MoblinSpear extends Area2D
+class_name MoblinSpear extends EnemyProjectile
 
 const SPEAR_SPEED: float = 100.0
 const SPEAR_GRAVITY: float = 300.0
@@ -26,3 +26,9 @@ func _process(delta: float) -> void:
 	if gravity_timer <= 0.0:
 		velocity.y += SPEAR_GRAVITY * delta
 	position += velocity * delta
+
+func _on_area_entered(area: Area2D) -> void:
+	var player := area.get_parent() as LinkSidescroll
+	if player:
+		hit_player(player)
+		queue_free()

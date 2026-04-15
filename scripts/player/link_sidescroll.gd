@@ -129,6 +129,14 @@ func _on_camera_boundary_left_screen_entered() -> void:
 	pass
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
+	var enemy := area.get_parent() as EncounterEnemy
+	if enemy:
+		enemy.hit_player(self)
+		return
+	var projectile := area as EnemyProjectile
+	if projectile:
+		projectile.hit_player(self)
+		return
 	hit(area.global_position.x)
 
 func check_sword_hits() -> void:
