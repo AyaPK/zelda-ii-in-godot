@@ -2,9 +2,10 @@ class_name LinkSidescroll extends CharacterBody2D
 
 @export var move_speed: float = 90.0
 @export var jump_speed: float = 230.0
-@export var gravity: float = 800.0
+@export var gravity: float = 820.0
 @export var max_fall_speed: float = 600.0
 @export var friction: float = 300.0
+@export var air_acceleration: float = 400.0
 @export var landing_duration: float = 0.15
 @export var recoil_duration: float = 0.5
 @export var hit_stun_duration: float = 0.8
@@ -99,9 +100,10 @@ func _apply_air_movement(delta: float) -> void:
 	var input_dir := _get_input_dir()
 	if input_dir != 0:
 		facing_right = input_dir > 0
-		velocity.x = input_dir * move_speed
+		var target_x := input_dir * move_speed
+		velocity.x = move_toward(velocity.x, target_x, air_acceleration * delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0.0, friction * delta)
+		velocity.x = move_toward(velocity.x, 0.0, air_acceleration * delta)
 
 func _get_input_dir() -> float:
 	var input_dir: float = 0.0

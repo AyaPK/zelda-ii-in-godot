@@ -2,7 +2,7 @@ class_name BatEnemy extends EncounterEnemy
 
 enum State { HANG, DIVE, FLY, RETURN }
 
-const FLY_SPEED: float = 60.0
+const FLY_SPEED: float = 80.0
 const AGGRO_RANGE: float = 130.0
 const FLY_DURATION: float = 2.0
 const DIVE_DISTANCE: float = 16.0

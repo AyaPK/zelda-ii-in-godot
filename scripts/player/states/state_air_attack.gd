@@ -2,7 +2,6 @@ class_name StateAirAttack extends PlayerState
 
 func enter(player: LinkSidescroll) -> void:
 	player.play_animation("air_attack")
-	player.enable_hitbox()
 
 func tick(player: LinkSidescroll, delta: float) -> PlayerState:
 	player._apply_air_movement(delta)
