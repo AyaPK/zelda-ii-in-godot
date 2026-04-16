@@ -30,5 +30,14 @@ func _process(delta: float) -> void:
 func _on_area_entered(area: Area2D) -> void:
 	var player := area.get_parent() as LinkSidescroll
 	if player:
+		var strength_idx: int = STRENGTHS.find(attack)
+		if strength_idx == -1:
+			strength_idx = 0
+			for i in range(STRENGTHS.size() - 1, -1, -1):
+				if attack >= STRENGTHS[i]:
+					strength_idx = i
+					break
+		var life_idx: int = clampi(PlayerManager.levels["life"] - 1, 0, 7)
+		var damage: int = DAMAGE_TABLE[strength_idx][life_idx]
 		hit_player(player)
 		queue_free()

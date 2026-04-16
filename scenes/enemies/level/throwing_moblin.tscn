@@ -96,6 +96,12 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_axuvg"]
 size = Vector2(18, 36)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tv5nx"]
+size = Vector2(10, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5f1r"]
+size = Vector2(18, 32)
+
 [node name="ThrowingMoblin" type="CharacterBody2D" unique_id=1845871361 groups=["sidescroll-enemy"]]
 collision_layer = 8
 collision_mask = 2
@@ -120,5 +126,23 @@ shape = SubResource("RectangleShape2D_axuvg")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1660385125]
 position = Vector2(7, -16)
 rect = Rect2(-24, -10, 35, 5)
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1554989782]
+collision_layer = 128
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=586347824]
+position = Vector2(0, -18)
+shape = SubResource("RectangleShape2D_tv5nx")
+debug_color = Color(0.3182791, 0.6256233, 0, 0.41960785)
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=2132100954]
+collision_layer = 256
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1941008660]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_e5f1r")
+debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

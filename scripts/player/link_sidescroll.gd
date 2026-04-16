@@ -73,8 +73,6 @@ func _physics_process(delta: float) -> void:
 func hit(hit_source_x: float, damage: int = 2) -> void:
 	if iframe_timer > 0.0:
 		return
-	if _current_state == state_crouch or _current_state == state_crouch_attack:
-		return
 	PlayerManager.current_hp -= damage
 	if PlayerManager.current_hp <= 0:
 		PlayerManager.current_hp = 0
@@ -137,7 +135,6 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if projectile:
 		projectile.hit_player(self)
 		return
-	hit(area.global_position.x)
 
 const SWORD_DAMAGE: Array[int] = [2, 3, 4, 6, 9, 12, 18, 24]
 

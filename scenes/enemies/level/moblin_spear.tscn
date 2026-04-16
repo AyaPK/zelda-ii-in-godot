@@ -8,17 +8,15 @@ size = Vector2(25, 5)
 
 [node name="MoblinSpear" type="Area2D" unique_id=430890950]
 z_index = 1
+collision_layer = 128
+collision_mask = 64
 script = ExtResource("1_42tej")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=568733080]
 position = Vector2(4, -24)
 texture = ExtResource("2_lwahs")
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=377476252]
-collision_layer = 128
-collision_mask = 64
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=879689318]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=879689318]
 position = Vector2(3.5, -20.5)
 shape = SubResource("RectangleShape2D_lwahs")
 debug_color = Color(0.9999997, 0.011304662, 0.055172376, 0.41960785)

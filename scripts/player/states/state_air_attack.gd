@@ -14,4 +14,5 @@ func tick(player: LinkSidescroll, delta: float) -> PlayerState:
 				return player.state_jump
 			return player.state_fall
 		return player.state_air_recoil
+	player.check_sword_hits()
 	return self
