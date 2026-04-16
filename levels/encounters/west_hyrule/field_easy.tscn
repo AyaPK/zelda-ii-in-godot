@@ -5,10 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://bu8mylhkb5itl" path="res://scenes/level-tools/camera_boundary_left.tscn" id="2_sgevs"]
 [ext_resource type="PackedScene" uid="uid://jsy0yju0f8o6" path="res://scenes/level-tools/camera_boundary_right.tscn" id="3_or3wc"]
 [ext_resource type="PackedScene" uid="uid://cn21fhx6p5srp" path="res://scenes/link-sidescroll.tscn" id="4_hcodb"]
-[ext_resource type="PackedScene" uid="uid://c3cnujyfhj81i" path="res://scenes/enemies/level/bit.tscn" id="6_or3wc"]
 [ext_resource type="PackedScene" uid="uid://yy7tccvmxk5k" path="res://scenes/level-tools/enemy_despawner.tscn" id="7_0fc01"]
-[ext_resource type="PackedScene" uid="uid://d2uqqblgmcsyb" path="res://scenes/enemies/level/bot.tscn" id="7_hcodb"]
 [ext_resource type="PackedScene" uid="uid://btm3ie21fxqpn" path="res://scenes/level-tools/exit_encounter.tscn" id="8_0fc01"]
+[ext_resource type="PackedScene" uid="uid://b4mex8271hesu" path="res://scenes/level-tools/on_screen_spawn.tscn" id="10_ttih8"]
 
 [node name="FieldEasy" type="Node2D" unique_id=2124829917]
 script = ExtResource("1_7q871")
@@ -27,30 +26,6 @@ position = Vector2(0, 202)
 [node name="CameraBoundaryRight" parent="." unique_id=1651000621 instance=ExtResource("3_or3wc")]
 position = Vector2(752, 202)
 
-[node name="Bit" parent="." unique_id=1660573483 instance=ExtResource("6_or3wc")]
-position = Vector2(83, 177)
-
-[node name="Bit2" parent="." unique_id=963212344 instance=ExtResource("6_or3wc")]
-position = Vector2(623, 177)
-
-[node name="Bit4" parent="." unique_id=1574525739 instance=ExtResource("6_or3wc")]
-position = Vector2(571, 176)
-
-[node name="Bit3" parent="." unique_id=472515487 instance=ExtResource("6_or3wc")]
-position = Vector2(203, 176)
-
-[node name="Bot" parent="." unique_id=1439495969 instance=ExtResource("7_hcodb")]
-position = Vector2(478, 176)
-
-[node name="Bot2" parent="." unique_id=237468692 instance=ExtResource("7_hcodb")]
-position = Vector2(121, 177)
-
-[node name="Bot3" parent="." unique_id=307789116 instance=ExtResource("7_hcodb")]
-position = Vector2(689, 179)
-
-[node name="Bot4" parent="." unique_id=412381630 instance=ExtResource("7_hcodb")]
-position = Vector2(229, 177)
-
 [node name="EnemyDespawner" parent="." unique_id=397984475 instance=ExtResource("7_0fc01")]
 position = Vector2(-52, 181)
 
@@ -62,3 +37,39 @@ position = Vector2(-18, 178)
 
 [node name="ExitEncounter2" parent="." unique_id=775033134 instance=ExtResource("8_0fc01")]
 position = Vector2(773, 176)
+
+[node name="OnScreenSpawner" parent="." unique_id=1085236185 instance=ExtResource("10_ttih8")]
+position = Vector2(83, 177)
+enemy_to_spawn = "uid://c3cnujyfhj81i"
+
+[node name="OnScreenSpawner2" parent="." unique_id=306127814 instance=ExtResource("10_ttih8")]
+position = Vector2(203, 176)
+enemy_to_spawn = "uid://c3cnujyfhj81i"
+
+[node name="OnScreenSpawner3" parent="." unique_id=1042960514 instance=ExtResource("10_ttih8")]
+position = Vector2(570, 176)
+enemy_to_spawn = "uid://c3cnujyfhj81i"
+
+[node name="OnScreenSpawner4" parent="." unique_id=243450432 instance=ExtResource("10_ttih8")]
+position = Vector2(623, 177)
+enemy_to_spawn = "uid://c3cnujyfhj81i"
+
+[node name="OnScreenSpawner9" parent="." unique_id=335491870 instance=ExtResource("10_ttih8")]
+position = Vector2(323, 176)
+enemy_to_spawn = "uid://c3cnujyfhj81i"
+
+[node name="OnScreenSpawner5" parent="." unique_id=379525955 instance=ExtResource("10_ttih8")]
+position = Vector2(121, 176)
+enemy_to_spawn = "uid://d2uqqblgmcsyb"
+
+[node name="OnScreenSpawner6" parent="." unique_id=820482690 instance=ExtResource("10_ttih8")]
+position = Vector2(229, 177)
+enemy_to_spawn = "uid://d2uqqblgmcsyb"
+
+[node name="OnScreenSpawner7" parent="." unique_id=1343767183 instance=ExtResource("10_ttih8")]
+position = Vector2(477, 176)
+enemy_to_spawn = "uid://d2uqqblgmcsyb"
+
+[node name="OnScreenSpawner8" parent="." unique_id=158247409 instance=ExtResource("10_ttih8")]
+position = Vector2(689, 180)
+enemy_to_spawn = "uid://d2uqqblgmcsyb"

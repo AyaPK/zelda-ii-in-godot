@@ -8,6 +8,8 @@ class_name EncounterEnemy extends CharacterBody2D
 @export var flash_interval: float = 0.07
 @export var flash_color: Color = Color(1, 0.2, 0.2)
 
+var spawner: OnScreenSpawner
+
 const STRENGTHS: Array[int] = [8, 16, 24, 48, 72, 112]
 const DAMAGE_TABLE: Array = [
 	[8,  6,  6,  6,  4,  4,  2,  2],
@@ -69,4 +71,6 @@ func hit_player(player: LinkSidescroll) -> void:
 		Scenemanager.hud.refresh_hud()
 
 func die() -> void:
+	if spawner:
+		spawner.enemy_alive = false
 	queue_free()

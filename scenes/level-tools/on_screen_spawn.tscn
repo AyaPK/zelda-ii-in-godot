@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b4mex8271hesu"]
+
+[ext_resource type="Script" uid="uid://52w648q0j78w" path="res://scripts/level-tools/on_screen_spawn.gd" id="1_pjmob"]
+
+[node name="OnScreenSpawner" type="Node2D" unique_id=1085236185]
+script = ExtResource("1_pjmob")
+
+[node name="IsOnScreen" type="VisibleOnScreenNotifier2D" parent="." unique_id=1189811753]
+rect = Rect2(-18, -18, 36, 36)
+
+[connection signal="screen_entered" from="IsOnScreen" to="." method="_on_is_on_screen_screen_entered"]
+[connection signal="screen_exited" from="IsOnScreen" to="." method="_on_is_on_screen_screen_exited"]

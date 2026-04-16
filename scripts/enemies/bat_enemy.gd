@@ -3,7 +3,7 @@ class_name BatEnemy extends EncounterEnemy
 enum State { HANG, DIVE, FLY, RETURN }
 
 const FLY_SPEED: float = 80.0
-const AGGRO_RANGE: float = 130.0
+const AGGRO_RANGE_X: float = 32.0
 const FLY_DURATION: float = 2.0
 const DIVE_DISTANCE: float = 16.0
 const SINE_FREQ: float = 6.0
@@ -12,13 +12,12 @@ const SINE_AMP: float = 30.0
 var state: State = State.HANG
 var state_timer: float = 0.0
 var fly_timer: float = 0.0
-var roost_y: float = 0.0
+var roost_y: float
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	super._ready()
-	roost_y = global_position.y
 	animation_player.play("hang")
 
 func _physics_process(delta: float) -> void:
@@ -31,10 +30,12 @@ func _physics_process(delta: float) -> void:
 	match state:
 		State.HANG:
 			velocity = Vector2.ZERO
-			if player and global_position.distance_to(player.global_position) <= AGGRO_RANGE:
+			if player and abs(player.global_position.x - global_position.x) <= AGGRO_RANGE_X:
 				_enter_state(State.DIVE)
 
 		State.DIVE:
+			if !roost_y:
+				roost_y = global_position.y
 			velocity += get_gravity() * delta
 			velocity.x = 0.0
 			if global_position.y >= roost_y + DIVE_DISTANCE:
@@ -61,6 +62,11 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	var player := area.get_parent() as LinkSidescroll
+	if player:
+		hit_player(player)
+
 func _enter_state(next: State) -> void:
 	state = next
 	match state:
@@ -68,7 +74,7 @@ func _enter_state(next: State) -> void:
 			velocity = Vector2.ZERO
 			animation_player.play("hang")
 			var player := get_tree().get_first_node_in_group("sidescroll-player")
-			if player and global_position.distance_to(player.global_position) <= AGGRO_RANGE:
+			if player and abs(player.global_position.x - global_position.x) <= AGGRO_RANGE_X:
 				_enter_state(State.DIVE)
 		State.DIVE:
 			fly_timer = 0.0
