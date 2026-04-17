@@ -11,7 +11,7 @@ const THRESHOLDS: Dictionary = {
 }
 
 var xp: int = 0
-var levels: Dictionary = { "life": 1, "magic": 1, "attack": 2}
+var levels: Dictionary = { "life": 1, "magic": 1, "attack": 1}
 var pending_levelups: int = 0
 
 var life_level: int:
@@ -24,7 +24,7 @@ var attack_level: int:
 	get:
 		return levels["attack"]
 
-var lives: int = 3
+var lives: int = 0
 var max_hp: int :
 	get:
 		return 64 + (heart_containers * 16)
