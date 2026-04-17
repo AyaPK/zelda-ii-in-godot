@@ -1,0 +1,26 @@
+[gd_resource type="TileSet" format=3 uid="uid://uj1yi2n82vjn"]
+
+[ext_resource type="Texture2D" uid="uid://dryi0yfnsx7js" path="res://assets/art/tilesets/west-hyrule-desert.png" id="1_2ulih"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_02fmu"]
+texture = ExtResource("1_2ulih")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6, 8, -6, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6, 8, -6, 8, 8, -8, 8)
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+
+[resource]
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_02fmu")
