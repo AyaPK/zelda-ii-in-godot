@@ -6,6 +6,7 @@ var tilemap: TileMapLayer
 
 const easy_sprite = preload("res://assets/art/sprites/overworld-blob.png")
 const hard_sprite = preload("res://assets/art/sprites/overworld-moblin.png")
+const fairy_sprite = preload("res://assets/art/sprites/overworld-fairy.png")
 
 const STRAIGHT_CHANCE: float = 0.5
 const ALL_DIRECTIONS: Array[Vector2i] = [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]
@@ -25,13 +26,14 @@ func _ready() -> void:
 		return
 
 	var roll := randf()
-	if roll < 0.5:
+	if roll < 0.3:
 		enemy_type = EnemyType.EASY
-	elif roll < 0.9:
+	elif roll < 0.8:
 		enemy_type = EnemyType.HARD
 		$Sprite2D.texture = hard_sprite
 	else:
 		enemy_type = EnemyType.FAIRY
+		$Sprite2D.texture = fairy_sprite
 
 	position = snap_to_tile_center(position)
 	target_position = position

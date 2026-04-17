@@ -11,11 +11,11 @@ var pre_encounter_pos: Vector2
 const ENCOUNTER_SCENES: Dictionary = {
 	"Northwest Hyrule": {
 		"path":		{},
-		"field":	{ "easy": "res://levels/encounters/northwest_hyrule/field_easy.tscn",    "hard": "res://levels/encounters/west_hyrule/field_hard.tscn",    "fairy": "res://levels/encounters/northwest_hyrule/field_fairy.tscn" },
-		"forest":	{ "easy": "res://levels/encounters/northwest_hyrule/forest_easy.tscn",   "hard": "res://levels/encounters/west_hyrule/forest_hard.tscn",   "fairy": "res://levels/encounters/northwest_hyrule/forest_fairy.tscn" },
-		"swamp":	{ "easy": "res://levels/encounters/northwest_hyrule/swamp_easy.tscn",    "hard": "res://levels/encounters/west_hyrule/swamp_hard.tscn",    "fairy": "res://levels/encounters/northwest_hyrule/swamp_fairy.tscn" },
-		"graveyard":{ "easy": "res://levels/encounters/northwest_hyrule/graveyard_easy.tscn","hard": "res://levels/encounters/west_hyrule/graveyard_hard.tscn","fairy": "res://levels/encounters/northwest_hyrule/graveyard_fairy.tscn" },
-		"desert":	{ "easy": "res://levels/encounters/northwest_hyrule/desert_easy.tscn","hard": "res://levels/encounters/west_hyrule/desert_hard.tscn","fairy": "res://levels/encounters/northwest_hyrule/desert_fairy.tscn" },
+		"field":	{ "easy": "res://levels/encounters/northwest_hyrule/field_easy.tscn",    "hard": "res://levels/encounters/northwest_hyrule/field_hard.tscn",    "fairy": "res://levels/encounters/northwest_hyrule/field_fairy.tscn" },
+		"forest":	{ "easy": "res://levels/encounters/northwest_hyrule/forest_easy.tscn",   "hard": "res://levels/encounters/northwest_hyrule/forest_hard.tscn",   "fairy": "res://levels/encounters/northwest_hyrule/forest_fairy.tscn" },
+		"swamp":	{ "easy": "res://levels/encounters/northwest_hyrule/swamp_easy.tscn",    "hard": "res://levels/encounters/northwest_hyrule/swamp_hard.tscn",    "fairy": "res://levels/encounters/northwest_hyrule/swamp_fairy.tscn" },
+		"graveyard":{ "easy": "res://levels/encounters/northwest_hyrule/graveyard_easy.tscn","hard": "res://levels/encounters/northwest_hyrule/graveyard_hard.tscn","fairy": "res://levels/encounters/northwest_hyrule/graveyard_fairy.tscn" },
+		"desert":	{ "easy": "res://levels/encounters/northwest_hyrule/desert_easy.tscn","hard": "res://levels/encounters/northwest_hyrule/desert_hard.tscn","fairy": "res://levels/encounters/northwest_hyrule/desert_fairy.tscn" },
 	},
 }
 
