@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://cesgdriuq45ap"]
+
+[ext_resource type="Script" uid="uid://dn6cf5nxim376" path="res://scripts/enemies/spider_enemy.gd" id="1_vcse4"]
+[ext_resource type="Texture2D" uid="uid://ddebq71tf1n7w" path="res://assets/art/sprites/deeler-spider.png" id="2_vcse4"]
+
+[sub_resource type="Animation" id="Animation_312bm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_pyn0u"]
+resource_name = "crawl"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_hjqvy"]
+resource_name = "drop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pyn0u"]
+_data = {
+&"RESET": SubResource("Animation_312bm"),
+&"crawl": SubResource("Animation_pyn0u"),
+&"drop": SubResource("Animation_hjqvy")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjqvy"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_312bm"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pyn0u"]
+size = Vector2(16, 16)
+
+[node name="Deeler" type="CharacterBody2D" unique_id=1366883406]
+z_index = 2
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_vcse4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=189078083]
+texture = ExtResource("2_vcse4")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1843600016]
+libraries/ = SubResource("AnimationLibrary_pyn0u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=125352971]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_hjqvy")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1726102440]
+collision_layer = 128
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1335986592]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_312bm")
+debug_color = Color(0.3182791, 0.6256233, 0, 0.41960785)
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1167689960]
+collision_layer = 256
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=938953289]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_pyn0u")
+debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

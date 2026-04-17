@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bu8mylhkb5itl" path="res://scenes/level-tools/camera_boundary_left.tscn" id="3_h506n"]
 [ext_resource type="PackedScene" uid="uid://jsy0yju0f8o6" path="res://scenes/level-tools/camera_boundary_right.tscn" id="4_lln3e"]
 [ext_resource type="PackedScene" uid="uid://btm3ie21fxqpn" path="res://scenes/level-tools/exit_encounter.tscn" id="6_iisck"]
-[ext_resource type="PackedScene" uid="uid://bu0t6q2xexqx" path="res://scenes/enemies/level/ache.tscn" id="7_0kl30"]
+[ext_resource type="PackedScene" uid="uid://b4mex8271hesu" path="res://scenes/level-tools/on_screen_spawn.tscn" id="7_0kl30"]
 
 [node name="ForestEasy" type="Node2D" unique_id=1300589886]
 script = ExtResource("1_lln3e")
@@ -30,14 +30,18 @@ position = Vector2(-18, 197)
 [node name="ExitEncounter2" parent="." unique_id=2088501029 instance=ExtResource("6_iisck")]
 position = Vector2(773, 195)
 
-[node name="Ache" parent="." unique_id=1366883406 instance=ExtResource("7_0kl30")]
-position = Vector2(255, 71)
+[node name="OnScreenSpawner" parent="." unique_id=1085236185 instance=ExtResource("7_0kl30")]
+position = Vector2(180, 45)
+enemy_to_spawn = "uid://cesgdriuq45ap"
 
-[node name="Ache2" parent="." unique_id=444613388 instance=ExtResource("7_0kl30")]
-position = Vector2(522, 72)
+[node name="OnScreenSpawner2" parent="." unique_id=588263001 instance=ExtResource("7_0kl30")]
+position = Vector2(560, 44)
+enemy_to_spawn = "uid://cesgdriuq45ap"
 
-[node name="Ache3" parent="." unique_id=1361751266 instance=ExtResource("7_0kl30")]
-position = Vector2(378, 73)
+[node name="OnScreenSpawner3" parent="." unique_id=201782891 instance=ExtResource("7_0kl30")]
+position = Vector2(477, 175)
+enemy_to_spawn = "uid://cmm0d4w6ffso7"
 
-[node name="Ache4" parent="." unique_id=2136257535 instance=ExtResource("7_0kl30")]
-position = Vector2(195, 70)
+[node name="OnScreenSpawner4" parent="." unique_id=890681494 instance=ExtResource("7_0kl30")]
+position = Vector2(136, 174)
+enemy_to_spawn = "uid://cmm0d4w6ffso7"
