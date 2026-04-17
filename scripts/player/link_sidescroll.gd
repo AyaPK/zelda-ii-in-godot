@@ -35,6 +35,7 @@ var state_timer: float = 0.0
 var iframe_timer: float = 0.0
 var flash_timer: float = 0.0
 var knockback_dir: float = -1.0
+var on_elevator: bool = false
 
 var _current_state: PlayerState = null
 var _previous_state: PlayerState = null

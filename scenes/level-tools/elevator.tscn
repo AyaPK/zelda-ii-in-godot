@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://5lj836u43h5a"]
+
+[ext_resource type="Script" uid="uid://bunyoaa6i3cwe" path="res://scripts/level-tools/elevator.gd" id="1_70ehv"]
+[ext_resource type="Texture2D" uid="uid://dxb1l6pgvh0x" path="res://assets/art/sprites/elevator.png" id="1_ekmgu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ekmgu"]
+size = Vector2(14, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70ehv"]
+size = Vector2(24, 8)
+
+[node name="Elevator" type="Node2D" unique_id=1111279203]
+script = ExtResource("1_70ehv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1372961014]
+texture = ExtResource("1_ekmgu")
+
+[node name="StandingArea" type="Area2D" parent="." unique_id=911456991]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StandingArea" unique_id=1389582999]
+position = Vector2(0, 10.5)
+shape = SubResource("RectangleShape2D_ekmgu")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=842856294]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=742535853]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_70ehv")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1579332892]
+position = Vector2(0, -40)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=149206949]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_70ehv")
+
+[connection signal="body_entered" from="StandingArea" to="." method="_on_standing_area_body_entered"]
+[connection signal="body_exited" from="StandingArea" to="." method="_on_standing_area_body_exited"]

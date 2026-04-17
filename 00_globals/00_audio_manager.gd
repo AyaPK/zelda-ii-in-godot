@@ -18,6 +18,7 @@ var music_library: Dictionary = {
 	"overworld": preload("res://assets/sound/music/overworld.mp3"),
 	"village": preload("res://assets/sound/music/village.mp3"),
 	"battle": preload("res://assets/sound/music/battle.mp3"),
+	"temple": preload("res://assets/sound/music/temple.mp3"),
 }
 
 var sfx_library: Dictionary = {
