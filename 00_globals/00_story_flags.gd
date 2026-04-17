@@ -2,7 +2,9 @@ extends Node
 
 var palaces_complete: Array[int] = []
 var town_spells_learned: Dictionary = {}
-var custom_flags: Dictionary = {}
+var custom_flags: Dictionary = {
+	"got_candle": false,
+}
 
 func reset() -> void:
 	palaces_complete.clear()

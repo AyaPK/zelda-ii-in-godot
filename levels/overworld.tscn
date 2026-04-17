@@ -71,7 +71,7 @@ tile_map_data = PackedByteArray("AAAAAAIAAAABAAAAAAAAAAMAAAABAAAAAAAAAAQAAAABAAA
 tile_set = SubResource("TileSet_ud0bx")
 
 [node name="Link" parent="." unique_id=587667358 node_paths=PackedStringArray("tilemap") instance=ExtResource("2_oehki")]
-position = Vector2(120, 24)
+position = Vector2(504, 24)
 tilemap = NodePath("../Tilemap")
 
 [node name="Rock" parent="." unique_id=2137851647 instance=ExtResource("3_mdm5b")]
@@ -93,4 +93,15 @@ node_name = "RightEntrance"
 [node name="TransitionToForestSecret" parent="." unique_id=2013996764 instance=ExtResource("4_oehki")]
 position = Vector2(328, -56)
 target_scene = "uid://b5228lmd3fti3"
+facing_direction = "Right"
+
+[node name="TransitionToParapaCaveSouth" parent="." unique_id=385944499 instance=ExtResource("4_oehki")]
+position = Vector2(616, 6)
+target_scene = "uid://bjt8aln3exhlw"
+node_name = "RightEntrance"
+
+[node name="TransitionToParapaCaveNorth" parent="." unique_id=305588834 instance=ExtResource("4_oehki")]
+position = Vector2(504, -70)
+target_scene = "uid://bjt8aln3exhlw"
+node_name = "LeftEntrance"
 facing_direction = "Right"

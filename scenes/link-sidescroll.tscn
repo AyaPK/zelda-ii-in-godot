@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://c85fkyvllstvo" path="res://scripts/player/states/state_hit.gd" id="13_hit"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_km8oa"]
-size = Vector2(20, 32)
+size = Vector2(20, 31)
 
 [sub_resource type="Animation" id="Animation_km8oa"]
 length = 0.001
@@ -284,7 +284,7 @@ collision_mask = 2
 script = ExtResource("1_km8oa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1738125899]
-position = Vector2(0, -16)
+position = Vector2(0, -15.5)
 shape = SubResource("RectangleShape2D_km8oa")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1062561596]
