@@ -1,0 +1,229 @@
+[gd_scene format=3 uid="uid://2prpahs5sifu"]
+
+[ext_resource type="Script" uid="uid://mwb57m53a0vb" path="res://scripts/enemies/desert-worm.gd" id="1_8bxkv"]
+[ext_resource type="Texture2D" uid="uid://ctwvjc5rqasl2" path="res://assets/art/sprites/geldarm-worm.png" id="2_8bxkv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjqvy"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_312bm"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pyn0u"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_ao0o7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeadSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BodySprite1:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BodySprite2:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BodySprite3:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BodySprite4:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_8bxkv"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeadSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BodySprite1:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BodySprite2:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BodySprite3:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 1]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BodySprite4:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ao0o7"]
+_data = {
+&"RESET": SubResource("Animation_ao0o7"),
+&"idle": SubResource("Animation_8bxkv")
+}
+
+[node name="Geldarm" type="CharacterBody2D" unique_id=1366883406]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_8bxkv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=125352971]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_hjqvy")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1726102440]
+collision_layer = 128
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1335986592]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_312bm")
+debug_color = Color(0.3182791, 0.6256233, 0, 0.41960785)
+
+[node name="BodyHurtbox" type="Area2D" parent="." unique_id=1167689960]
+collision_layer = 256
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyHurtbox" unique_id=938953289]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_pyn0u")
+debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)
+
+[node name="HeadHurtbox" type="Area2D" parent="." unique_id=844932374]
+collision_layer = 256
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadHurtbox" unique_id=547120466]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_pyn0u")
+debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)
+
+[node name="BodySprite1" type="Sprite2D" parent="." unique_id=1908616548]
+texture_repeat = 2
+position = Vector2(0, 10)
+texture = ExtResource("2_8bxkv")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="BodySprite2" type="Sprite2D" parent="." unique_id=469250687]
+texture_repeat = 2
+position = Vector2(0, 10)
+texture = ExtResource("2_8bxkv")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="BodySprite3" type="Sprite2D" parent="." unique_id=627225213]
+texture_repeat = 2
+position = Vector2(0, 10)
+texture = ExtResource("2_8bxkv")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="BodySprite4" type="Sprite2D" parent="." unique_id=959609204]
+texture_repeat = 2
+position = Vector2(0, 10)
+texture = ExtResource("2_8bxkv")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="HeadSprite" type="Sprite2D" parent="." unique_id=870105400]
+position = Vector2(0, -6)
+texture = ExtResource("2_8bxkv")
+hframes = 2
+vframes = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=679662797]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=288980585]
+libraries/ = SubResource("AnimationLibrary_ao0o7")
+autoplay = &"idle"
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

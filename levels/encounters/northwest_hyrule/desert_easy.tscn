@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bu8mylhkb5itl" path="res://scenes/level-tools/camera_boundary_left.tscn" id="4_d16el"]
 [ext_resource type="PackedScene" uid="uid://jsy0yju0f8o6" path="res://scenes/level-tools/camera_boundary_right.tscn" id="5_imjm7"]
 [ext_resource type="PackedScene" uid="uid://btm3ie21fxqpn" path="res://scenes/level-tools/exit_encounter.tscn" id="6_imjm7"]
+[ext_resource type="PackedScene" uid="uid://bhrl7wb4y63qu" path="res://scenes/level-tools/FlyingRockSpawner.tscn" id="7_w4njo"]
 
 [node name="DesertEasy" type="Node2D" unique_id=1811236297]
 script = ExtResource("1_vy57d")
@@ -29,3 +30,10 @@ position = Vector2(784, 192)
 
 [node name="ExitEncounter2" parent="." unique_id=139274574 instance=ExtResource("6_imjm7")]
 position = Vector2(-16, 192)
+
+[node name="FlyingRockSpawner" parent="." unique_id=622703001 instance=ExtResource("7_w4njo")]
+position = Vector2(431, 113)
+rock_scene = "uid://bqew18e8eu7yp"
+pool_size = 20
+spawn_interval = 0.5
+y_max = 80.0

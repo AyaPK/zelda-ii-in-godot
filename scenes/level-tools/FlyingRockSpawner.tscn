@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bhrl7wb4y63qu"]
+
+[ext_resource type="Script" uid="uid://bm16ci1u8smi6" path="res://scripts/level-tools/flying_rock_spawner.gd" id="1_yce8s"]
+
+[node name="FlyingRockSpawner" type="Node2D" unique_id=622703001]
+script = ExtResource("1_yce8s")

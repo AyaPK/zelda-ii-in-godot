@@ -92,7 +92,7 @@ func _enter_state(next: State) -> void:
 			_web_line = Line2D.new()
 			_web_line.width = 1.0
 			_web_line.default_color = Color.WHITE
-			_web_line.z_index = -1
+			_web_line.z_index = 1
 			get_parent().add_child(_web_line)
 			animation_player.play("crawl")
 		State.DROP:
