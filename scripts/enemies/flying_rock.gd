@@ -40,3 +40,7 @@ func activate(start_pos: Vector2, dir: float) -> void:
 			child.set_deferred("disabled", false)
 	show()
 	set_process_mode(PROCESS_MODE_INHERIT)
+
+func blocked() -> void:
+	print("blocked")
+	deactivate()

@@ -151,6 +151,7 @@ collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_8bxkv")
 max_hp = 8
+blockable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=125352971]
 position = Vector2(0, -1)

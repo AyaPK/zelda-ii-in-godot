@@ -18,6 +18,18 @@ tile_set = ExtResource("1_gyu6q")
 
 [node name="link-sidescroll" parent="." unique_id=1464587723 instance=ExtResource("2_l4bif")]
 position = Vector2(397, 194)
+move_speed = null
+jump_speed = null
+gravity = null
+max_fall_speed = null
+friction = null
+air_acceleration = null
+landing_duration = null
+recoil_duration = null
+hit_stun_duration = null
+hit_knockback_speed = null
+iframe_duration = null
+flash_interval = null
 
 [node name="CameraBoundaryLeft" parent="." unique_id=1635352741 instance=ExtResource("4_d16el")]
 position = Vector2(0, 220)

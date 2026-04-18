@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://cwxd78xhhqkdh" path="res://scripts/player/states/state_crouch.gd" id="11_crouch"]
 [ext_resource type="Script" uid="uid://0d5a6fndvgnq" path="res://scripts/player/states/state_crouch_attack.gd" id="12_crouchattack"]
 [ext_resource type="Script" uid="uid://c85fkyvllstvo" path="res://scripts/player/states/state_hit.gd" id="13_hit"]
+[ext_resource type="Script" uid="uid://dy1vc3yrk0d21" path="res://scripts/shield.gd" id="15_tjbj6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lwca0"]
 radius = 6.0
@@ -279,6 +280,9 @@ size = Vector2(11, 25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ssr3k"]
 size = Vector2(22, 9)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwca0"]
+size = Vector2(5, 16)
+
 [node name="link-sidescroll" type="CharacterBody2D" unique_id=1464587723 groups=["sidescroll-player"]]
 z_index = 1
 collision_mask = 2
@@ -369,5 +373,16 @@ script = ExtResource("12_crouchattack")
 
 [node name="Hit" type="Node" parent="States" unique_id=1962390395]
 script = ExtResource("13_hit")
+
+[node name="Shield" type="Area2D" parent="." unique_id=1424178144]
+position = Vector2(0, 12)
+collision_layer = 32
+collision_mask = 384
+script = ExtResource("15_tjbj6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield" unique_id=2138044779]
+position = Vector2(6.5, -21)
+shape = SubResource("RectangleShape2D_lwca0")
+debug_color = Color(0.83855873, 6.0644747e-06, 0.5370481, 0.41960785)
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

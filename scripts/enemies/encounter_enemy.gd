@@ -3,6 +3,7 @@ class_name EncounterEnemy extends CharacterBody2D
 @export var xp_value: int = 0
 @export var max_hp: int = 1
 @export var attack: int = 8
+@export var blockable: bool = true
 @export var hit_stun_duration: float = 1
 @export var iframe_duration: float = 1
 @export var flash_interval: float = 0.07
@@ -74,3 +75,6 @@ func die() -> void:
 	if spawner:
 		spawner.enemy_alive = false
 	queue_free()
+
+func blocked() -> void:
+	pass

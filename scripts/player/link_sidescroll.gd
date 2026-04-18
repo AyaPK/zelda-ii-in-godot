@@ -28,6 +28,7 @@ class_name LinkSidescroll extends CharacterBody2D
 @onready var state_crouch: PlayerState       = $States/Crouch
 @onready var state_crouch_attack: PlayerState = $States/CrouchAttack
 @onready var state_hit: PlayerState          = $States/Hit
+@onready var shield: Shield = $Shield
 
 var facing_right: bool = true
 var was_on_floor: bool = true
@@ -67,9 +68,12 @@ func _physics_process(delta: float) -> void:
 	was_on_floor = is_on_floor()
 	if next != _current_state:
 		transition_to(next)
-	$Sprite.scale.x = 1 if facing_right else -1
-	$ShortswordHitboxStanding.scale.x = 1 if facing_right else -1
-	$ShortswordHitboxCrouching.scale.x = 1 if facing_right else -1
+	var face_scale =  1 if facing_right else -1
+	$Sprite.scale.x = face_scale
+	$Shield.scale.x = face_scale
+	$Shield.facing_right = facing_right
+	$ShortswordHitboxStanding.scale.x = face_scale
+	$ShortswordHitboxCrouching.scale.x = face_scale
 	_tick_iframes(delta)
 
 func hit(hit_source_x: float, damage: int = 2) -> void:
@@ -132,10 +136,17 @@ func _on_camera_boundary_left_screen_entered() -> void:
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	var enemy := area.get_parent() as EncounterEnemy
 	if enemy:
+		if enemy.blockable and _is_blocked(enemy.global_position.x, self):
+			enemy.blocked()
+			shield_blocked(self)
+			return
 		enemy.hit_player(self)
 		return
 	var projectile := area as EnemyProjectile
 	if projectile:
+		if projectile.blockable and _is_blocked(projectile.global_position.x, self):
+			shield_blocked(self)
+			return
 		projectile.hit_player(self)
 		return
 
@@ -145,17 +156,35 @@ func _get_sword_damage() -> int:
 	var idx: int = clampi(PlayerManager.levels["attack"] - 1, 0, 7)
 	return SWORD_DAMAGE[idx]
 
+func _is_blocked(attacker_global_x: float, target: Node) -> bool:
+	var shield := target.get_node_or_null("Shield") as Shield
+	if shield == null or not shield.active:
+		return false
+	var attack_from_right: bool = attacker_global_x > target.global_position.x
+	if shield.facing_right != attack_from_right:
+		return false
+	return not shield.get_overlapping_areas().is_empty()
+
+func shield_blocked(_target: Node) -> void:
+	pass
+
 func check_sword_hits() -> void:
 	var damage := _get_sword_damage()
 	if $ShortswordHitboxStanding.monitoring:
 		for area in $ShortswordHitboxStanding.get_overlapping_areas():
 			var enemy := area.get_parent() as EncounterEnemy
 			if enemy:
+				if _is_blocked(global_position.x, enemy):
+					shield_blocked(enemy)
+					continue
 				enemy.take_hit(damage)
 	if $ShortswordHitboxCrouching.monitoring:
 		for area in $ShortswordHitboxCrouching.get_overlapping_areas():
 			var enemy := area.get_parent() as EncounterEnemy
 			if enemy:
+				if _is_blocked(global_position.x, enemy):
+					shield_blocked(enemy)
+					continue
 				enemy.take_hit(damage)
 
 func enable_hitbox() -> void:
@@ -175,3 +204,10 @@ func disable_hitbox() -> void:
 	$ShortswordHitboxCrouching.monitoring = false
 	$ShortswordHitboxCrouching.set_deferred("monitorable", false)
 	$ShortswordHitboxCrouching.hide()
+
+func set_crouch_shield(is_crouched: bool) -> void:
+	if is_crouched:
+		$Shield.position.y = 12.0
+	else:
+		$Shield.position.y = 0.0
+	pass

@@ -3,6 +3,7 @@ class_name StateCrouch extends PlayerState
 func enter(player: LinkSidescroll) -> void:
 	if !player.on_elevator:
 		player.play_animation("crouch")
+		player.set_crouch_shield(true)
 
 func tick(player: LinkSidescroll, delta: float) -> PlayerState:
 	player.velocity.x = move_toward(player.velocity.x, 0.0, player.friction * delta)
@@ -11,3 +12,6 @@ func tick(player: LinkSidescroll, delta: float) -> PlayerState:
 	if Input.is_action_just_pressed("attack"):
 		return player.state_crouch_attack
 	return self
+
+func exit(player: LinkSidescroll) -> void:
+	player.set_crouch_shield(false)

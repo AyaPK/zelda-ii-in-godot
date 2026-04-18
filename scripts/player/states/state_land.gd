@@ -4,6 +4,7 @@ func enter(player: LinkSidescroll) -> void:
 	player.state_timer = player.landing_duration
 	player.disable_hitbox()
 	player.play_animation("land")
+	player.set_crouch_shield(true)
 
 func tick(player: LinkSidescroll, delta: float) -> PlayerState:
 	if Input.is_action_just_pressed("jump"):
@@ -15,3 +16,6 @@ func tick(player: LinkSidescroll, delta: float) -> PlayerState:
 			return player.state_run
 		return player.state_idle
 	return self
+
+func exit(player: LinkSidescroll) -> void:
+	player.set_crouch_shield(false)

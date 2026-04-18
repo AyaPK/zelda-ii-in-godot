@@ -109,8 +109,7 @@ collision_mask = 2
 script = ExtResource("1_iyopv")
 xp_value = 2
 max_hp = 3
-hit_stun_duration = 1.0
-iframe_duration = 1.0
+blockable = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1625219337]
 position = Vector2(0, -8)

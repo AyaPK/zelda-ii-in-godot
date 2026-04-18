@@ -1,6 +1,7 @@
 class_name EnemyProjectile extends Area2D
 
 @export var attack: int = 8
+@export var blockable: bool = true
 
 const STRENGTHS: Array[int] = [8, 16, 24, 48, 72, 112]
 const DAMAGE_TABLE: Array = [

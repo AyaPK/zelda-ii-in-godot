@@ -2,6 +2,7 @@ class_name StateAirAttack extends PlayerState
 
 func enter(player: LinkSidescroll) -> void:
 	player.play_animation("air_attack")
+	player.shield.active = false
 
 func tick(player: LinkSidescroll, delta: float) -> PlayerState:
 	player._apply_air_movement(delta)
@@ -15,3 +16,6 @@ func tick(player: LinkSidescroll, delta: float) -> PlayerState:
 		return player.state_air_recoil
 	player.check_sword_hits()
 	return self
+
+func exit(player: LinkSidescroll) -> void:
+	player.shield.active = true
