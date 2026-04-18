@@ -23,7 +23,6 @@ func hit_player(player: LinkSidescroll) -> void:
 				break
 	var life_idx: int = clampi(PlayerManager.levels["life"] - 1, 0, 7)
 	var damage: int = DAMAGE_TABLE[strength_idx][life_idx]
-	print(damage)
 	player.hit(global_position.x, damage)
 	if Scenemanager.hud:
 		Scenemanager.hud.refresh_hud()

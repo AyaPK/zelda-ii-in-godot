@@ -7,6 +7,7 @@ func enter(player: LinkSidescroll) -> void:
 	player.state_timer = player.hit_stun_duration
 	player.iframe_timer = player.iframe_duration
 	player.play_animation("hit")
+	AudioManager.play_sfx("hurt")
 
 func tick(player: LinkSidescroll, delta: float) -> PlayerState:
 	if not player.is_on_floor():

@@ -4,6 +4,7 @@ func enter(player: LinkSidescroll) -> void:
 	player.velocity.x = 0.0
 	player.play_animation("attack")
 	player.shield.active = false
+	AudioManager.play_sfx("sword")
 
 func tick(player: LinkSidescroll, delta: float) -> PlayerState:
 	if not player.animation_player.is_playing():

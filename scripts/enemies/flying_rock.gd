@@ -42,5 +42,5 @@ func activate(start_pos: Vector2, dir: float) -> void:
 	set_process_mode(PROCESS_MODE_INHERIT)
 
 func blocked() -> void:
-	print("blocked")
+	AudioManager.play_sfx("deflect")
 	deactivate()

@@ -6,7 +6,6 @@ func _ready() -> void:
 func _on_logo_start_scroll_timeout() -> void:
 	$TitleAnim.play("scroll")
 
-
 func _on_text_start_scroll_timeout() -> void:
 	$StoryAnim.play("scroll_story")
 

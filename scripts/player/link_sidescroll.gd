@@ -158,13 +158,13 @@ func _get_sword_damage() -> int:
 	return SWORD_DAMAGE[idx]
 
 func _is_blocked(attacker_global_x: float, target: Node) -> bool:
-	var shield := target.get_node_or_null("Shield") as Shield
-	if shield == null or not shield.active:
+	var shieldd := target.get_node_or_null("Shield") as Shield
+	if shieldd == null or not shieldd.active:
 		return false
 	var attack_from_right: bool = attacker_global_x > target.global_position.x
-	if shield.facing_right != attack_from_right:
+	if shieldd.facing_right != attack_from_right:
 		return false
-	return not shield.get_overlapping_areas().is_empty()
+	return not shieldd.get_overlapping_areas().is_empty()
 
 func shield_blocked(_target: Node) -> void:
 	pass

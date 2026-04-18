@@ -22,7 +22,42 @@ var music_library: Dictionary = {
 }
 
 var sfx_library: Dictionary = {
-
+	"barrier": preload("res://assets/sound/sfx/AOL_Barrier.wav"),
+	"battle": preload("res://assets/sound/sfx/AOL_Battle.wav"),
+	"boomerang": preload("res://assets/sound/sfx/AOL_Boomerang.wav"),
+	"bridge": preload("res://assets/sound/sfx/AOL_Bridge.wav"),
+	"deflect": preload("res://assets/sound/sfx/AOL_Deflect.wav"),
+	"die": preload("res://assets/sound/sfx/AOL_Die.wav"),
+	"door": preload("res://assets/sound/sfx/AOL_Door.wav"),
+	"elevator": preload("res://assets/sound/sfx/AOL_Elevator.wav"),
+	"fairy": preload("res://assets/sound/sfx/AOL_Fairy.wav"),
+	"fall": preload("res://assets/sound/sfx/AOL_Fall.wav"),
+	"fire": preload("res://assets/sound/sfx/AOL_Fire.wav"),
+	"flute": preload("res://assets/sound/sfx/AOL_Flute.wav"),
+	"ganon_laugh": preload("res://assets/sound/sfx/AOL_Ganon_Laugh.wav"),
+	"hurt": preload("res://assets/sound/sfx/AOL_Hurt.wav"),
+	"item_drop": preload("res://assets/sound/sfx/AOL_Item_Drop.wav"),
+	"kill": preload("res://assets/sound/sfx/AOL_Kill.wav"),
+	"kill_boss": preload("res://assets/sound/sfx/AOL_KillBoss.wav"),
+	"learn_spell": preload("res://assets/sound/sfx/AOL_LearnSpell.wav"),
+	"levelup_getitem": preload("res://assets/sound/sfx/AOL_LevelUp_GetItem.wav"),
+	"low_health": preload("res://assets/sound/sfx/AOL_LowHealth.wav"),
+	"map": preload("res://assets/sound/sfx/AOL_Map.wav"),
+	"menu_alphabet": preload("res://assets/sound/sfx/AOL_Menu_Alphabet.wav"),
+	"menu_erase": preload("res://assets/sound/sfx/AOL_Menu_Erase.wav"),
+	"menu_letter": preload("res://assets/sound/sfx/AOL_Menu_Letter.wav"),
+	"menu_select": preload("res://assets/sound/sfx/AOL_Menu_Select.wav"),
+	"pause": preload("res://assets/sound/sfx/AOL_Pause.wav"),
+	"pause_select": preload("res://assets/sound/sfx/AOL_Pause_Select.wav"),
+	"shatter": preload("res://assets/sound/sfx/AOL_Shatter.wav"),
+	"spell": preload("res://assets/sound/sfx/AOL_Spell.wav"),
+	"stats": preload("res://assets/sound/sfx/AOL_Stats.wav"),
+	"swamp": preload("res://assets/sound/sfx/AOL_Swamp.wav"),
+	"sword": preload("res://assets/sound/sfx/AOL_Sword.wav"),
+	"sword_clang": preload("res://assets/sound/sfx/AOL_Sword_Clang.wav"),
+	"sword_hit": preload("res://assets/sound/sfx/AOL_Sword_Hit.wav"),
+	"sword_shoot": preload("res://assets/sound/sfx/AOL_Sword_Shoot.wav"),
+	"text": preload("res://assets/sound/sfx/AOL_Text.wav"),
 }
 
 var _music_player: AudioStreamPlayer

@@ -20,7 +20,6 @@ func _ready() -> void:
 		add_child(rock)
 		rock.deactivate()
 		_pool.append(rock)
-	print(rock_scene)
 
 func _process(delta: float) -> void:
 	_timer += delta

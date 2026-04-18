@@ -2,6 +2,7 @@ class_name StateCrouchAttack extends PlayerState
 
 func enter(player: LinkSidescroll) -> void:
 	player.play_animation("crouch_attack")
+	AudioManager.play_sfx("sword")
 
 func tick(player: LinkSidescroll, delta: float) -> PlayerState:
 	player.velocity.x = move_toward(player.velocity.x, 0.0, player.friction * delta)

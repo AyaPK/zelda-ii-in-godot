@@ -14,6 +14,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		if !%MainMenuContainer.visible:
 			%NamePreviewLabel.text = remove_last_letter(%NamePreviewLabel.text)
+			AudioManager.play_sfx("pause_select")
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("move_up") or Input.is_action_just_pressed("move_down") or Input.is_action_just_pressed("move_right") or Input.is_action_just_pressed("move_left"):
+		AudioManager.play_sfx("menu_select")
 
 func _on_player_button_1_pressed() -> void:
 	selected_slot = 1
@@ -42,6 +47,7 @@ func _on_player_button_3_pressed() -> void:
 func name_input_button_pressed(_s: String) -> void:
 	if len(%NamePreviewLabel.text) < 9:
 		%NamePreviewLabel.text += _s
+		AudioManager.play_sfx("menu_letter")
 
 func _on_cancel_button_pressed() -> void:
 	pass # Replace with function body.
@@ -89,6 +95,7 @@ func show_name_entry() -> void:
 
 func _on_delete_button_pressed() -> void:
 	SaveManager.delete_slot(selected_slot)
+	AudioManager.play_sfx("menu_erase")
 	show_main_screen()
 
 func _on_start_button_pressed() -> void:
