@@ -6,11 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjqvy"]
 size = Vector2(16, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_312bm"]
-size = Vector2(16, 16)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pyn0u"]
 size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8bxkv"]
+size = Vector2(8, 16)
 
 [sub_resource type="Animation" id="Animation_ao0o7"]
 length = 0.001
@@ -150,34 +150,52 @@ _data = {
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_8bxkv")
+max_hp = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=125352971]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_hjqvy")
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=1726102440]
-collision_layer = 128
-collision_mask = 64
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1335986592]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_312bm")
-debug_color = Color(0.3182791, 0.6256233, 0, 0.41960785)
-
-[node name="BodyHurtbox" type="Area2D" parent="." unique_id=1167689960]
+[node name="BodyHurtbox1" type="Area2D" parent="." unique_id=1167689960]
 collision_layer = 256
 collision_mask = 32
+monitoring = false
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyHurtbox" unique_id=938953289]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyHurtbox1" unique_id=938953289]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_pyn0u")
 debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)
 
-[node name="HeadHurtbox" type="Area2D" parent="." unique_id=844932374]
+[node name="BodyHurtbox2" type="Area2D" parent="." unique_id=1808065243]
 collision_layer = 256
 collision_mask = 32
+monitoring = false
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadHurtbox" unique_id=547120466]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyHurtbox2" unique_id=1502706112]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_pyn0u")
+debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)
+
+[node name="BodyHurtbox3" type="Area2D" parent="." unique_id=203146115]
+collision_layer = 256
+collision_mask = 32
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyHurtbox3" unique_id=1466454587]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_pyn0u")
+debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)
+
+[node name="BodyHurtbox4" type="Area2D" parent="." unique_id=316516990]
+collision_layer = 256
+collision_mask = 32
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyHurtbox4" unique_id=1992353002]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_pyn0u")
 debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)
@@ -190,6 +208,16 @@ hframes = 2
 vframes = 2
 frame = 1
 
+[node name="Hitbox2" type="Area2D" parent="BodySprite1" unique_id=562157509]
+position = Vector2(0, -10)
+collision_layer = 128
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodySprite1/Hitbox2" unique_id=1672606498]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_8bxkv")
+debug_color = Color(0.35423824, 0.6714244, 0, 0.41960785)
+
 [node name="BodySprite2" type="Sprite2D" parent="." unique_id=469250687]
 texture_repeat = 2
 position = Vector2(0, 10)
@@ -197,6 +225,16 @@ texture = ExtResource("2_8bxkv")
 hframes = 2
 vframes = 2
 frame = 1
+
+[node name="Hitbox3" type="Area2D" parent="BodySprite2" unique_id=2086474434]
+position = Vector2(0, -10)
+collision_layer = 128
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodySprite2/Hitbox3" unique_id=408862374]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_8bxkv")
+debug_color = Color(0.35423824, 0.6714244, 0, 0.41960785)
 
 [node name="BodySprite3" type="Sprite2D" parent="." unique_id=627225213]
 texture_repeat = 2
@@ -206,6 +244,16 @@ hframes = 2
 vframes = 2
 frame = 1
 
+[node name="Hitbox4" type="Area2D" parent="BodySprite3" unique_id=1583540689]
+position = Vector2(0, -10)
+collision_layer = 128
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodySprite3/Hitbox4" unique_id=634924507]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_8bxkv")
+debug_color = Color(0.35423824, 0.6714244, 0, 0.41960785)
+
 [node name="BodySprite4" type="Sprite2D" parent="." unique_id=959609204]
 texture_repeat = 2
 position = Vector2(0, 10)
@@ -214,16 +262,47 @@ hframes = 2
 vframes = 2
 frame = 1
 
+[node name="Hitbox5" type="Area2D" parent="BodySprite4" unique_id=1855888701]
+position = Vector2(0, -10)
+collision_layer = 128
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodySprite4/Hitbox5" unique_id=1729292169]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_8bxkv")
+debug_color = Color(0.35423824, 0.6714244, 0, 0.41960785)
+
 [node name="HeadSprite" type="Sprite2D" parent="." unique_id=870105400]
 position = Vector2(0, -6)
 texture = ExtResource("2_8bxkv")
 hframes = 2
 vframes = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=679662797]
+[node name="Hitbox" type="Area2D" parent="HeadSprite" unique_id=1481826957]
+position = Vector2(0, 6)
+collision_layer = 128
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadSprite/Hitbox" unique_id=665603161]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_8bxkv")
+debug_color = Color(0.35423824, 0.6714244, 0, 0.41960785)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=288980585]
 libraries/ = SubResource("AnimationLibrary_ao0o7")
 autoplay = &"idle"
 
-[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[node name="HeadHurtbox" type="Area2D" parent="." unique_id=844932374]
+collision_layer = 256
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadHurtbox" unique_id=547120466]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_pyn0u")
+debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)
+
+[connection signal="area_entered" from="BodySprite1/Hitbox2" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="BodySprite2/Hitbox3" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="BodySprite3/Hitbox4" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="BodySprite4/Hitbox5" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="HeadSprite/Hitbox" to="." method="_on_hitbox_area_entered"]

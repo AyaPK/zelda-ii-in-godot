@@ -17,15 +17,47 @@ var current_extension: float = 0.0
 	$BodySprite1, $BodySprite2, $BodySprite3, $BodySprite4
 ]
 @onready var head_sprite: Sprite2D = $HeadSprite
-@onready var hitbox: Area2D = $Hitbox
 @onready var head_hurtbox: Area2D = $HeadHurtbox
-@onready var body_hurtbox: Area2D = $BodyHurtbox
+@onready var body_hurtbox_1: Area2D = $BodyHurtbox1
+@onready var body_hurtbox_2: Area2D = $BodyHurtbox2
+@onready var body_hurtbox_3: Area2D = $BodyHurtbox3
+@onready var body_hurtbox_4: Area2D = $BodyHurtbox4
+@onready var hitbox_2: Area2D = $BodySprite1/Hitbox2
+@onready var hitbox_3: Area2D = $BodySprite2/Hitbox3
+@onready var hitbox_4: Area2D = $BodySprite3/Hitbox4
+@onready var hitbox_5: Area2D = $BodySprite4/Hitbox5
+
+
 
 func _ready() -> void:
 	super._ready()
+	z_index = -1
 	floor_y = global_position.y
 	_apply_extension(0.0)
 	_enter_state(State.HIDDEN)
+	
+func _process(delta: float) -> void:
+	if iframe_timer > 0.0:
+		iframe_timer -= delta
+		flash_timer -= delta
+		if flash_timer <= 0.0:
+			flash_timer = flash_interval
+			$BodySprite1.modulate = flash_color if $BodySprite1.modulate == Color.WHITE else Color.WHITE
+			$BodySprite2.modulate = flash_color if $BodySprite1.modulate == Color.WHITE else Color.WHITE
+			$BodySprite3.modulate = flash_color if $BodySprite1.modulate == Color.WHITE else Color.WHITE
+			$BodySprite4.modulate = flash_color if $BodySprite1.modulate == Color.WHITE else Color.WHITE
+			$HeadSprite.modulate = flash_color if $HeadSprite.modulate == Color.WHITE else Color.WHITE
+	else:
+		$BodySprite1.modulate = Color.WHITE
+		$BodySprite2.modulate = Color.WHITE
+		$BodySprite3.modulate = Color.WHITE
+		$BodySprite4.modulate = Color.WHITE
+		$HeadSprite.modulate = Color.WHITE
+
+	if is_stunned:
+		hit_stun_timer -= delta
+		if hit_stun_timer <= 0.0:
+			is_stunned = false
 
 func _physics_process(delta: float) -> void:
 	match state:
@@ -62,13 +94,28 @@ func _apply_extension(amount: float) -> void:
 		seg.visible = amount >= threshold
 		seg.position.y = -threshold
 	head_sprite.position.y = -amount
-	head_hurtbox.position.y = -amount
+	$BodyHurtbox1.global_position = $BodySprite1.global_position
+	$BodyHurtbox2.global_position = $BodySprite2.global_position
+	$BodyHurtbox3.global_position = $BodySprite3.global_position
+	$BodyHurtbox4.global_position = $BodySprite4.global_position
 
 func _set_hitboxes_active(active: bool) -> void:
-	hitbox.monitoring = active
-	hitbox.monitorable = active
-	body_hurtbox.monitoring = active
-	body_hurtbox.monitorable = active
+	body_hurtbox_1.monitoring = active
+	body_hurtbox_1.monitorable = active
+	body_hurtbox_2.monitoring = active
+	body_hurtbox_2.monitorable = active
+	body_hurtbox_3.monitoring = active
+	body_hurtbox_3.monitorable = active
+	body_hurtbox_4.monitoring = active
+	body_hurtbox_4.monitorable = active
+	hitbox_2.monitoring = $BodySprite1.visible
+	hitbox_2.monitorable = $BodySprite1.visible
+	hitbox_3.monitoring = $BodySprite2.visible
+	hitbox_3.monitorable = $BodySprite2.visible
+	hitbox_4.monitoring = $BodySprite3.visible
+	hitbox_4.monitorable = $BodySprite3.visible
+	hitbox_5.monitoring = $BodySprite4.visible
+	hitbox_5.monitorable = $BodySprite4.visible
 	head_hurtbox.monitoring = true
 	head_hurtbox.monitorable = true
 
@@ -94,10 +141,5 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	if player:
 		hit_player(player)
 
-func _on_body_hurtbox_area_entered(area: Area2D) -> void:
-	var enemy := area.get_parent() as LinkSidescroll
-	if enemy:
-		force_retract()
-
-func _on_head_hurtbox_area_entered(area: Area2D) -> void:
-	pass
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.
