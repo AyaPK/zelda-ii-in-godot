@@ -145,6 +145,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	var projectile := area as EnemyProjectile
 	if projectile:
 		if projectile.blockable and _is_blocked(projectile.global_position.x, self):
+			projectile.blocked()
 			shield_blocked(self)
 			return
 		projectile.hit_player(self)
@@ -207,7 +208,7 @@ func disable_hitbox() -> void:
 
 func set_crouch_shield(is_crouched: bool) -> void:
 	if is_crouched:
-		$Shield.position.y = 12.0
+		$Shield.position.y = 13.0
 	else:
 		$Shield.position.y = 0.0
 	pass

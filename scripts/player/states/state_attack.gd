@@ -14,4 +14,4 @@ func tick(player: LinkSidescroll, delta: float) -> PlayerState:
 	return self
 
 func exit(player: LinkSidescroll) -> void:
-	player.shield.active = false
+	player.shield.active = true

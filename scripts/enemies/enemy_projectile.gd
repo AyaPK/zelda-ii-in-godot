@@ -27,3 +27,6 @@ func hit_player(player: LinkSidescroll) -> void:
 	player.hit(global_position.x, damage)
 	if Scenemanager.hud:
 		Scenemanager.hud.refresh_hud()
+
+func blocked() -> void:
+	pass

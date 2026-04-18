@@ -41,3 +41,6 @@ func _on_area_entered(area: Area2D) -> void:
 		var damage: int = DAMAGE_TABLE[strength_idx][life_idx]
 		hit_player(player)
 		queue_free()
+
+func blocked() -> void:
+	queue_free()
