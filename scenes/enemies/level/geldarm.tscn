@@ -302,6 +302,10 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_pyn0u")
 debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)
 
+[connection signal="area_entered" from="BodyHurtbox1" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="BodyHurtbox2" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="BodyHurtbox3" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="BodyHurtbox4" to="." method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="BodySprite1/Hitbox2" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="BodySprite2/Hitbox3" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="BodySprite3/Hitbox4" to="." method="_on_hitbox_area_entered"]

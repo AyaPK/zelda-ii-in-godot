@@ -217,3 +217,4 @@ shape = SubResource("RectangleShape2D_70o0s")
 debug_color = Color(0.9222628, 0.24629954, 0.34191763, 0.41960785)
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_exited" from="Hurtbox" to="." method="_on_hurtbox_body_exited"]

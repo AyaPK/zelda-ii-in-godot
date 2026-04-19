@@ -29,6 +29,7 @@ var current_extension: float = 0.0
 
 
 
+
 func _ready() -> void:
 	super._ready()
 	z_index = -1
@@ -137,9 +138,9 @@ func force_retract() -> void:
 		_enter_state(State.RETRACT)
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
+	pass
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
 	var player := area.get_parent() as LinkSidescroll
 	if player:
 		hit_player(player)
-
-func _on_hurtbox_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.

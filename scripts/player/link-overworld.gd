@@ -236,3 +236,8 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("overworld-enemy"):
 		has_encounter = true
 		encounter = body
+
+func _on_hurtbox_body_exited(body: Node2D) -> void:
+	if body.is_in_group("overworld-enemy"):
+		has_encounter = false
+		encounter = body
