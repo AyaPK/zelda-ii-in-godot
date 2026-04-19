@@ -22,7 +22,7 @@ high_y = 180.4
 low_y = 400.0
 
 [node name="link-sidescroll" parent="." unique_id=1464587723 instance=ExtResource("4_dsfdh")]
-position = Vector2(606, 190)
+position = Vector2(604, 185)
 
 [node name="CameraBoundaryLeft" parent="." unique_id=1635352741 instance=ExtResource("5_a24yx")]
 position = Vector2(0, 228)

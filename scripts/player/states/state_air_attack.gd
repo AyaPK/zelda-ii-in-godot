@@ -3,6 +3,7 @@ class_name StateAirAttack extends PlayerState
 func enter(player: LinkSidescroll) -> void:
 	player.play_animation("air_attack")
 	player.shield.active = false
+	player.attack_consumed = true
 	AudioManager.play_sfx("sword")
 
 func tick(player: LinkSidescroll, delta: float) -> PlayerState:

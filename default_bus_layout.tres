@@ -1,7 +1,6 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://dl0ng5qfmptcw"]
 
 [resource]
-bus/0/mute = true
 bus/0/volume_db = -12.978527
 bus/1/name = &"Music"
 bus/1/solo = false

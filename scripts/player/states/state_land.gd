@@ -5,6 +5,7 @@ func enter(player: LinkSidescroll) -> void:
 	player.disable_hitbox()
 	player.play_animation("land")
 	player.set_crouch_shield(true)
+	player.attack_consumed = false
 
 func tick(player: LinkSidescroll, delta: float) -> PlayerState:
 	if Input.is_action_just_pressed("jump"):

@@ -1,0 +1,25 @@
+extends CanvasLayer
+
+signal faded
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func show_transition_rect() -> void:
+	get_tree().paused = true
+	$AnimationPlayer.play("fade_out")
+	await $AnimationPlayer.animation_finished
+	faded.emit()
+	get_tree().paused = false
+
+func hide_transition_rect() -> void:
+	get_tree().paused = true
+	$AnimationPlayer.play("fade_in")
+	await $AnimationPlayer.animation_finished
+	faded.emit()
+	get_tree().paused = false

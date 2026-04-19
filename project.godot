@@ -28,6 +28,7 @@ PlayerManager="*uid://bcexu1cmrtl7f"
 SaveManager="*uid://b3apqj6wnnh7w"
 StoryFlags="*uid://cv0bi14foeaeg"
 Signals="*uid://b1rw72qpt8upr"
+Overlay="*uid://cdsvngv7nfanq"
 
 [debug]
 

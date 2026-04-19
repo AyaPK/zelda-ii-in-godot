@@ -16,7 +16,6 @@ gradient = SubResource("Gradient_50coh")
 script = ExtResource("1_4lks3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1562632759]
-visible = false
 position = Vector2(128, 8)
 texture = ExtResource("1_lhei3")
 

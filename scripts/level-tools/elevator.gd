@@ -16,8 +16,14 @@ func _process(delta: float) -> void:
 		if Input.is_action_pressed("crouch") and !global_position.y >= low_y:
 			global_position.y += 1
 			player.global_position.y += 1
+			if !$Sound.playing:
+				$Sound.play()
 		elif Input.is_action_pressed("move_up") and !global_position.y <= high_y:
 			global_position.y -= 1.4
+			if !$Sound.playing:
+				$Sound.play()
+		else:
+			$Sound.stop()
 
 func _on_standing_area_body_entered(body: Node2D) -> void:
 	functioning = true

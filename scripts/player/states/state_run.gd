@@ -16,7 +16,7 @@ func tick(player: LinkSidescroll, delta: float) -> PlayerState:
 		return player.state_jump
 	if Input.is_action_pressed("crouch"):
 		return player.state_crouch
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") and not player.attack_consumed:
 		return player.state_attack
 	if player.velocity.x == 0.0 and input_dir == 0:
 		return player.state_idle

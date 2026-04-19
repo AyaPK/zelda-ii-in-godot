@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://cdsvngv7nfanq"]
+
+[ext_resource type="Script" uid="uid://ctv05uu42ctea" path="res://00_globals/00_overlay.gd" id="1_7t4kn"]
+
+[sub_resource type="Animation" id="Animation_c6726"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1fqfl"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.46666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7t4kn"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c6726"]
+_data = {
+&"RESET": SubResource("Animation_c6726"),
+&"fade_in": SubResource("Animation_1fqfl"),
+&"fade_out": SubResource("Animation_7t4kn")
+}
+
+[node name="Overlay" type="CanvasLayer" unique_id=144377671]
+process_mode = 3
+script = ExtResource("1_7t4kn")
+
+[node name="TransitionRect" type="ColorRect" parent="." unique_id=773520431]
+z_index = 10
+offset_left = -12.0
+offset_top = -14.0
+offset_right = 279.0
+offset_bottom = 257.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=575407635]
+libraries/ = SubResource("AnimationLibrary_c6726")
+autoplay = &"fade_in"

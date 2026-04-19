@@ -32,6 +32,7 @@ class_name LinkSidescroll extends CharacterBody2D
 
 var facing_right: bool = true
 var was_on_floor: bool = true
+var attack_consumed: bool = false
 var state_timer: float = 0.0
 var iframe_timer: float = 0.0
 var flash_timer: float = 0.0
@@ -64,9 +65,10 @@ func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
 	var next := _current_state.tick(self, delta)
 	move_and_slide()
+	var state_before_landing := _current_state
 	_check_landing()
 	was_on_floor = is_on_floor()
-	if next != _current_state:
+	if _current_state == state_before_landing and next != _current_state:
 		transition_to(next)
 	var face_scale =  1 if facing_right else -1
 	$Sprite.scale.x = face_scale

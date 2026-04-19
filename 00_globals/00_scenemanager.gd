@@ -29,7 +29,15 @@ var prev_scene: String
 var prev_position: Vector2
 var prev_direction: Vector2
 
+func start_transition() -> void:
+	Overlay.show_transition_rect()
+
+func end_transition() -> void:
+	Overlay.hide_transition_rect()
+
 func change_scene_to_encounter(area_type: String, difficulty: String) -> void:
+	start_transition()
+	await Overlay.faded
 	var area_map: Dictionary = ENCOUNTER_SCENES.get(overworld_area, {})
 	var type_map: Dictionary = area_map.get(area_type, {})
 	var scene_path: String = type_map.get(difficulty, "")
@@ -39,8 +47,12 @@ func change_scene_to_encounter(area_type: String, difficulty: String) -> void:
 	await get_tree().process_frame
 	transitioned.emit()
 	faded_in.emit()
+	end_transition()
+	await Overlay.faded
 
 func change_scene_to_level(scene_path: String, target_node_name: String, facing_direction: String) -> void:
+	start_transition()
+	await Overlay.faded
 	if get_tree().get_first_node_in_group("overworld-player"):
 		get_tree().get_first_node_in_group("overworld-player").queue_free()
 	scene_path_string = scene_path
@@ -54,27 +66,46 @@ func change_scene_to_level(scene_path: String, target_node_name: String, facing_
 		get_tree().get_first_node_in_group("sidescroll-player").global_position = level.get_node(target_node_name).global_position
 	await get_tree().process_frame
 	Signals.level_finished_loading.emit()
+	end_transition()
 
 func change_scene_to_overworld(target_node_name: String) -> void:
 	call_deferred("_do_change_scene_to_overworld", target_node_name)
 
 func _do_change_scene_to_overworld(target_node_name: String) -> void:
+	start_transition()
+	await Overlay.faded
 	target_transition = target_node_name
 	get_tree().change_scene_to_file("res://levels/overworld.tscn")
 	await get_tree().process_frame
 	await get_tree().process_frame
-	get_tree().get_first_node_in_group("overworld-player").global_position = level.get_node(target_node_name).global_position
+	var ow_player := get_tree().get_first_node_in_group("overworld-player")
+	ow_player.set_process(false)
+	ow_player.global_position = level.get_node(target_node_name).global_position
+	ow_player.target_position = ow_player.global_position
+	ow_player.is_moving = false
+	ow_player.set_process(true)
 	transitioned.emit()
 	faded_in.emit()
+	Signals.level_finished_loading.emit()
+	end_transition()
 
 func leave_encounter_to_overworld() -> void:
 	call_deferred("_do_leave_encounter_to_overworld")
 
 func _do_leave_encounter_to_overworld() -> void:
+	start_transition()
+	await Overlay.faded
 	overworld_has_enemies = false
 	get_tree().change_scene_to_file("res://levels/overworld.tscn")
 	await get_tree().process_frame
 	await get_tree().process_frame
-	get_tree().get_first_node_in_group("overworld-player").global_position = pre_encounter_pos
+	var ow_player := get_tree().get_first_node_in_group("overworld-player")
+	ow_player.set_process(false)
+	ow_player.global_position = pre_encounter_pos
+	ow_player.target_position = ow_player.global_position
+	ow_player.is_moving = false
+	ow_player.set_process(true)
 	transitioned.emit()
 	faded_in.emit()
+	Signals.level_finished_loading.emit()
+	end_transition()

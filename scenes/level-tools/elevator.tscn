@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bunyoaa6i3cwe" path="res://scripts/level-tools/elevator.gd" id="1_70ehv"]
 [ext_resource type="Texture2D" uid="uid://dxb1l6pgvh0x" path="res://assets/art/sprites/elevator.png" id="1_ekmgu"]
+[ext_resource type="AudioStream" uid="uid://bmecty2dua0ro" path="res://assets/sound/sfx/AOL_Elevator.wav" id="3_8wydi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ekmgu"]
 size = Vector2(14, 3)
@@ -48,6 +49,11 @@ shape = SubResource("RectangleShape2D_70ehv")
 position = Vector2(0, -22.5)
 shape = SubResource("RectangleShape2D_8wydi")
 debug_color = Color(0.77350086, 0.39138386, 0.550303, 0.41960785)
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="." unique_id=1552308507]
+stream = ExtResource("3_8wydi")
+volume_db = 5.832
+bus = &"SFX"
 
 [connection signal="body_entered" from="StandingArea" to="." method="_on_standing_area_body_entered"]
 [connection signal="body_exited" from="StandingArea" to="." method="_on_standing_area_body_exited"]
