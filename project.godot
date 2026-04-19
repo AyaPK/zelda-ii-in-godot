@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=60
 config/icon="uid://c2e1ehf21m54b"
 
+[audio]
+
+buses/default_bus_layout="uid://dl0ng5qfmptcw"
+
 [autoload]
 
 Scenemanager="*uid://bavw8w7u85gke"

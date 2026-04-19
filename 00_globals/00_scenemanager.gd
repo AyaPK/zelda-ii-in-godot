@@ -49,6 +49,7 @@ func change_scene_to_level(scene_path: String, target_node_name: String, facing_
 	await get_tree().process_frame
 	await get_tree().process_frame
 	get_tree().get_first_node_in_group("sidescroll-player").facing_right = (facing_direction == "Right")
+	print(target_node_name)
 	if target_node_name:
 		get_tree().get_first_node_in_group("sidescroll-player").global_position = level.get_node(target_node_name).global_position
 	await get_tree().process_frame

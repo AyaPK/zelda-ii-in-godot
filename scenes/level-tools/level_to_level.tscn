@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c2uu2wex4uq0k"]
+
+[ext_resource type="Script" uid="uid://b00hrofq6sbc6" path="res://scripts/level-tools/level_to_level.gd" id="1_ka4lw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsa61"]
+size = Vector2(64, 64)
+
+[node name="LevelToLevel" type="Area2D" unique_id=2027770162]
+script = ExtResource("1_ka4lw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=685546238]
+shape = SubResource("RectangleShape2D_fsa61")
+debug_color = Color(1, 1, 1, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

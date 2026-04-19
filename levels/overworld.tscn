@@ -112,5 +112,5 @@ facing_direction = "Right"
 [node name="TransitionToParapaPalace" parent="." unique_id=245889646 instance=ExtResource("4_oehki")]
 position = Vector2(712, -216)
 target_scene = "uid://dkeybmi4nimjl"
-node_name = "Entrace"
+node_name = "Entrance"
 facing_direction = "Right"
