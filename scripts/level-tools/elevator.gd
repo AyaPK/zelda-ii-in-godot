@@ -24,3 +24,6 @@ func _on_standing_area_body_entered(body: Node2D) -> void:
 func _on_standing_area_body_exited(body: Node2D) -> void:
 	functioning = false
 	player.on_elevator = false
+
+func move_to_link(body: LinkSidescroll) -> void:
+	global_position.y = body.global_position.y-14

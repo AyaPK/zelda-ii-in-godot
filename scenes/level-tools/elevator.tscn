@@ -9,8 +9,13 @@ size = Vector2(14, 3)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_70ehv"]
 size = Vector2(24, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8wydi"]
+size = Vector2(26, 583)
+
 [node name="Elevator" type="Node2D" unique_id=1111279203]
 script = ExtResource("1_70ehv")
+high_y = null
+low_y = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1372961014]
 texture = ExtResource("1_ekmgu")
@@ -38,6 +43,13 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=149206949]
 position = Vector2(0, 16)
 shape = SubResource("RectangleShape2D_70ehv")
+
+[node name="LinkCheck" type="Area2D" parent="." unique_id=950038157]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LinkCheck" unique_id=10860185]
+position = Vector2(0, -22.5)
+shape = SubResource("RectangleShape2D_8wydi")
+debug_color = Color(0.77350086, 0.39138386, 0.550303, 0.41960785)
 
 [connection signal="body_entered" from="StandingArea" to="." method="_on_standing_area_body_entered"]
 [connection signal="body_exited" from="StandingArea" to="." method="_on_standing_area_body_exited"]
