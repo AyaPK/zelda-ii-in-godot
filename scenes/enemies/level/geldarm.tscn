@@ -159,7 +159,7 @@ shape = SubResource("RectangleShape2D_hjqvy")
 
 [node name="BodyHurtbox1" type="Area2D" parent="." unique_id=1167689960]
 collision_layer = 256
-collision_mask = 32
+collision_mask = 64
 monitoring = false
 monitorable = false
 
@@ -170,7 +170,7 @@ debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)
 
 [node name="BodyHurtbox2" type="Area2D" parent="." unique_id=1808065243]
 collision_layer = 256
-collision_mask = 32
+collision_mask = 64
 monitoring = false
 monitorable = false
 
@@ -181,7 +181,7 @@ debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)
 
 [node name="BodyHurtbox3" type="Area2D" parent="." unique_id=203146115]
 collision_layer = 256
-collision_mask = 32
+collision_mask = 64
 monitoring = false
 monitorable = false
 
@@ -192,7 +192,7 @@ debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)
 
 [node name="BodyHurtbox4" type="Area2D" parent="." unique_id=316516990]
 collision_layer = 256
-collision_mask = 32
+collision_mask = 64
 monitoring = false
 monitorable = false
 

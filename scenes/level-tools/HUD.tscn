@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://lkswdyu3i5wj"]
 
 [ext_resource type="Script" uid="uid://bgi7uq8iys73f" path="res://scripts/level-tools/hud.gd" id="1_4lks3"]
-[ext_resource type="Texture2D" uid="uid://keio4mbxyh0p" path="res://assets/art/menu/pic.png" id="1_lhei3"]
 [ext_resource type="Theme" uid="uid://olkma8mm41to" path="res://themes/font.tres" id="2_rci3i"]
 [ext_resource type="Texture2D" uid="uid://dsytrn4o4wvvw" path="res://assets/art/menu/swordhudicon.png" id="3_rci3i"]
 [ext_resource type="Texture2D" uid="uid://dm6luknbsbn7y" path="res://assets/art/menu/lifeicon.png" id="4_50coh"]
@@ -14,10 +13,6 @@ gradient = SubResource("Gradient_50coh")
 
 [node name="Hud" type="CanvasLayer" unique_id=877818997]
 script = ExtResource("1_4lks3")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1562632759]
-position = Vector2(128, 8)
-texture = ExtResource("1_lhei3")
 
 [node name="AtkLevel" type="Label" parent="." unique_id=1339309447]
 offset_left = 17.0
