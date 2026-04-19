@@ -14,8 +14,6 @@ size = Vector2(26, 583)
 
 [node name="Elevator" type="Node2D" unique_id=1111279203]
 script = ExtResource("1_70ehv")
-high_y = null
-low_y = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1372961014]
 texture = ExtResource("1_ekmgu")

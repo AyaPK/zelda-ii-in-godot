@@ -51,8 +51,8 @@ func change_scene_to_level(scene_path: String, target_node_name: String, facing_
 	get_tree().get_first_node_in_group("sidescroll-player").facing_right = (facing_direction == "Right")
 	if target_node_name:
 		get_tree().get_first_node_in_group("sidescroll-player").global_position = level.get_node(target_node_name).global_position
-	transitioned.emit()
-	faded_in.emit()
+	await get_tree().process_frame
+	Signals.level_finished_loading.emit()
 
 func change_scene_to_overworld(target_node_name: String) -> void:
 	call_deferred("_do_change_scene_to_overworld", target_node_name)
