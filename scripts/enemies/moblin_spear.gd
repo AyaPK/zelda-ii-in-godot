@@ -43,4 +43,5 @@ func _on_area_entered(area: Area2D) -> void:
 		queue_free()
 
 func blocked() -> void:
+	AudioManager.play_sfx("deflect")
 	queue_free()

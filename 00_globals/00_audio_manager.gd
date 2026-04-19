@@ -83,17 +83,20 @@ func stop_music() -> void:
 	if _music_player and _music_player.playing:
 		_music_player.stop()
 
-func play_sfx(sfx: String) -> void:
+func play_sfx(sfx: String, through_transition: bool = false) -> void:
 	var stream: AudioStream = sfx_library.get(sfx)
 	if stream == null:
 		push_warning("AudioManager: sfx '" + sfx + "' not found in sfx_library")
 		return
 	var player := get_sfx_player(stream)
+	if through_transition:
+		player.process_mode = Node.PROCESS_MODE_ALWAYS
 	add_child(player)
 	player.finished.connect(func() -> void:
 		player.queue_free()
 	)
 	player.play()
+
 
 func get_sfx_player(stream: AudioStream) -> AudioStreamPlayer:
 	var player := AudioStreamPlayer.new()

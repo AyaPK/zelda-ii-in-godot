@@ -136,6 +136,7 @@ func on_end_step() -> void:
 		if tile_data:
 			area_type = tile_data.get_custom_data("area")
 		var difficulty: String = encounter.EnemyType.keys()[encounter.enemy_type].to_lower()
+		AudioManager.play_sfx("battle", true)
 		Scenemanager.change_scene_to_encounter(area_type, difficulty)
 
 	var current_cell := world_to_cell(position)
@@ -149,7 +150,6 @@ func on_end_step() -> void:
 func spawn_enemies() -> void:
 	Scenemanager.overworld_has_enemies = true
 	var current_cell := world_to_cell(position)
-	var tile_data := tilemap.get_cell_tile_data(current_cell)
 	var spawn_cell_1 := current_cell + Vector2i(ENCOUNTER_SPAWN_OFFSET, 0)
 	var spawn_cell_2 := current_cell + Vector2i(-ENCOUNTER_SPAWN_OFFSET, 0)
 	var spawn_cell_3 := current_cell + Vector2i(0, -ENCOUNTER_SPAWN_OFFSET)
@@ -236,6 +236,8 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("overworld-enemy"):
 		has_encounter = true
 		encounter = body
+		if not is_moving:
+			on_end_step()
 
 func _on_hurtbox_body_exited(body: Node2D) -> void:
 	if body.is_in_group("overworld-enemy"):

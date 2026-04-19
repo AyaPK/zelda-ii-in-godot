@@ -45,17 +45,18 @@ func _process(delta: float) -> void:
 		if hit_stun_timer <= 0.0:
 			is_stunned = false
 
-func take_hit(damage: int = 1) -> void:
+func take_hit(damage: int = 1) -> bool:
 	if iframe_timer > 0.0:
-		return
+		return false
 	hp -= damage
 	if hp <= 0:
 		die()
-		return
+		return true
 	is_stunned = true
 	hit_stun_timer = hit_stun_duration
 	iframe_timer = iframe_duration
 	flash_timer = flash_interval
+	return true
 
 func hit_player(player: LinkSidescroll) -> void:
 	var strength_idx: int = STRENGTHS.find(attack)

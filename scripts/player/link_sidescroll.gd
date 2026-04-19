@@ -180,7 +180,8 @@ func check_sword_hits() -> void:
 				if _is_blocked(global_position.x, enemy):
 					shield_blocked(enemy)
 					continue
-				enemy.take_hit(damage)
+				if enemy.take_hit(damage):
+					AudioManager.play_sfx("sword_hit")
 	if $ShortswordHitboxCrouching.monitoring:
 		for area in $ShortswordHitboxCrouching.get_overlapping_areas():
 			var enemy := area.get_parent() as EncounterEnemy
