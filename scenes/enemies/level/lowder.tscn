@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://dr21cta0eialq"]
+
+[ext_resource type="Script" uid="uid://b37vuftn528is" path="res://scripts/enemies/lowder_enemy.gd" id="1_lowder"]
+[ext_resource type="PackedScene" uid="uid://cpxrbk73o2p2p" path="res://scenes/level-tools/death_animation.tscn" id="2_lowder"]
+[ext_resource type="Texture2D" uid="uid://cdhervs36824b" path="res://assets/art/sprites/dowler.png" id="2_qvv72"]
+
+[sub_resource type="Animation" id="Animation_reset"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_walk"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lowder"]
+_data = {
+&"RESET": SubResource("Animation_reset"),
+&"walk": SubResource("Animation_walk")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurtbox"]
+size = Vector2(14, 14)
+
+[node name="Lowder" type="CharacterBody2D" unique_id=1536321465 groups=["sidescroll-enemy"]]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_lowder")
+speed = 30.0
+xp_value = 3
+max_hp = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=514378584]
+position = Vector2(0, -7)
+texture = ExtResource("2_qvv72")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1755861461]
+libraries/ = SubResource("AnimationLibrary_lowder")
+autoplay = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2068306455]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=984046726]
+collision_layer = 128
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=813604382]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_hitbox")
+debug_color = Color(0.3182791, 0.6256233, 0, 0.41960785)
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=642852332]
+collision_layer = 256
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=154418268]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_hurtbox")
+debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)
+
+[node name="DeathAnimation" parent="." unique_id=289380747 instance=ExtResource("2_lowder")]
+position = Vector2(0, -8)
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

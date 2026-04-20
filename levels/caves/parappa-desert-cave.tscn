@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bu8mylhkb5itl" path="res://scenes/level-tools/camera_boundary_left.tscn" id="5_ac1qa"]
 [ext_resource type="PackedScene" uid="uid://jsy0yju0f8o6" path="res://scenes/level-tools/camera_boundary_right.tscn" id="6_twtm6"]
 [ext_resource type="PackedScene" uid="uid://duw8hvarr5jas" path="res://scenes/level-tools/transition_to_overworld.tscn" id="7_twtm6"]
+[ext_resource type="PackedScene" uid="uid://b4mex8271hesu" path="res://scenes/level-tools/on_screen_spawn.tscn" id="8_twjq6"]
 
 [node name="ParappaDesertCave" type="Node2D" unique_id=318332350]
 script = ExtResource("1_5shrf")
@@ -23,7 +24,7 @@ tile_map_data = PackedByteArray("AAD9/wIAAAAAAAAAAAD9/wMAAAAAAAAAAAD9/wQAAAAAAAA
 tile_set = ExtResource("3_a4akt")
 
 [node name="link-sidescroll" parent="." unique_id=1464587723 instance=ExtResource("3_bybc6")]
-position = Vector2(1005, 191)
+position = Vector2(565, 166)
 
 [node name="CameraBoundaryLeft" parent="." unique_id=1635352741 instance=ExtResource("5_ac1qa")]
 position = Vector2(-1, 166)
@@ -44,3 +45,7 @@ position = Vector2(1009, 192)
 
 [node name="LeftEntrance" type="Marker2D" parent="." unique_id=127197248]
 position = Vector2(13, 193)
+
+[node name="OnScreenSpawner" parent="." unique_id=1085236185 instance=ExtResource("8_twjq6")]
+position = Vector2(439, 190)
+enemy_to_spawn = "uid://dr21cta0eialq"

@@ -35,6 +35,9 @@ func _ready() -> void:
 			death_anims += 1
 			if death_anims > 1:
 				_c.show_label = false
+	if get_parent() is Level:
+		if get_parent().is_dark:
+			modulate = Color.BLACK
 
 func _process(delta: float) -> void:
 	if iframe_timer > 0.0:
