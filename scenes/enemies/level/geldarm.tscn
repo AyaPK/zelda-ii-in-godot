@@ -151,6 +151,7 @@ _data = {
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_8bxkv")
+xp_value = 5
 max_hp = 8
 blockable = false
 
@@ -303,17 +304,17 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_pyn0u")
 debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)
 
-[node name="DeathAnimation" parent="." unique_id=1974184744 instance=ExtResource("3_ao0o7")]
-position = Vector2(0, 14)
-
 [node name="DeathAnimation3" parent="." unique_id=1041382857 instance=ExtResource("3_ao0o7")]
 position = Vector2(0, 4)
 
-[node name="DeathAnimation4" parent="." unique_id=336671238 instance=ExtResource("3_ao0o7")]
-position = Vector2(0, -6)
-
 [node name="DeathAnimation2" parent="." unique_id=1543171112 instance=ExtResource("3_ao0o7")]
 position = Vector2(0, -15)
+
+[node name="DeathAnimation" parent="." unique_id=1974184744 instance=ExtResource("3_ao0o7")]
+position = Vector2(0, 14)
+
+[node name="DeathAnimation4" parent="." unique_id=336671238 instance=ExtResource("3_ao0o7")]
+position = Vector2(0, -6)
 
 [connection signal="area_entered" from="BodyHurtbox1" to="." method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="BodyHurtbox2" to="." method="_on_hurtbox_area_entered"]

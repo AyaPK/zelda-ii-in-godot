@@ -71,6 +71,8 @@ size = Vector2(16, 16)
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_312bm")
+xp_value = 3
+max_hp = 3
 blockable = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=189078083]

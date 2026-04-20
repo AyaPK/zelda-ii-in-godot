@@ -29,6 +29,12 @@ var is_stunned: bool = false
 
 func _ready() -> void:
 	hp = max_hp
+	var death_anims: int = 0
+	for _c in get_children():
+		if _c is DeathAnimation:
+			death_anims += 1
+			if death_anims > 1:
+				_c.show_label = false
 
 func _process(delta: float) -> void:
 	if iframe_timer > 0.0:
@@ -83,6 +89,8 @@ func die() -> void:
 			_c.play()
 		if _c is Sprite2D:
 			_c.hide()
+		if _c is Area2D:
+			_c.queue_free()
 	await $DeathAnimation.finished
 	queue_free()
 
