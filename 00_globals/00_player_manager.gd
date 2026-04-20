@@ -4,6 +4,8 @@ signal xp_changed(new_xp: int)
 signal level_up_available
 signal extra_life
 
+const XP_MULT: int = 10
+
 const THRESHOLDS: Dictionary = {
 	"life":   [50,  150,  400,  800,  1500, 2500, 4000],
 	"magic":  [100, 300,  700,  1200, 2200, 3500, 6000],
@@ -56,6 +58,7 @@ func add_item(item: String) -> void:
 		items.append(item)
 
 func add_xp(amount: int) -> void:
+	amount = amount * XP_MULT
 	if _all_maxed():
 		print("[PlayerManager] All stats maxed — granting extra life instead")
 		extra_life.emit()
