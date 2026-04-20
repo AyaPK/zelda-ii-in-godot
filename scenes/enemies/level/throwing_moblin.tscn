@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://0my61elxj3yf" path="res://scripts/enemies/spear_moblin_enemy.gd" id="1_tv5nx"]
 [ext_resource type="Texture2D" uid="uid://b3wfeygtw781" path="res://assets/art/sprites/spear-moblin.png" id="2_e5f1r"]
+[ext_resource type="PackedScene" uid="uid://cpxrbk73o2p2p" path="res://scenes/level-tools/death_animation.tscn" id="3_e5f1r"]
 
 [sub_resource type="Animation" id="Animation_s13em"]
 length = 0.001
@@ -145,5 +146,11 @@ collision_mask = 32
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_e5f1r")
 debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)
+
+[node name="DeathAnimation" parent="." unique_id=1974184744 instance=ExtResource("3_e5f1r")]
+position = Vector2(0, -9)
+
+[node name="DeathAnimation2" parent="." unique_id=1002827623 instance=ExtResource("3_e5f1r")]
+position = Vector2(0, -25)
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

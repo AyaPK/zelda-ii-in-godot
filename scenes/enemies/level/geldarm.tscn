@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://mwb57m53a0vb" path="res://scripts/enemies/desert-worm.gd" id="1_8bxkv"]
 [ext_resource type="Texture2D" uid="uid://ctwvjc5rqasl2" path="res://assets/art/sprites/geldarm-worm.png" id="2_8bxkv"]
+[ext_resource type="PackedScene" uid="uid://cpxrbk73o2p2p" path="res://scenes/level-tools/death_animation.tscn" id="3_ao0o7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjqvy"]
 size = Vector2(16, 16)
@@ -301,6 +302,18 @@ collision_mask = 32
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_pyn0u")
 debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)
+
+[node name="DeathAnimation" parent="." unique_id=1974184744 instance=ExtResource("3_ao0o7")]
+position = Vector2(0, 14)
+
+[node name="DeathAnimation3" parent="." unique_id=1041382857 instance=ExtResource("3_ao0o7")]
+position = Vector2(0, 4)
+
+[node name="DeathAnimation4" parent="." unique_id=336671238 instance=ExtResource("3_ao0o7")]
+position = Vector2(0, -6)
+
+[node name="DeathAnimation2" parent="." unique_id=1543171112 instance=ExtResource("3_ao0o7")]
+position = Vector2(0, -15)
 
 [connection signal="area_entered" from="BodyHurtbox1" to="." method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="BodyHurtbox2" to="." method="_on_hurtbox_area_entered"]

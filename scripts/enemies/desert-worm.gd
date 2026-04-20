@@ -99,6 +99,10 @@ func _apply_extension(amount: float) -> void:
 	$BodyHurtbox2.global_position = $BodySprite2.global_position
 	$BodyHurtbox3.global_position = $BodySprite3.global_position
 	$BodyHurtbox4.global_position = $BodySprite4.global_position
+	$DeathAnimation.global_position = $BodySprite1.global_position
+	$DeathAnimation2.global_position = $BodySprite2.global_position
+	$DeathAnimation3.global_position = $BodySprite3.global_position
+	$DeathAnimation4.global_position = $BodySprite4.global_position
 
 func _set_hitboxes_active(active: bool) -> void:
 	body_hurtbox_1.monitoring = active

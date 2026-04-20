@@ -182,14 +182,16 @@ func check_sword_hits() -> void:
 					continue
 				if enemy.take_hit(damage):
 					AudioManager.play_sfx("sword_hit")
-	if $ShortswordHitboxCrouching.monitoring:
+	elif $ShortswordHitboxCrouching.monitoring:
 		for area in $ShortswordHitboxCrouching.get_overlapping_areas():
 			var enemy := area.get_parent() as EncounterEnemy
 			if enemy:
 				if _is_blocked(global_position.x, enemy):
 					shield_blocked(enemy)
 					continue
-				enemy.take_hit(damage)
+				if enemy.take_hit(damage):
+					AudioManager.play_sfx("sword_hit")
+				
 
 func enable_hitbox() -> void:
 	if animation_player.current_animation == "attack" or animation_player.current_animation == "air_attack":

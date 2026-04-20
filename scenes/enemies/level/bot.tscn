@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bx41qaxe8wh3r" path="res://scripts/enemies/blue_slime_enemy.gd" id="1_iyopv"]
 [ext_resource type="Texture2D" uid="uid://op04rtwvtvi3" path="res://assets/art/sprites/bot-slime.png" id="2_iyopv"]
+[ext_resource type="PackedScene" uid="uid://cpxrbk73o2p2p" path="res://scenes/level-tools/death_animation.tscn" id="3_ow7fa"]
 
 [sub_resource type="Animation" id="Animation_70wsj"]
 length = 0.001
@@ -140,3 +141,6 @@ collision_mask = 32
 position = Vector2(0, -6.75)
 shape = SubResource("RectangleShape2D_ow7fa")
 debug_color = Color(0.8537612, 0, 0.0062061716, 0.41960785)
+
+[node name="DeathAnimation" parent="." unique_id=1974184744 instance=ExtResource("3_ow7fa")]
+position = Vector2(-1, -5)

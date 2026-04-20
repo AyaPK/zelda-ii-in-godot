@@ -73,8 +73,17 @@ func hit_player(player: LinkSidescroll) -> void:
 		Scenemanager.hud.refresh_hud()
 
 func die() -> void:
+	is_stunned = true
+	hit_stun_timer = hit_stun_duration
+	iframe_timer = iframe_duration
 	if spawner:
 		spawner.enemy_alive = false
+	for _c in get_children():
+		if _c is DeathAnimation:
+			_c.play()
+		if _c is Sprite2D:
+			_c.hide()
+	await $DeathAnimation.finished
 	queue_free()
 
 func blocked() -> void:

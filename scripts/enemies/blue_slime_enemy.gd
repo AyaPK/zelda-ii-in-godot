@@ -31,6 +31,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if is_stunned:
 		velocity.x = 0.0
+		velocity.y = 0.0
 		move_and_slide()
 		return
 	state_timer -= delta

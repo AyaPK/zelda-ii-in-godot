@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://xxd315ndqs4w" path="res://assets/art/sprites/ache-bat.png" id="1_51ouj"]
 [ext_resource type="Script" uid="uid://cf738nehmxsux" path="res://scripts/enemies/bat_enemy.gd" id="1_312bm"]
+[ext_resource type="PackedScene" uid="uid://cpxrbk73o2p2p" path="res://scenes/level-tools/death_animation.tscn" id="3_hjqvy"]
 
 [sub_resource type="Animation" id="Animation_312bm"]
 length = 0.001
@@ -100,5 +101,8 @@ collision_mask = 32
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_pyn0u")
 debug_color = Color(0.99497694, 0, 0.22083315, 0.41960785)
+
+[node name="DeathAnimation" parent="." unique_id=1974184744 instance=ExtResource("3_hjqvy")]
+position = Vector2(0, -1)
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

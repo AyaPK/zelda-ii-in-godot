@@ -21,8 +21,8 @@ func _check_off_screen() -> void:
 	if global_position.x < cam_x - half_w - 32.0 or global_position.x > cam_x + half_w + 32.0:
 		deactivate()
 
-func take_hit(_damage: int = 0) -> void:
-	pass
+func take_hit(_damage: int = 0) -> bool:
+	return false
 
 func deactivate() -> void:
 	hide()
