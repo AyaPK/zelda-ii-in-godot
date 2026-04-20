@@ -4,6 +4,8 @@ const SAVE_PATH := "user://save_slot_%d.json"
 const NORTH_PALACE := "res://levels/palaces/north_palace.tscn"
 const SAVE_VERSION := 1
 
+var active_slot: int = -1
+
 func slot_exists(slot: int) -> bool:
 	return FileAccess.file_exists(SAVE_PATH % slot)
 
@@ -22,6 +24,7 @@ func get_slot_info(slot: int) -> Dictionary:
 	}
 
 func new_game(slot: int, save_name: String) -> void:
+	active_slot = slot
 	PlayerManager.reset()
 	StoryFlags.reset()
 	_write_save(slot, save_name)
@@ -39,10 +42,17 @@ func load_slot(slot: int) -> void:
 	var data: Dictionary = JSON.parse_string(file.get_as_text())
 	if data == null:
 		return
+	active_slot = slot
 	PlayerManager.from_dict(data.get("player", {}))
 	StoryFlags.from_dict(data.get("story_flags", {}))
 	PlayerManager.current_hp = PlayerManager.max_hp
 	Scenemanager.change_scene_to_level(NORTH_PALACE, "GameStart", "Right")
+
+func autosave() -> void:
+	if active_slot == -1:
+		return
+	print("[SaveManager] Autosaving to slot ", active_slot)
+	save(active_slot)
 
 func delete_slot(slot: int) -> void:
 	if slot_exists(slot):

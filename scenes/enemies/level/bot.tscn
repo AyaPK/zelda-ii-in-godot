@@ -108,7 +108,7 @@ size = Vector2(18, 13.5)
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_iyopv")
-xp_value = 2
+xp_value = 100
 max_hp = 3
 blockable = false
 

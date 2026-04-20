@@ -1,0 +1,28 @@
+[gd_resource type="Theme" format=3 uid="uid://ck15t5iws0047"]
+
+[ext_resource type="FontFile" uid="uid://dsqedgjoyglb3" path="res://assets/fonts/zelda-ii-the-adventure-of-link.otf" id="1_jwexq"]
+[ext_resource type="Texture2D" uid="uid://tq4vn4u46sx4" path="res://assets/art/sprites/arrow.png" id="2_n7u5d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jwexq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n7u5d"]
+content_margin_left = 8.0
+texture = ExtResource("2_n7u5d")
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k5r4q"]
+texture = ExtResource("2_n7u5d")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ij7bx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tmdbf"]
+
+[resource]
+Button/font_sizes/font_size = 8
+Button/fonts/font = ExtResource("1_jwexq")
+Button/styles/disabled = SubResource("StyleBoxEmpty_jwexq")
+Button/styles/focus = SubResource("StyleBoxTexture_n7u5d")
+Button/styles/hover = SubResource("StyleBoxTexture_k5r4q")
+Button/styles/normal = SubResource("StyleBoxEmpty_ij7bx")
+Button/styles/pressed = SubResource("StyleBoxEmpty_tmdbf")

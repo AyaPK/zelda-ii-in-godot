@@ -7,7 +7,9 @@ var lifeslot := preload("res://scenes/level-tools/life_slot.tscn")
 func _ready() -> void:
 	Scenemanager.hud = self
 	PlayerManager.xp_changed.connect(set_up_exp_bar)
+	PlayerManager.level_up_available.connect(show_level_up_dialog)
 	refresh_hud()
+	$LevelUpPanel.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -39,3 +41,54 @@ func refresh_hud() -> void:
 
 func int_to_padded_string(value: int) -> String:
 	return "%04d" % value
+
+func show_level_up_dialog() -> void:
+	get_tree().paused = true
+	$LevelUpPanel.show()
+	$LevelUpPanel/Buttons/BC/Cancel.grab_focus()
+	var levels_waiting: Array[String] = PlayerManager.pending_tracks
+	
+	if "attack" in levels_waiting:
+		$LevelUpPanel/Buttons/BC/Attack.focus_mode = 2
+	else:
+		$LevelUpPanel/Buttons/BC/Attack.focus_mode = 0
+	
+	if "magic" in levels_waiting:
+		$LevelUpPanel/Buttons/BC/Magic.focus_mode = 2
+	else:
+		$LevelUpPanel/Buttons/BC/Magic.focus_mode = 0
+	
+	if "life" in levels_waiting:
+		$LevelUpPanel/Buttons/BC/Life.focus_mode = 2
+	else:
+		$LevelUpPanel/Buttons/BC/Life.focus_mode = 0
+		
+	$LevelUpPanel/Info/AtkAmt.text = str(PlayerManager.xp_to_next("attack"))
+	$LevelUpPanel/Info/DefAmt.text = str(PlayerManager.xp_to_next("magic"))
+	$LevelUpPanel/Info/LifAmt.text = str(PlayerManager.xp_to_next("life"))
+	print(levels_waiting)
+
+func _on_cancel_pressed() -> void:
+	$LevelUpPanel.hide()
+	get_tree().paused = false
+	PlayerManager.defer_level_up()
+	set_up_exp_bar(0)
+
+
+func _on_attack_pressed() -> void:
+	_apply_and_continue("attack")
+
+func _on_magic_pressed() -> void:
+	_apply_and_continue("magic")
+
+func _on_life_pressed() -> void:
+	_apply_and_continue("life")
+
+func _apply_and_continue(track: String) -> void:
+	PlayerManager.apply_level_up(track)
+	refresh_hud()
+	if PlayerManager.pending_levelups > 0:
+		show_level_up_dialog()
+	else:
+		$LevelUpPanel.hide()
+		get_tree().paused = false

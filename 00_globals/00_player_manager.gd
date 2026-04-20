@@ -14,6 +14,7 @@ var xp: int = 0
 var levels: Dictionary = { "life": 1, "magic": 1, "attack": 1}
 var pending_levelups: int = 0
 var pending_tracks: Array[String] = []
+var deferred_threshold: int = 0
 
 var life_level: int:
 	get:
@@ -72,10 +73,25 @@ func apply_level_up(track: String) -> void:
 		print("[PlayerManager] apply_level_up('" + track + "') ignored — not enough XP (have ", xp, ", need ", xp_to_next(track), ")")
 		return
 	var old_level = levels[track]
+	var cost := xp_to_next(track)
+	xp -= cost
 	levels[track] += 1
 	pending_levelups -= 1
 	pending_tracks.erase(track)
-	print("[PlayerManager] Level up applied! ", track, ": ", old_level, " -> ", levels[track], " | Pending level-ups remaining: ", pending_levelups)
+	print("[PlayerManager] Level up applied! ", track, ": ", old_level, " -> ", levels[track], " | XP spent: ", cost, " | XP remaining: ", xp, " | Pending level-ups remaining: ", pending_levelups)
+	xp_changed.emit(xp)
+	_invalidate_unaffordable_pending()
+
+## Called by the UI cancel button. Stamps a reachable deferred_threshold if all tracks are pending.
+func defer_level_up() -> void:
+	var all_pending := true
+	for track in levels:
+		if not pending_tracks.has(track):
+			all_pending = false
+			break
+	if all_pending:
+		deferred_threshold = xp + 100
+		print("[PlayerManager] Level-up deferred — next bar target set to: ", deferred_threshold)
 
 ## Returns true if current XP meets the threshold for the next level of [track].
 func can_level_up(track: String) -> bool:
@@ -90,6 +106,7 @@ func reset() -> void:
 	levels = { "life": 1, "magic": 1, "attack": 1 }
 	pending_levelups = 0
 	pending_tracks.clear()
+	deferred_threshold = 0
 	lives = 3
 	max_hp = 4
 	current_hp = 4
@@ -105,6 +122,7 @@ func on_player_death() -> void:
 	xp = 0
 	pending_levelups = 0
 	pending_tracks.clear()
+	deferred_threshold = 0
 	xp_changed.emit(xp)
 
 func to_dict() -> Dictionary:
@@ -144,16 +162,29 @@ func xp_to_next(track: String) -> int:
 		return 0
 	return THRESHOLDS[track][lv - 1]
 
-## Returns the lowest XP threshold among all three tracks — the next milestone the player can reach.
+## Returns the lowest XP threshold among tracks not yet pending.
+## If all tracks are pending (fully deferred), returns a stable deferred_threshold target.
 var next_threshold: int:
 	get:
 		var values: Array[int] = []
 		for track in levels:
+			if pending_tracks.has(track):
+				continue
 			var t := xp_to_next(track)
 			if t > 0:
 				values.append(t)
-		return values.min() if values.size() > 0 else 0
+		if values.size() > 0:
+			return values.min()
+		return deferred_threshold
 
+
+func _invalidate_unaffordable_pending() -> void:
+	for i in range(pending_tracks.size() - 1, -1, -1):
+		var t: String = pending_tracks[i]
+		if not can_level_up(t):
+			print("[PlayerManager] Pending level-up for '", t, "' invalidated — no longer affordable after XP spend")
+			pending_tracks.remove_at(i)
+			pending_levelups -= 1
 
 func _check_thresholds() -> void:
 	for track in levels:
@@ -163,6 +194,10 @@ func _check_thresholds() -> void:
 			pending_levelups += 1
 			level_up_available.emit()
 			print("[PlayerManager] pending_levelups is now: ", pending_levelups, " | pending_tracks: ", pending_tracks)
+	if deferred_threshold > 0 and xp >= deferred_threshold and pending_tracks.size() > 0:
+		print("[PlayerManager] Deferred threshold reached (", deferred_threshold, ") — re-emitting level_up_available for pending tracks: ", pending_tracks)
+		deferred_threshold = 0
+		level_up_available.emit()
 
 func _all_maxed() -> bool:
 	for track in levels:

@@ -4,6 +4,12 @@
 [ext_resource type="Theme" uid="uid://olkma8mm41to" path="res://themes/font.tres" id="2_rci3i"]
 [ext_resource type="Texture2D" uid="uid://dsytrn4o4wvvw" path="res://assets/art/menu/swordhudicon.png" id="3_rci3i"]
 [ext_resource type="Texture2D" uid="uid://dm6luknbsbn7y" path="res://assets/art/menu/lifeicon.png" id="4_50coh"]
+[ext_resource type="Texture2D" uid="uid://b05rh2rp0ivr6" path="res://assets/art/menu/border-1.png" id="5_50coh"]
+[ext_resource type="Theme" uid="uid://cmbvl5bbjrnrb" path="res://themes/name_input_button.tres" id="6_4lks3"]
+[ext_resource type="Theme" uid="uid://ck15t5iws0047" path="res://themes/level_up_button.tres" id="7_ec6mv"]
+[ext_resource type="FontFile" uid="uid://dsqedgjoyglb3" path="res://assets/fonts/zelda-ii-the-adventure-of-link.otf" id="8_18wee"]
+[ext_resource type="Texture2D" uid="uid://b131d5svmgbx4" path="res://assets/art/sprites/magic-jar.png" id="9_n1cip"]
+[ext_resource type="Texture2D" uid="uid://b1jms6x8pahms" path="res://assets/art/sprites/heart.png" id="10_0dndv"]
 
 [sub_resource type="Gradient" id="Gradient_50coh"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 1)
@@ -11,7 +17,18 @@ colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_4lks3"]
 gradient = SubResource("Gradient_50coh")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0hfig"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4lks3"]
+texture = ExtResource("5_50coh")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
 [node name="Hud" type="CanvasLayer" unique_id=877818997]
+process_mode = 3
 script = ExtResource("1_4lks3")
 
 [node name="Labels" type="Node" parent="." unique_id=40490198]
@@ -123,3 +140,146 @@ texture = ExtResource("4_50coh")
 
 [node name="LifeSlotsStart" type="Marker2D" parent="." unique_id=2081110228]
 position = Vector2(112, 9)
+
+[node name="LevelUpPanel" type="Node2D" parent="." unique_id=1715755702]
+
+[node name="Panels" type="Node2D" parent="LevelUpPanel" unique_id=1010492326]
+
+[node name="PanelContainer" type="PanelContainer" parent="LevelUpPanel/Panels" unique_id=950145254]
+offset_left = 97.0
+offset_top = 42.0
+offset_right = 233.0
+offset_bottom = 196.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0hfig")
+
+[node name="PanelContainer2" type="PanelContainer" parent="LevelUpPanel/Panels" unique_id=1219491155]
+offset_left = 97.0
+offset_top = 42.0
+offset_right = 149.0
+offset_bottom = 74.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_4lks3")
+
+[node name="PanelContainer3" type="PanelContainer" parent="LevelUpPanel/Panels" unique_id=1979331752]
+offset_left = 141.0
+offset_top = 42.0
+offset_right = 233.0
+offset_bottom = 74.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_4lks3")
+
+[node name="PanelContainer4" type="PanelContainer" parent="LevelUpPanel/Panels" unique_id=2048854769]
+offset_left = 97.0
+offset_top = 77.0
+offset_right = 233.0
+offset_bottom = 122.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_4lks3")
+
+[node name="PanelContainer5" type="PanelContainer" parent="LevelUpPanel/Panels" unique_id=1796004694]
+offset_left = 97.0
+offset_top = 114.0
+offset_right = 233.0
+offset_bottom = 159.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_4lks3")
+
+[node name="PanelContainer6" type="PanelContainer" parent="LevelUpPanel/Panels" unique_id=57695931]
+offset_left = 97.0
+offset_top = 151.0
+offset_right = 233.0
+offset_bottom = 196.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_4lks3")
+
+[node name="Buttons" type="Node2D" parent="LevelUpPanel" unique_id=1973954069]
+
+[node name="NextUp" type="Button" parent="LevelUpPanel/Buttons" unique_id=2092613509]
+offset_left = 95.0
+offset_top = 46.0
+offset_right = 150.0
+offset_bottom = 68.0
+theme = ExtResource("6_4lks3")
+theme_override_colors/font_outline_color = Color(0, 0, 1, 0)
+theme_override_font_sizes/font_size = 6
+text = "NEXT
+UP"
+
+[node name="BC" type="VBoxContainer" parent="LevelUpPanel/Buttons" unique_id=247629424]
+offset_left = 150.0
+offset_top = 51.0
+offset_right = 226.0
+offset_bottom = 189.0
+theme_override_constants/separation = 23
+
+[node name="Cancel" type="Button" parent="LevelUpPanel/Buttons/BC" unique_id=1397797931]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme = ExtResource("7_ec6mv")
+text = "CANCEL"
+alignment = 2
+
+[node name="Attack" type="Button" parent="LevelUpPanel/Buttons/BC" unique_id=356722660]
+layout_mode = 2
+theme = ExtResource("7_ec6mv")
+text = "Attack"
+alignment = 2
+
+[node name="Magic" type="Button" parent="LevelUpPanel/Buttons/BC" unique_id=2110337023]
+layout_mode = 2
+theme = ExtResource("7_ec6mv")
+text = "Magic
+"
+alignment = 2
+
+[node name="Life" type="Button" parent="LevelUpPanel/Buttons/BC" unique_id=1225905461]
+layout_mode = 2
+theme = ExtResource("7_ec6mv")
+text = "Life"
+alignment = 2
+
+[node name="Info" type="Node2D" parent="LevelUpPanel" unique_id=697909394]
+
+[node name="AtkAmt" type="Label" parent="LevelUpPanel/Info" unique_id=1430029648]
+offset_left = 106.0
+offset_top = 91.0
+offset_right = 145.0
+offset_bottom = 114.0
+theme_override_fonts/font = ExtResource("8_18wee")
+theme_override_font_sizes/font_size = 7
+text = "9999"
+horizontal_alignment = 2
+
+[node name="DefAmt" type="Label" parent="LevelUpPanel/Info" unique_id=725082619]
+offset_left = 105.0
+offset_top = 128.0
+offset_right = 145.0
+offset_bottom = 151.0
+theme_override_fonts/font = ExtResource("8_18wee")
+theme_override_font_sizes/font_size = 7
+text = "9999"
+horizontal_alignment = 2
+
+[node name="LifAmt" type="Label" parent="LevelUpPanel/Info" unique_id=728022389]
+offset_left = 107.0
+offset_top = 166.0
+offset_right = 145.0
+offset_bottom = 189.0
+theme_override_fonts/font = ExtResource("8_18wee")
+theme_override_font_sizes/font_size = 7
+text = "9999"
+horizontal_alignment = 2
+
+[node name="Icons" type="Node2D" parent="LevelUpPanel" unique_id=665696730]
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelUpPanel/Icons" unique_id=666613228]
+position = Vector2(155, 111)
+texture = ExtResource("3_rci3i")
+
+[node name="Sprite2D2" type="Sprite2D" parent="LevelUpPanel/Icons" unique_id=99288477]
+position = Vector2(154, 147)
+texture = ExtResource("9_n1cip")
+
+[node name="Sprite2D3" type="Sprite2D" parent="LevelUpPanel/Icons" unique_id=533632784]
+position = Vector2(155, 184)
+texture = ExtResource("10_0dndv")
+
+[connection signal="pressed" from="LevelUpPanel/Buttons/BC/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="LevelUpPanel/Buttons/BC/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="LevelUpPanel/Buttons/BC/Magic" to="." method="_on_magic_pressed"]
+[connection signal="pressed" from="LevelUpPanel/Buttons/BC/Life" to="." method="_on_life_pressed"]

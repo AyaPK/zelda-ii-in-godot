@@ -38,6 +38,7 @@ func end_transition() -> void:
 func change_scene_to_encounter(area_type: String, difficulty: String) -> void:
 	start_transition()
 	await Overlay.faded
+	SaveManager.autosave()
 	var area_map: Dictionary = ENCOUNTER_SCENES.get(overworld_area, {})
 	var type_map: Dictionary = area_map.get(area_type, {})
 	var scene_path: String = type_map.get(difficulty, "")
@@ -53,6 +54,7 @@ func change_scene_to_encounter(area_type: String, difficulty: String) -> void:
 func change_scene_to_level(scene_path: String, target_node_name: String, facing_direction: String) -> void:
 	start_transition()
 	await Overlay.faded
+	SaveManager.autosave()
 	if get_tree().get_first_node_in_group("overworld-player"):
 		get_tree().get_first_node_in_group("overworld-player").queue_free()
 	scene_path_string = scene_path
@@ -74,6 +76,7 @@ func change_scene_to_overworld(target_node_name: String) -> void:
 func _do_change_scene_to_overworld(target_node_name: String) -> void:
 	start_transition()
 	await Overlay.faded
+	SaveManager.autosave()
 	target_transition = target_node_name
 	get_tree().change_scene_to_file("res://levels/overworld.tscn")
 	await get_tree().process_frame
@@ -95,6 +98,7 @@ func leave_encounter_to_overworld() -> void:
 func _do_leave_encounter_to_overworld() -> void:
 	start_transition()
 	await Overlay.faded
+	SaveManager.autosave()
 	overworld_has_enemies = false
 	get_tree().change_scene_to_file("res://levels/overworld.tscn")
 	await get_tree().process_frame
