@@ -14,7 +14,9 @@ gradient = SubResource("Gradient_50coh")
 [node name="Hud" type="CanvasLayer" unique_id=877818997]
 script = ExtResource("1_4lks3")
 
-[node name="AtkLevel" type="Label" parent="." unique_id=1339309447]
+[node name="Labels" type="Node" parent="." unique_id=40490198]
+
+[node name="AtkLevel" type="Label" parent="Labels" unique_id=1339309447]
 offset_left = 17.0
 offset_top = 5.0
 offset_right = 57.0
@@ -23,7 +25,7 @@ theme = ExtResource("2_rci3i")
 theme_override_font_sizes/font_size = 7
 text = "1"
 
-[node name="MagicLabel" type="Label" parent="." unique_id=1827273724]
+[node name="MagicLabel" type="Label" parent="Labels" unique_id=1827273724]
 offset_left = 32.0
 offset_top = -4.0
 offset_right = 80.0
@@ -32,7 +34,7 @@ theme = ExtResource("2_rci3i")
 theme_override_font_sizes/font_size = 7
 text = "magic-"
 
-[node name="MagicLevel" type="Label" parent="." unique_id=75045108]
+[node name="MagicLevel" type="Label" parent="Labels" unique_id=75045108]
 offset_left = 80.0
 offset_top = -4.0
 offset_right = 120.0
@@ -41,7 +43,7 @@ theme = ExtResource("2_rci3i")
 theme_override_font_sizes/font_size = 7
 text = "1"
 
-[node name="LifeLabel" type="Label" parent="." unique_id=224590639]
+[node name="LifeLabel" type="Label" parent="Labels" unique_id=224590639]
 offset_left = 104.0
 offset_top = -4.0
 offset_right = 152.0
@@ -50,7 +52,7 @@ theme = ExtResource("2_rci3i")
 theme_override_font_sizes/font_size = 7
 text = "life-"
 
-[node name="LifeLevel" type="Label" parent="." unique_id=1284701810]
+[node name="LifeLevel" type="Label" parent="Labels" unique_id=1284701810]
 offset_left = 144.0
 offset_top = -4.0
 offset_right = 192.0
@@ -59,7 +61,7 @@ theme = ExtResource("2_rci3i")
 theme_override_font_sizes/font_size = 7
 text = "1"
 
-[node name="NextLabel" type="Label" parent="." unique_id=586450716]
+[node name="NextLabel" type="Label" parent="Labels" unique_id=586450716]
 offset_left = 208.0
 offset_top = -4.0
 offset_right = 256.0
@@ -67,6 +69,33 @@ offset_bottom = 25.0
 theme = ExtResource("2_rci3i")
 theme_override_font_sizes/font_size = 7
 text = "next"
+
+[node name="CurrentXP" type="Label" parent="Labels" unique_id=244500777]
+offset_left = 183.0
+offset_top = 6.0
+offset_right = 215.0
+offset_bottom = 35.0
+theme = ExtResource("2_rci3i")
+theme_override_font_sizes/font_size = 7
+text = "0000"
+
+[node name="XPSlash" type="Label" parent="Labels" unique_id=1854633765]
+offset_left = 214.0
+offset_top = 5.0
+offset_right = 262.0
+offset_bottom = 34.0
+theme = ExtResource("2_rci3i")
+theme_override_font_sizes/font_size = 7
+text = "/"
+
+[node name="XPGoal" type="Label" parent="Labels" unique_id=1498040567]
+offset_left = 223.0
+offset_top = 6.0
+offset_right = 271.0
+offset_bottom = 35.0
+theme = ExtResource("2_rci3i")
+theme_override_font_sizes/font_size = 7
+text = "0000"
 
 [node name="SwordHUD" type="Sprite2D" parent="." unique_id=983237659]
 position = Vector2(12, 12.5)

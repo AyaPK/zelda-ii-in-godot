@@ -91,6 +91,7 @@ func die() -> void:
 			_c.hide()
 		if _c is Area2D:
 			_c.queue_free()
+	PlayerManager.add_xp(xp_value)
 	await $DeathAnimation.finished
 	queue_free()
 
