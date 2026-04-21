@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://sybwvi8i36wo"]
+
+[ext_resource type="Script" uid="uid://bl2damgc5vi4a" path="res://scripts/items/point_bag.gd" id="1_xu308"]
+[ext_resource type="Texture2D" uid="uid://bi3rdxyf5al46" path="res://assets/art/sprites/pointbag.png" id="2_kxnn5"]
+[ext_resource type="Theme" uid="uid://olkma8mm41to" path="res://themes/font.tres" id="3_ayqru"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ayqru"]
+size = Vector2(10, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxnn5"]
+size = Vector2(8, 1)
+
+[sub_resource type="Animation" id="Animation_e28bn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_4m7kc"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-17, -11), Vector2(-17, -25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ynmuw"]
+_data = {
+&"RESET": SubResource("Animation_e28bn"),
+&"appear": SubResource("Animation_4m7kc")
+}
+
+[node name="PointBag" type="StaticBody2D" unique_id=2021560044]
+script = ExtResource("1_xu308")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1727547486]
+position = Vector2(0, -8)
+texture = ExtResource("2_kxnn5")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=940664951]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1731568206]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_ayqru")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1185964271]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_kxnn5")
+
+[node name="Label" type="Label" parent="." unique_id=294964460]
+visible = false
+z_index = 2
+offset_left = -8.0
+offset_top = -11.0
+offset_right = 26.0
+offset_bottom = 1.0
+theme = ExtResource("3_ayqru")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 7
+text = "10"
+horizontal_alignment = 1
+
+[node name="LabelAnim" type="AnimationPlayer" parent="." unique_id=17158607]
+libraries/ = SubResource("AnimationLibrary_ynmuw")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_body_entered"]
+[connection signal="animation_finished" from="LabelAnim" to="." method="_on_label_anim_animation_finished"]
