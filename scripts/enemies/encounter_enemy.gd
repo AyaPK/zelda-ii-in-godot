@@ -4,6 +4,7 @@ class_name EncounterEnemy extends CharacterBody2D
 @export var max_hp: int = 1
 @export var attack: int = 8
 @export var blockable: bool = true
+@export_enum("A", "B", "-") var drop_table: String = "A"
 @export var hit_stun_duration: float = 1
 @export var iframe_duration: float = 1
 @export var flash_interval: float = 0.07
@@ -96,6 +97,14 @@ func die() -> void:
 			_c.queue_free()
 	await $DeathAnimation.finished
 	PlayerManager.add_xp(xp_value)
+	var drop := PlayerManager.register_enemy_kill(drop_table)
+	if not drop.is_empty():
+		var pickup: Node = load(drop["path"]).instantiate()
+		pickup.global_position = global_position
+		if drop.has("exp_gain"):
+			pickup.exp_gain = drop["exp_gain"]
+		print(pickup)
+		get_parent().call_deferred("add_child", pickup)
 	queue_free()
 
 func blocked() -> void:

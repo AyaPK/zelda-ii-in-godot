@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://ddokk8jv2er87"]
+
+[ext_resource type="Script" uid="uid://cf4refbmn4vkl" path="res://scripts/items/red_potion.gd" id="1_redpot"]
+[ext_resource type="Texture2D" uid="uid://bqpoc717jg4li" path="res://assets/art/sprites/redpotion.png" id="2_khgdg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(8, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pickup"]
+size = Vector2(10, 14)
+
+[node name="RedPotion" type="CharacterBody2D" unique_id=1341411280]
+collision_mask = 3
+script = ExtResource("1_redpot")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1026916250]
+position = Vector2(0, -8)
+texture = ExtResource("2_khgdg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=829952985]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1176751628]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=760303294]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_pickup")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_body_entered"]

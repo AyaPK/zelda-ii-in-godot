@@ -43,6 +43,34 @@ var items: Array[String] = []
 var containers: int = 0
 var magic_containers: int = 0
 
+var enemy_kill_count: int = 0
+
+const POINT_BAG_SCENE: String = "res://scenes/items/point_bag.tscn"
+const BLUE_POTION_SCENE: String = "res://scenes/items/blue_potion.tscn"
+const RED_POTION_SCENE: String = "res://scenes/items/red_potion.tscn"
+
+## Called by non-boss enemies on death.
+## Returns {"path": String, "exp_gain": int} for a bag, {"path": String} for a potion, or {} for no drop.
+func register_enemy_kill(drop_table: String) -> Dictionary:
+	if drop_table == "-":
+		return {}
+	enemy_kill_count += 1
+	print("[PlayerManager] Enemy kill count: ", enemy_kill_count)
+	if enemy_kill_count % 10 != 0:
+		return {}
+	var roll := randf()
+	print("[PlayerManager] Drop triggered! Table: ", drop_table, " | Roll: ", roll)
+	if drop_table == "A":
+		if roll < 0.9:
+			return {"path": BLUE_POTION_SCENE}
+		else:
+			return {"path": POINT_BAG_SCENE, "exp_gain": 50}
+	else:
+		if roll < 0.9:
+			return {"path": RED_POTION_SCENE}
+		else:
+			return {"path": POINT_BAG_SCENE, "exp_gain": 200}
+
 func has_spell(spell: String) -> bool:
 	return spell in spells
 
@@ -110,6 +138,7 @@ func reset() -> void:
 	pending_levelups = 0
 	pending_tracks.clear()
 	deferred_threshold = 0
+	enemy_kill_count = 0
 	lives = 3
 	max_hp = 4
 	current_hp = 4
@@ -126,6 +155,7 @@ func on_player_death() -> void:
 	pending_levelups = 0
 	pending_tracks.clear()
 	deferred_threshold = 0
+	enemy_kill_count = 0
 	xp_changed.emit(xp)
 
 func to_dict() -> Dictionary:

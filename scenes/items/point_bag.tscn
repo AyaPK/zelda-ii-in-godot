@@ -94,7 +94,8 @@ _data = {
 &"appear": SubResource("Animation_4m7kc")
 }
 
-[node name="PointBag" type="StaticBody2D" unique_id=2021560044]
+[node name="PointBag" type="CharacterBody2D" unique_id=1358833026]
+collision_mask = 3
 script = ExtResource("1_xu308")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1727547486]

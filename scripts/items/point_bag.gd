@@ -14,5 +14,5 @@ func _on_area_body_entered(body: Node2D) -> void:
 
 func _on_label_anim_animation_finished(anim_name: StringName) -> void:
 	if collected:
-		PlayerManager.add_xp(50)
+		PlayerManager.add_xp(exp_gain)
 		kill()
