@@ -6,6 +6,7 @@
 size = Vector2(64, 64)
 
 [node name="LevelToLevel" type="Area2D" unique_id=2027770162]
+collision_layer = 512
 script = ExtResource("1_ka4lw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=685546238]

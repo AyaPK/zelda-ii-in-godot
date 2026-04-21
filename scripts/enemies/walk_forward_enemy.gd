@@ -1,6 +1,6 @@
 class_name WalkForwardEnemy extends EncounterEnemy
 
-const SPEED = 60.0
+@export var SPEED = 60.0
 
 var walk_right: bool = true
 

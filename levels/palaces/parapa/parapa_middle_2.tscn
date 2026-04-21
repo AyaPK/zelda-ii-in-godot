@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://cn21fhx6p5srp" path="res://scenes/link-sidescroll.tscn" id="4_klnlx"]
 [ext_resource type="PackedScene" uid="uid://bu8mylhkb5itl" path="res://scenes/level-tools/camera_boundary_left.tscn" id="6_5wphm"]
 [ext_resource type="PackedScene" uid="uid://jsy0yju0f8o6" path="res://scenes/level-tools/camera_boundary_right.tscn" id="7_n5y8y"]
+[ext_resource type="PackedScene" uid="uid://g5gukfyvxltv" path="res://scenes/enemies/level/kobold.tscn" id="8_n5y8y"]
+[ext_resource type="PackedScene" uid="uid://kfblnuttonsx" path="res://scenes/level-tools/enemy_spawner.tscn" id="9_ovns8"]
+[ext_resource type="PackedScene" uid="uid://yy7tccvmxk5k" path="res://scenes/level-tools/enemy_despawner.tscn" id="10_di1do"]
 
 [node name="ParapaMiddle2" type="Node2D" unique_id=1363693581]
 script = ExtResource("1_eyysg")
@@ -42,3 +45,18 @@ position = Vector2(0, 181)
 
 [node name="CameraBoundaryRight" parent="." unique_id=1651000621 instance=ExtResource("7_n5y8y")]
 position = Vector2(1025, 177)
+
+[node name="Kobold" parent="." unique_id=1845871361 instance=ExtResource("8_n5y8y")]
+position = Vector2(228, 189)
+
+[node name="EnemySpawner" parent="." unique_id=1103997845 instance=ExtResource("9_ovns8")]
+position = Vector2(1047, 200)
+enemy_scene = "uid://g5gukfyvxltv"
+frequency = 4.0
+walk_direction = "left"
+
+[node name="EnemyDespawner" parent="." unique_id=397984475 instance=ExtResource("10_di1do")]
+position = Vector2(1071, 201)
+
+[node name="EnemyDespawner2" parent="." unique_id=8724248 instance=ExtResource("10_di1do")]
+position = Vector2(-46, 198)
