@@ -38,6 +38,7 @@ var iframe_timer: float = 0.0
 var flash_timer: float = 0.0
 var knockback_dir: float = -1.0
 var on_elevator: bool = false
+var interactable: Interactable = null
 
 var _current_state: PlayerState = null
 var _previous_state: PlayerState = null
@@ -59,6 +60,11 @@ func transition_to(next: PlayerState) -> void:
 	_previous_state = _current_state
 	_current_state = next
 	_current_state.enter(self)
+
+func _process(_delta: float) -> void:
+	if interactable and Input.is_action_just_pressed("attack"):
+		print("a")
+		interactable.activate()
 
 func _physics_process(delta: float) -> void:
 	state_timer -= delta

@@ -51,6 +51,7 @@ sidescroll-player=""
 overworld-player=""
 overworld-enemy=""
 sidescroll-enemy=""
+dialogue-box=""
 
 [input]
 

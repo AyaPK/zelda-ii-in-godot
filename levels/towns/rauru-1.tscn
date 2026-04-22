@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://jsy0yju0f8o6" path="res://scenes/level-tools/camera_boundary_right.tscn" id="4_d3maw"]
 [ext_resource type="PackedScene" uid="uid://bu8mylhkb5itl" path="res://scenes/level-tools/camera_boundary_left.tscn" id="5_gsnmu"]
 [ext_resource type="PackedScene" uid="uid://duw8hvarr5jas" path="res://scenes/level-tools/transition_to_overworld.tscn" id="6_gsnmu"]
+[ext_resource type="PackedScene" uid="uid://bphdu763eat83" path="res://scenes/npc/patrolling_npc.tscn" id="7_vasm7"]
+[ext_resource type="PackedScene" uid="uid://dhm48qj174w3a" path="res://scenes/level-tools/dialogue_box.tscn" id="8_6mwrw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_08chv"]
 texture = ExtResource("1_ibv3p")
@@ -57,7 +59,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAADAAAAAAAAAAEAAAADAAAAAAAAAAIAAAADAAA
 tile_set = SubResource("TileSet_j2oqy")
 
 [node name="link-sidescroll" parent="." unique_id=1464587723 instance=ExtResource("2_08chv")]
-position = Vector2(978, 192)
+position = Vector2(676, 185)
 
 [node name="RightEntrance" type="Marker2D" parent="." unique_id=34864403]
 position = Vector2(997, 192)
@@ -70,3 +72,17 @@ position = Vector2(0, 160)
 
 [node name="TransitionToOverworld" parent="." unique_id=820669562 instance=ExtResource("6_gsnmu")]
 position = Vector2(1025, 1)
+
+[node name="NPC" parent="." unique_id=1476832869 instance=ExtResource("7_vasm7")]
+position = Vector2(589, 190)
+dialogue = "Hello! Sorry, I know nothing."
+waypoint_a = NodePath("../1")
+waypoint_b = NodePath("../2")
+
+[node name="1" type="Marker2D" parent="." unique_id=1774343601]
+position = Vector2(531, 192)
+
+[node name="2" type="Marker2D" parent="." unique_id=1246995901]
+position = Vector2(654, 192)
+
+[node name="DialogueBox" parent="." unique_id=943978344 instance=ExtResource("8_6mwrw")]

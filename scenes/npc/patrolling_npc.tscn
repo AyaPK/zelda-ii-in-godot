@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://bphdu763eat83"]
+
+[ext_resource type="Script" uid="uid://fm7vh01klkmb" path="res://scripts/npc/npc.gd" id="1_npc"]
+[ext_resource type="Texture2D" uid="uid://88iuf74l5dmj" path="res://assets/art/sprites/potladyred.png" id="2_dpyoa"]
+[ext_resource type="Script" uid="uid://b1raklg3rb1fj" path="res://scripts/npc/npc_interact_area.gd" id="2_npc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(12, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_interact"]
+size = Vector2(20, 28)
+
+[sub_resource type="Animation" id="Animation_r4bp4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_dpyoa"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_woxlu"]
+resource_name = "walk"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r4bp4"]
+_data = {
+&"RESET": SubResource("Animation_r4bp4"),
+&"idle": SubResource("Animation_dpyoa"),
+&"walk": SubResource("Animation_woxlu")
+}
+
+[node name="PatrollingNPC" type="CharacterBody2D" unique_id=256737584 groups=["town-npc"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_npc")
+dialogue = "Hello!"
+sprite = ExtResource("2_dpyoa")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1427907721]
+position = Vector2(0, -14)
+texture = ExtResource("2_dpyoa")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1495327723]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="InteractArea" type="Area2D" parent="." unique_id=1643630227]
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("2_npc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=1679224274]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_interact")
+
+[node name="WaypointA" type="Marker2D" parent="." unique_id=212382312]
+position = Vector2(-48, 0)
+
+[node name="WaypointB" type="Marker2D" parent="." unique_id=691796618]
+position = Vector2(48, 0)
+
+[node name="Anim" type="AnimationPlayer" parent="." unique_id=764119372]
+libraries/ = SubResource("AnimationLibrary_r4bp4")
+autoplay = &"idle"
+
+[connection signal="body_entered" from="InteractArea" to="InteractArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractArea" to="InteractArea" method="_on_body_exited"]

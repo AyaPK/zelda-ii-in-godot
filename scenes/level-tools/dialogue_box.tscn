@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dhm48qj174w3a"]
+
+[ext_resource type="Script" uid="uid://bgtssg3lvos7c" path="res://scripts/npc/dialogue_box.gd" id="1_dlg"]
+[ext_resource type="Theme" uid="uid://cmbvl5bbjrnrb" path="res://themes/name_input_button.tres" id="2_akhm7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_akhm7"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="DialogueBox" type="CanvasLayer" unique_id=659145494 groups=["dialogue-box"]]
+layer = 10
+script = ExtResource("1_dlg")
+
+[node name="Panel" type="Panel" parent="." unique_id=1101909180]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 151.0
+offset_top = -183.0
+offset_right = -21.0
+offset_bottom = -115.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_akhm7")
+
+[node name="Label" type="Label" parent="Panel" unique_id=565879826]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = -8.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_akhm7")
+theme_override_font_sizes/font_size = 6
+text = "aaaaaaaaaaaaaaaaa"
+autowrap_mode = 3
