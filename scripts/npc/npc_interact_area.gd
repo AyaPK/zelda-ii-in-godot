@@ -6,8 +6,7 @@ func activate() -> void:
 	var dialogue_box := get_tree().get_first_node_in_group("dialogue-box") as DialogueBox
 	if dialogue_box and not is_talking:
 		print("b")
-		var npc := get_parent() as NPC
-		dialogue_box.show_dialogue(npc.dialogue, self)
+		dialogue_box.show_dialogue(get_parent().dialogue, self)
 		print("c")
 
 func set_talking(value: bool) -> void:

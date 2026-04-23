@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://br55su0n04kma"]
+
+[ext_resource type="Script" uid="uid://cqdwlmen14mm8" path="res://scripts/npc/stationary_npc.gd" id="1_snpc"]
+[ext_resource type="Script" uid="uid://b1raklg3rb1fj" path="res://scripts/npc/npc_interact_area.gd" id="2_snpc"]
+[ext_resource type="Texture2D" uid="uid://88iuf74l5dmj" path="res://assets/art/sprites/potladyred.png" id="2_v0vaf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(12, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_interact"]
+size = Vector2(20, 28)
+
+[node name="StationaryNPC" type="CharacterBody2D" unique_id=249490391 groups=["town-npc"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_snpc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=717868024]
+position = Vector2(0, -14)
+texture = ExtResource("2_v0vaf")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1553993715]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="InteractArea" type="Area2D" parent="." unique_id=528027931]
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("2_snpc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=1946682265]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_interact")
+
+[connection signal="body_entered" from="InteractArea" to="InteractArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractArea" to="InteractArea" method="_on_body_exited"]
