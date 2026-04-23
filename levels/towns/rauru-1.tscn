@@ -75,14 +75,28 @@ position = Vector2(1025, 1)
 
 [node name="NPC" parent="." unique_id=1476832869 instance=ExtResource("7_vasm7")]
 position = Vector2(589, 190)
-dialogue = "Hello! Sorry, I know nothing."
+dialogue = "Get candle in parapa palace.
+go west."
 waypoint_a = NodePath("../1")
 waypoint_b = NodePath("../2")
+
+[node name="NPC2" parent="." unique_id=256737584 instance=ExtResource("7_vasm7")]
+position = Vector2(345, 191)
+dialogue = "Get candle in parapa palace.
+go west."
+waypoint_a = NodePath("../3")
+waypoint_b = NodePath("../4")
 
 [node name="1" type="Marker2D" parent="." unique_id=1774343601]
 position = Vector2(531, 192)
 
+[node name="3" type="Marker2D" parent="." unique_id=1949465448]
+position = Vector2(586, 192)
+
 [node name="2" type="Marker2D" parent="." unique_id=1246995901]
 position = Vector2(654, 192)
+
+[node name="4" type="Marker2D" parent="." unique_id=1931158364]
+position = Vector2(275, 192)
 
 [node name="DialogueBox" parent="." unique_id=943978344 instance=ExtResource("8_6mwrw")]

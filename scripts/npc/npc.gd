@@ -1,6 +1,6 @@
 class_name NPC extends CharacterBody2D
 
-@export var dialogue: String = ""
+@export_multiline var dialogue: String = ""
 @export var speed: float = 30.0
 @export var waypoint_a: NodePath
 @export var waypoint_b: NodePath
