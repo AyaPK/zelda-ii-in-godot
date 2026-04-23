@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dhm48qj174w3a" path="res://scenes/level-tools/dialogue_box.tscn" id="8_6mwrw"]
 [ext_resource type="PackedScene" uid="uid://br55su0n04kma" path="res://scenes/npc/stationary_npc.tscn" id="9_umlxt"]
 [ext_resource type="Texture2D" uid="uid://88iuf74l5dmj" path="res://assets/art/sprites/potladyred.png" id="10_0pwpr"]
+[ext_resource type="PackedScene" uid="uid://cgmtr1r7jbc0x" path="res://scenes/npc/walking_npc.tscn" id="11_iljwj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_08chv"]
 texture = ExtResource("1_ibv3p")
@@ -107,3 +108,10 @@ position = Vector2(275, 192)
 position = Vector2(480, 191)
 dialogue = "aaaa! :)"
 sprite = ExtResource("10_0pwpr")
+
+[node name="WalkingNPC" parent="." unique_id=567176645 instance=ExtResource("11_iljwj")]
+position = Vector2(1048, 192)
+dialogue = "Sorry I know nothing."
+sprite = ExtResource("10_0pwpr")
+walk_right = false
+despawn_x = -8.0
