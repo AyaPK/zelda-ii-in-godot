@@ -6,11 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://jsy0yju0f8o6" path="res://scenes/level-tools/camera_boundary_right.tscn" id="4_d3maw"]
 [ext_resource type="PackedScene" uid="uid://bu8mylhkb5itl" path="res://scenes/level-tools/camera_boundary_left.tscn" id="5_gsnmu"]
 [ext_resource type="PackedScene" uid="uid://duw8hvarr5jas" path="res://scenes/level-tools/transition_to_overworld.tscn" id="6_gsnmu"]
-[ext_resource type="PackedScene" uid="uid://bphdu763eat83" path="res://scenes/npc/patrolling_npc.tscn" id="7_vasm7"]
 [ext_resource type="PackedScene" uid="uid://dhm48qj174w3a" path="res://scenes/level-tools/dialogue_box.tscn" id="8_6mwrw"]
+[ext_resource type="Texture2D" uid="uid://c4bp23ramkcr6" path="res://assets/art/sprites/redoldlady.png" id="9_0pwpr"]
 [ext_resource type="PackedScene" uid="uid://br55su0n04kma" path="res://scenes/npc/stationary_npc.tscn" id="9_umlxt"]
-[ext_resource type="Texture2D" uid="uid://88iuf74l5dmj" path="res://assets/art/sprites/potladyred.png" id="10_0pwpr"]
-[ext_resource type="PackedScene" uid="uid://cgmtr1r7jbc0x" path="res://scenes/npc/walking_npc.tscn" id="11_iljwj"]
+[ext_resource type="PackedScene" uid="uid://bphdu763eat83" path="res://scenes/npc/patrolling_npc.tscn" id="10_0pwpr"]
+[ext_resource type="Texture2D" uid="uid://w4gcttxiciwf" path="res://assets/art/sprites/redlady.png" id="11_iljwj"]
+[ext_resource type="PackedScene" uid="uid://cgmtr1r7jbc0x" path="res://scenes/npc/walking_npc.tscn" id="12_7h6kf"]
+[ext_resource type="Texture2D" uid="uid://c7fgxksd13d8f" path="res://assets/art/sprites/redpotlady.png" id="13_u6cw4"]
+[ext_resource type="Texture2D" uid="uid://3gijlrt33aeu" path="res://assets/art/sprites/bluelady.png" id="14_r2q2b"]
+[ext_resource type="Texture2D" uid="uid://b8gt7iw5pfmj8" path="res://assets/art/sprites/blueman.png" id="15_p78ru"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_08chv"]
 texture = ExtResource("1_ibv3p")
@@ -76,42 +80,50 @@ position = Vector2(0, 160)
 [node name="TransitionToOverworld" parent="." unique_id=820669562 instance=ExtResource("6_gsnmu")]
 position = Vector2(1025, 1)
 
-[node name="NPC" parent="." unique_id=1476832869 instance=ExtResource("7_vasm7")]
-position = Vector2(589, 190)
-dialogue = "Get candle in parapa palace.
-go west."
-waypoint_a = NodePath("../1")
-waypoint_b = NodePath("../2")
-
-[node name="NPC2" parent="." unique_id=256737584 instance=ExtResource("7_vasm7")]
-position = Vector2(345, 191)
-dialogue = "Get candle in parapa palace.
-go west."
-waypoint_a = NodePath("../3")
-waypoint_b = NodePath("../4")
-
-[node name="1" type="Marker2D" parent="." unique_id=1774343601]
-position = Vector2(531, 192)
-
-[node name="3" type="Marker2D" parent="." unique_id=1949465448]
-position = Vector2(586, 192)
-
-[node name="2" type="Marker2D" parent="." unique_id=1246995901]
-position = Vector2(654, 192)
-
-[node name="4" type="Marker2D" parent="." unique_id=1931158364]
-position = Vector2(275, 192)
-
 [node name="DialogueBox" parent="." unique_id=943978344 instance=ExtResource("8_6mwrw")]
 
 [node name="StationaryNPC" parent="." unique_id=249490391 instance=ExtResource("9_umlxt")]
-position = Vector2(480, 191)
-dialogue = "aaaa! :)"
-sprite = ExtResource("10_0pwpr")
+position = Vector2(553, 190)
+scale = Vector2(-1, 1)
+dialogue = "Return the crystal to the palace in Parapa"
+sprite = ExtResource("9_0pwpr")
 
-[node name="WalkingNPC" parent="." unique_id=567176645 instance=ExtResource("11_iljwj")]
+[node name="PatrollingNPC" parent="." unique_id=256737584 instance=ExtResource("10_0pwpr")]
+position = Vector2(216, 192)
+dialogue = "Please let me help you. Come inside."
+waypoint_a = NodePath("../Marker2D")
+waypoint_b = NodePath("../Marker2D2")
+sprite = ExtResource("11_iljwj")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1339298262]
+position = Vector2(168, 192)
+
+[node name="Marker2D2" type="Marker2D" parent="." unique_id=1112969563]
+position = Vector2(264, 192)
+
+[node name="WalkingNPC" parent="." unique_id=1876731384 instance=ExtResource("12_7h6kf")]
+position = Vector2(-24, 193)
+dialogue = "Hello!"
+sprite = ExtResource("13_u6cw4")
+despawn_x = 1040.0
+
+[node name="WalkingNPC4" parent="." unique_id=772431360 instance=ExtResource("12_7h6kf")]
+position = Vector2(-24, 193)
+dialogue = "I'm much too busy to talk to a stranger."
+sprite = ExtResource("15_p78ru")
+speed = 60.0
+despawn_x = 1040.0
+spawn_delay = 9.0
+
+[node name="WalkingNPC2" parent="." unique_id=387344694 instance=ExtResource("12_7h6kf")]
 position = Vector2(1048, 192)
-dialogue = "Sorry I know nothing."
-sprite = ExtResource("10_0pwpr")
+dialogue = "Sorry. I know nothing."
+sprite = ExtResource("14_r2q2b")
 walk_right = false
-despawn_x = -8.0
+
+[node name="WalkingNPC3" parent="." unique_id=1158717258 instance=ExtResource("12_7h6kf")]
+position = Vector2(1076, 191)
+dialogue = "I'm much too busy to talk to a stranger."
+sprite = ExtResource("15_p78ru")
+walk_right = false
+spawn_delay = 16.0

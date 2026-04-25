@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cqdwlmen14mm8" path="res://scripts/npc/stationary_npc.gd" id="1_snpc"]
 [ext_resource type="Script" uid="uid://b1raklg3rb1fj" path="res://scripts/npc/npc_interact_area.gd" id="2_snpc"]
-[ext_resource type="Texture2D" uid="uid://88iuf74l5dmj" path="res://assets/art/sprites/potladyred.png" id="2_v0vaf"]
+[ext_resource type="Texture2D" uid="uid://c7fgxksd13d8f" path="res://assets/art/sprites/redpotlady.png" id="2_v0vaf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
 size = Vector2(12, 24)
@@ -26,7 +26,6 @@ shape = SubResource("RectangleShape2D_body")
 
 [node name="InteractArea" type="Area2D" parent="." unique_id=528027931]
 collision_layer = 0
-collision_mask = 1
 script = ExtResource("2_snpc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=1946682265]

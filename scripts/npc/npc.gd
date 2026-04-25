@@ -1,3 +1,4 @@
+@tool
 class_name NPC extends CharacterBody2D
 
 @export_multiline var dialogue: String = ""
@@ -5,7 +6,11 @@ class_name NPC extends CharacterBody2D
 @export var waypoint_a: NodePath
 @export var waypoint_b: NodePath
 @export var wait_time: float = 1.0
-@export var sprite: Texture2D
+@export var sprite: Texture2D:
+	set(value):
+		sprite = value
+		if is_node_ready():
+			$Sprite2D.texture = sprite
 
 var _target: Marker2D
 var _wait_timer: float = 0.0
@@ -17,10 +22,13 @@ var _waiting: bool = false
 @onready var _anim: AnimationPlayer = $Anim
 
 func _ready() -> void:
-	_target = _wp_b
+	if not Engine.is_editor_hint():
+		_target = _wp_b
 	$Sprite2D.texture = sprite
 
 func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
 	if interact_area.is_talking:
 		velocity = Vector2.ZERO
 		_anim.play("idle")
