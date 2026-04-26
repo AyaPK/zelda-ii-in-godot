@@ -90,7 +90,7 @@ node_name = "MainEntrance"
 
 [node name="TransitionToRauru" parent="." unique_id=919647965 instance=ExtResource("4_oehki")]
 position = Vector2(471, 137)
-target_scene = "uid://dynugrsk26epd"
+target_scene = "uid://qquonv4hee7y"
 node_name = "RightEntrance"
 
 [node name="TransitionToForestSecret" parent="." unique_id=2013996764 instance=ExtResource("4_oehki")]
